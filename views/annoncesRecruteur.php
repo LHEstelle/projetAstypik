@@ -75,12 +75,14 @@ var_dump($_SERVER);
 
         <div class="col-lg-9">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-                <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mes offres d'emplois</a>
-                <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-3">Profils candidats</a>
-                <a href="likesRecruteur.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark p-3 col-3">Likes</a>
-                <a href="annoncesRecruteur.php" class="fas fa-briefcase menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="viewRH.php" class="fas fa-users menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="likesRecruteur.php" class="fas fa-heart menuIcon p-3 col-3 d-lg-none"></a>
+            <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
+                <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
+                <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-2">Profils candidats</a>
+                <a href="likesRecruteur.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark  p-3 col-2">Likes</a>
+                <a href="profilRecruteur.php" class="fas fa-user menuIcon p-3 col-2 d-lg-none"></a>
+                <a href="annoncesRecruteur.php" class="fas fa-briefcase menuIcon p-3 col-2 d-lg-none"></a>
+                <a href="viewRH.php" class="fas fa-users menuIcon p-3 col-2 d-lg-none"></a>
+                <a href="likesRecruteur.php" class="fas fa-heart menuIcon p-3 col-2 d-lg-none"></a>
             </div>
 
 
@@ -93,172 +95,37 @@ var_dump($_SERVER);
                     </div>
 
                     <div class="jobName col-lg-4 col-12 ms-3 me-3">
-                        <a href="detailRecrutor.php?id=<?= $event['id'] ?>" class="announceLink">
+                        <a href="modifierAnnonce.php?id=<?= $event['id'] ?>" class="announceLink">
                             <h1 class="fs-3"><b><?= $event['job'] ?></b></h1>
                             <p class="text-secondary"><?= $event['contract'] ?> - <?= $event['experience'] ?> ans d'expérience</p>
                         </a>
                     </div>
                     <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p>
                     <div class="col-lg-3 col-12">
-<!-- Button trigger modal -->
-                        <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Modifier
-                        </button>
-                         <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark">
-                            <h1 class="fs-2 text-white pb-2s">Ajout d'une annonce</h1>
-                            <div class="d-flex m-2 justify-content-end">
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-
-                        </div>
-                        <div class="modal-body  myModal">
-
-                            <div class="modal-title text-white" id="exampleModalLabel">
-                            <form method="GET" action = "annoncesRecruteur.php">
-                                    <p class=""><b>TYPE DE POSTE</b></p>
-                                    <div class="d-flex">
-                                        <input value="<?= $_GET['jobType'] ?>" class="form-control inputSearch me-2 ms-3" name="" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-                                    </div>
-                                    <p class="mt-3"><b>NOM DE L'ENTREPRISE</b></p>
-                                    <div class="d-flex">
-                                        <input class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: Renault" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-                                    </div>
-                                    <p class="mt-3 text-center"><b>TYPE DE CONTRAT (facultatif)</b></p>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            CDI
-                                        </label>
-                                    </div>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            CDD
-                                        </label>
-                                    </div>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            Alternance
-                                        </label>
-                                    </div>
-                                    <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
-                                    <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
-                                    <div class="d-flex">
-                                        <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
-                                        <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
-                                    </div>
-
-                                    <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
-                                    <div class="d-flex">
-                                        <input class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-                                    </div>
-                                    <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
-                                    <textarea class="col-12" name="description"></textarea>
-                                </form>
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer bg-dark">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <input type="submit" class="btn btn-primary">Enregistrer</button>
-                        </div>
+                      
+                        <a href="modifierAnnonce.php" class="link">
+                            <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4">
+                                Modifier
+                            </button>
+                        </a>
                     </div>
                 </div>
-            </div>
-                        <button type="button" class="btn btnRemove text-white col-10 ms-4">Supprimer</button>
-                    </div>
-                </div>
+                        
             <?php } ?>
 
 
 
 
-            <!-- Button trigger modal -->
+          
             <div class="d-flex justify-content-center">
-                <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a href="creerAnnonce.php" class="link">
+                <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce" >
                     Ajouter une annonce
                 </button>
+            </a>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark">
-                            <h1 class="fs-2 text-white pb-2s">Ajout d'une annonce</h1>
-                            <div class="d-flex m-2 justify-content-end">
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-
-                        </div>
-                        <div class="modal-body  myModal">
-
-                            <div class="modal-title text-white" id="exampleModalLabel">
-                            <form method="GET" action = "annoncesRecruteur.php" >
-                                    <p class=""><b>TYPE DE POSTE</b></p>
-                                    <div class="d-flex">
-                                        <input value="<?= isset($_GET['jobType']) ? htmlspecialchars($_GET['jobType']) : "" ?>" name="jobType" id="jobType" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Ajouter</button> -->
-                                    </div>
-                                    <p class="mt-3"><b>NOM DE L'ENTREPRISE</b></p>
-                                    <div class="d-flex">
-                                        <input class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: Renault" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Ajouter</button> -->
-                                    </div>
-                                    <p class="mt-3"><b>TYPE DE CONTRAT (facultatif)</b></p>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            CDI
-                                        </label>
-                                    </div>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            CDD
-                                        </label>
-                                    </div>
-                                    <div class="form-check d-flex ms-3">
-                                        <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                                        <label class="form-check-label" for="flexRadioCDI">
-                                            Alternance
-                                        </label>
-                                    </div>
-                                    <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
-                                    <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
-                                    <div class="d-flex">
-                                        <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
-                                        <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Ajouter</button> -->
-                                    </div>
-
-                                    <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
-                                    <div class="d-flex">
-                                        <input class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
-                                        <!-- <button class="btnSearch btn text-white me-3" type="submit">Ajouter</button> -->
-                                    </div>
-                                    <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
-                                    <textarea class="col-12" name="description"></textarea>
-                                
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer bg-dark">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <input type="submit" class="btn btn-primary">Enregistrer</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+     
+           
 
             <div class="row bg-dark text-light justify-content-between fixed-bottom">
                 <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

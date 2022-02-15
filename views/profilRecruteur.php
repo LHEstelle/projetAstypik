@@ -13,8 +13,19 @@ require_once '../controller/controller_details.php';
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
+    <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
 </head>
 
 <body class="">
@@ -25,8 +36,6 @@ require_once '../controller/controller_details.php';
 
         <div class="pb-3">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-         
-
             <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
                 <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
                 <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-2">Profils candidats</a>
@@ -38,79 +47,47 @@ require_once '../controller/controller_details.php';
             </div>
         </div>
     </div>
-    
-    <?php foreach ($arrayCandidates as $event) { 
-        if ($event["id"]== $_GET["id"]){?>
-    <div class="container profilCandidateDetail col-8">
-        <div class="row mt-4">
-            <div class="col-5 row text-white d-flex align-items-center infoProfil bg-dark">
-            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 col-1 p-0 ms-4">
-            <div class="col-6">
-            <p class=""><b><?= $event['firstName']. " " . $event['lastName'] ?></b></p>
-            <p class=""><?= $event['age'] . " ". $event['place'] ?></p>
+
+
+    <?php foreach ($arrayAnnounces as $event) { ?>
+        <div class="d-flex justify-content-center mt-4">
+            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
         </div>
-        </div>
-
-        <div class="col-5 m-3">
-        
-            <p class="profilTextDetail"><b>TYPE DE POSTE</b></p>
-            <p class="">
-            <?= $event['job'] ?>
-            </p>
-
-            <p class="profilTextDetail"><b>TYPE DE CONTRAT</b></p>
-            <p class="">
-            <?= $event['contract'] ?>
-            </p>
-            <p class="profilTextDetail"><b>EXPERIENCE</b></p>
-            <p class=" "><?= $event['experience'] ?> ans</p>
-
-            <p class="profilTextDetail"><b>COMPETENCES</b></p>
-            <p class=" ">
-            <?= $event['competences'] ?>
-            </p>
-            <p class="profilTextDetail"><b>DESCRIPTION</b></p>
-
-            <p class=""><?= $event['summary'] ?></p>
-        </div>
-        </div>
-        <?php }} ?>
-
-    
-
-        <?php foreach ($arrayAnnounces as $event) { 
-        if ($event["id"]== $_GET["id"]){?>
-    <div class="d-flex justify-content-center">
-            <div class="titleAnnounce  mt-4">
-                <h1 class="text-center"><?= $event['job'] ?></h1>
-                <p class="text-center"><?= $event['enterprise'] ?></p>
-                <p class="text-center"><?= $event['contract'] ?></p>
+        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
+<h2 class="text-center"><?= $event['enterprise'] ?></h2>
+        <div class="ms-3">
+        <form method="POST" action="">
+           
+            <p class="mt-3"><b>PSEUDO</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['pseudo'] ?? htmlspecialchars($_POST['pseudo'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
+            <p class="mt-3"><b>MES COORDONNEES</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['adress'] ?? htmlspecialchars($_POST['adress'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['postalCode'] ?? htmlspecialchars($_POST['postalCode'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['city'] ?? htmlspecialchars($_POST['city'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['mail'] ?? htmlspecialchars($_POST['mail'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['phone'] ?? htmlspecialchars($_POST['phone'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+            </div>
+            
+            <button type="submit" class="btn btnMofidy text-white col-10 m-3">
+                                Modifier
+                            </button>
+        </form>
         </div>
-    </div>
-
-
-    </div>
-
-    <p class="text-center mt-5 ms-5 me-5"><?= $event['jobDescription'] ?></p>
-
-    <div class="d-flex justify-content-center mt-4">
-        <button type="button" class="btn btnMofidy text-white mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Modifier
-          </button>
-    </div>
-        <?php }} ?>
+<?php  } ?>
 
         
-    
-    <div class="row bg-dark text-light justify-content-between fixed-bottom">
+    <div class="row bg-dark text-light justify-content-between fixed-bottom ">
         <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>
         <div class="col text-end ">Site by Estelle</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
 
-    <script src="assets/js/script.js ">
+    <script src="../assets/js/script.js ">
     </script>
 </body>
 

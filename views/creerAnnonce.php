@@ -36,7 +36,7 @@ require_once '../controller/controller_details.php';
 
         <div class="pb-3">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-         
+
 
             <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
                 <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
@@ -49,39 +49,34 @@ require_once '../controller/controller_details.php';
             </div>
         </div>
     </div>
-    <?php foreach ($arrayAnnounces as $event) { 
-        if ($event["id"]== $_GET["id"]){?>
-         <div class="d-flex justify-content-center mt-4">
-            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-        </div>
-        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
+
+    <form method="POST" action="">
         <div class="ms-3">
-        <form method="POST" action="">
             <p class=""><b>TYPE DE POSTE</b></p>
             <div class="d-flex">
-                <input value="<?= $event['job'] ?? htmlspecialchars($_POST['job'])?>" class="form-control inputSearch me-2 ms-3" name="" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+                <input value="<?= $_POST["jobType"] ?? ' ' ?>" class="form-control inputSearch me-2 ms-3" name="jobType" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
+
             </div>
             <p class="mt-3"><b>NOM DE L'ENTREPRISE</b></p>
             <div class="d-flex">
-                <input value="<?= $event['enterprise'] ?? htmlspecialchars($_POST['enterprise'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: Renault" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+                <input value="<?= $_POST["enterprise"] ?? ' ' ?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: Renault">
+
             </div>
             <p class="mt-3"><b>TYPE DE CONTRAT (facultatif)</b></p>
             <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDI" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
                 <label class="form-check-label" for="flexRadioCDI">
                     CDI
                 </label>
             </div>
             <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDD" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
                 <label class="form-check-label" for="flexRadioCDI">
                     CDD
                 </label>
             </div>
             <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "Alternance" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <input class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
                 <label class="form-check-label" for="flexRadioCDI">
                     Alternance
                 </label>
@@ -89,24 +84,24 @@ require_once '../controller/controller_details.php';
             <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
             <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
             <div class="d-flex">
-                <input value="<?= $event['experience'] ?? htmlspecialchars($_POST['experience'])?>" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
+                <input value="<?= $_POST["enterprise"] ?? ' ' ?>" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
                 <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
             </div>
 
             <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
             <div class="d-flex">
-                <input value="<?= $event['competences'] ?? htmlspecialchars($_POST['competences'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
+                <input value="<?= $_POST["competence"] ?? ' ' ?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
-            <textarea class="col-12" name="mytextarea" id="mytextarea"><?= $event['jobDescription'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
-            <button type="submit" class="btn btnMofidy text-white col-10 mb-2 ms-4 mb-5">
-                                Modifier
-                            </button>
-        </form>
+            <textarea class="col-12" id="mytextarea" name="mytextarea"><?= $_POST["jobDescription"] ?? ' ' ?></textarea>
+            <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce">
+                Ajouter une annonce
+            </button>
         </div>
-<?php  }} ?>
-        <div class="row bg-dark text-light justify-content-between fixed-bottom">
+    </form>
+
+    <div class="row bg-dark text-light justify-content-between fixed-bottom">
         <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
         <div class="col text-end">Site by Estelle</div>
     </div>

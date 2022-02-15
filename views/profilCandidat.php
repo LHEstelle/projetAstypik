@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/controller_index.php';
+require_once '../controller/controller_details.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,17 +13,28 @@ require_once '../controller/controller_index.php';
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
+    <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
 </head>
 
-<body class="backgroundProfil">
+<body class="">
     <div class="row">
         <a href="index.php" class="navbar">
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
         </a>
 
-        <div class="pb-3 bgProfil">
+        <div class="pb-3">
             <div class="d-flex justify-content-evenly align-items-end text-center">
             <a href="profilCandidat.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mon profil</a>
                 <a href="offresCandidats.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-3">Offres d'emplois</a>
@@ -35,109 +46,86 @@ require_once '../controller/controller_index.php';
             </div>
         </div>
     </div>
+
+
     <?php foreach ($arrayCandidates as $event) { ?>
-    <div class="container profilCandidate">
         <div class="d-flex justify-content-center mt-4">
             <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
         </div>
-        <p class="fs-6 fw-light text-white text-center">Changer ma photo de profil</p>
-
-        <div class="text-center m-3">
-            <p class="profilText"><b>TYPE DE POSTE</b></p>
-            <p class="text-white">
-            <?= $event['job'] ?>
-            </p>
-
-            <p class="profilText"><b>TYPE DE CONTRAT</b></p>
-            <p class="text-white">
-            <?= $event['contract'] ?>
-            </p>
-            <p class="profilText"><b>EXPERIENCE</b></p>
-            <p class="text-white "><?= $event['experience'] ?> ans</p>
-
-            <p class="profilText "><b>COMPETENCES</b></p>
-            <p class="text-white ">
-            <?= $event['competences'] ?>
-            </p>
-            <p class="profilText "><b>PETIT TEXTE DE DESCRIPTION</b></p>
-
-            <p class="text-white "><?= $event['summary'] ?></p>
-        </div>
-
-        <!-- Button trigger modal -->
-        <div class="d-flex justify-content-center ">
-            <button type="button " class="mb-5 btn btn-secondary btnAddAnnonce " data-bs-toggle="modal " data-bs-target="#exampleModal">
-        Modifier
-      </button>
-        </div>
-    </div>
-    <?php } ?>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1 " aria-labelledby="exampleModalLabel " aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header bg-dark ">
-                    <div class="d-flex m-2 justify-content-end ">
-                        <button type="button " class="btn-close btn-close-white " data-bs-dismiss="modal " aria-label="Close "></button>
-                    </div>
-                    <h1 class="fs-2 text-center text-white pb-2 ">Modifier mon profil</h1>
-                </div>
-                <div class="modal-body myModal ">
-
-                    <div class="modal-title text-white " id="exampleModalLabel ">
-                        <form>
-                            <p class=" "><b>TYPE DE POSTE</b></p>
-                            <div class="d-flex ">
-                                <input class="form-control inputSearch me-2 ms-3 " type="text " placeholder="ex: commerce, ouvert à toutes propositions... " aria-label="Rechercher ">
-                                <button class="btnSearch btn text-white me-3 " type="submit ">Ajouter</button>
-                            </div>
-
-                            <p class="mt-3 "><b>TYPE DE CONTRAT (facultatif)</b></p>
-                            <div class="form-check ms-3 ">
-                                <input class="form-check-input " type="radio " name="flexRadioDefault " id="flexRadioCDI ">
-                                <label class="form-check-label " for="flexRadioCDI ">
-                  CDI
-                </label>
-                            </div>
-                            <div class="form-check ms-3 ">
-                                <input class="form-check-input " type="radio " name="flexRadioDefault " id="flexRadioCDD ">
-                                <label class="form-check-label " for="flexRadioCDD ">
-                  CDD
-                </label>
-                            </div>
-                            <div class="form-check ms-3 ">
-                                <input class="form-check-input " type="radio " name="flexRadioDefault " id="flexRadioAlternance ">
-                                <label class="form-check-label " for="flexRadioAlternance ">
-                  Alternance
-                </label>
-                            </div>
-                            <p class="mt-3 "><b>EXPERIENCE (facultatif)</b></p>
-                            <label for="experienceYear " class="ms-3 text-white ">Années d'expériences dans le domaine recherché:</label>
-                            <div class="d-flex ">
-                                <input type="number " class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center " min="0 " max="50 ">
-                                <button class="btnSearch btn text-white mt-3 me-3 " type="submit ">Ajouter</button>
-                            </div>
-
-                            <p class="mt-3 "><b>COMPETENCES (facultatif)</b></p>
-                            <div class="d-flex ">
-                                <input class="form-control inputSearch me-2 ms-3 " type="text " placeholder="ex: PHP, management " aria-label="Rechercher ">
-                                <button class="btnSearch btn text-white me-3 " type="submit ">Ajouter</button>
-                            </div>
-                            <p class="mt-3 "><b>PETIT TEXTE DE DESCRIPTION</b></p>
-                            <textarea class="col-12 " name="description " placeholder="ex: Très créative, je suis actuellement à la recherche d 'un emploi dans le commerce. J'aime le travail en équipe, et si vous n
-                'avez pas peur de mélanger sérieux et humour je suis celle qu'il vous faut! "></textarea>
-                        </form>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer bg-dark ">
-                    <button type="button " class="btn btn-secondary " data-bs-dismiss="modal ">Fermer</button>
-                    <button type="button " class="btn btn-primary ">Enregistrer</button>
-                </div>
+        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
+<h2 class="text-center text-danger"><?= $event['talentProfil'] ?></h2>
+<p class="text-center"><?= $event['talents'] ?></p>
+        <div class="ms-3">
+        <form method="POST" action="">
+            <p class=""><b>TYPE DE POSTE</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['job'] ?? htmlspecialchars($_POST['job'])?>" class="form-control inputSearch me-2 ms-3" name="" type="text" placeholder="ex: chargé(e) de communication" >
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
+            <p class="mt-3"><b>NOM</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['lastName'] ?? htmlspecialchars($_POST['lastName'])?>" class="form-control inputSearch me-2 ms-3" type="text">
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+            </div>
+            <p class="mt-3"><b>PRENOM</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['firstName'] ?? htmlspecialchars($_POST['firstName'])?>" class="form-control inputSearch me-2 ms-3" type="text" >
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+            </div>
+            <p class="mt-3"><b>PSEUDO</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['pseudo'] ?? htmlspecialchars($_POST['pseudo'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+            </div>
+            <p class="mt-3"><b>MES COORDONNEES</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['adress'] ?? htmlspecialchars($_POST['adress'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['postalCode'] ?? htmlspecialchars($_POST['postalCode'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['city'] ?? htmlspecialchars($_POST['city'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['mail'] ?? htmlspecialchars($_POST['mail'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $event['phone'] ?? htmlspecialchars($_POST['phone'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+            </div>
+            <p class="mt-3"><b>TYPE DE CONTRAT (facultatif)</b></p>
+            <div class="form-check d-flex ms-3">
+                <input <?= $event['contract'] == "CDI" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <label class="form-check-label" for="flexRadioCDI">
+                    CDI
+                </label>
+            </div>
+            <div class="form-check d-flex ms-3">
+                <input <?= $event['contract'] == "CDD" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <label class="form-check-label" for="flexRadioCDI">
+                    CDD
+                </label>
+            </div>
+            <div class="form-check d-flex ms-3">
+                <input <?= $event['contract'] == "Alternance" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
+                <label class="form-check-label" for="flexRadioCDI">
+                    Alternance
+                </label>
+            </div>
+            <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
+            <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
+            <div class="d-flex">
+                <input value="<?= $event['experience'] ?? htmlspecialchars($_POST['experience'])?>" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
+                <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
+            </div>
+
+            <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
+            <div class="d-flex">
+                <input value="<?= $event['competences'] ?? htmlspecialchars($_POST['competences'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
+                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+            </div>
+            <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
+            <textarea class="col-12" name="mytextarea" id="mytextarea"><?= $event['summary'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
+            <button type="submit" class="btn btnMofidy text-white col-10 m-3">
+                                Modifier
+                            </button>
+        </form>
         </div>
-    </div>
+<?php  } ?>
+
+        
     </div>
     <div class="row bg-dark text-light justify-content-between fixed-bottom ">
         <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>
