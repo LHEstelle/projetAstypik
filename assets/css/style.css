@@ -102,6 +102,13 @@
         font-size: small;
         color: #215B70;
     }
+    /* 
+    Page profil talents des candidats  */
+    
+    .supercactusImg {
+        height: 5rem;
+        width: auto;
+    }
     /* barre de filtre à gauche */
     
     .list {
