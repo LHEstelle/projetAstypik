@@ -44,8 +44,10 @@ require '../controller/controller_inscriptionEntreprise.php';
 
         </nav>
         <?php if (!empty($_POST) && empty($arrayErrors)){ ?>
-    <p>Inscription ok , veuillez vous connectez</p>
-    <a class="btn connexion" href="connexion.php">Connexion</a>
+    <p class="text-center">Inscription ok , veuillez vous connectez</p>
+    <div class="d-flex justify-content-center">
+    <a class="btn connexion text-center" href="connexionRecruteur.php">Connexion</a>
+    </div>
     <?php } else {?>
 
         <h1 class="text-center"> Inscription entreprise </h1>
@@ -98,7 +100,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["postalCode"] ?? "" ?>
                     </span>
-                    <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="76600">
+                    <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars(intval($_POST["postalCode"])) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="76600">
                 </div> 
 
                 <div class="mb-3">
@@ -143,7 +145,7 @@ require '../controller/controller_inscriptionEntreprise.php';
         </div>
         <?php } ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script>
+        <!-- <script>
     
             document.addEventListener('DOMContentLoaded', function() {
                 autocomplete = new google.maps.places.Autocomplete(
@@ -154,7 +156,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                         }
                     }
                 );
-            }, false);
+            }, false); -->
         </script>
     </body>
 

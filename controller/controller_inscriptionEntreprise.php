@@ -5,9 +5,9 @@ require_once '../models/database.php';
 require_once '../models/entreprise.php';
 $regexSiret = "/^\d{14}$/";
 $regexMail = "/^([a-z.-]+)@([a-z]+).([a-z]){2,4}$/";
-$regexPhone = "/^(?:(?:\+|00)33[\s.-]{0,3}(?:(0)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/";
+$regexPhone = "/^0[1-68][0-9]{8}$/";
 $regexCity = "/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/";
-$regexPostalCode = "/^\d{5}$/";
+$regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];
 
 $addCandidatOk = false;
@@ -85,13 +85,17 @@ if (!empty($_POST)) {
 
     if (count($arrayErrors) == 0) {
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
-        $name = htmlspecialchars(trim($_POST['name']));
+        $name = htmlspecialchars(strtoupper(trim($_POST['name'])));
+        $siretNumber = htmlspecialchars(trim($_POST['siretNumber']));
         $phone = htmlspecialchars(trim($_POST['phone']));
         $mail = htmlspecialchars(trim($_POST['mail']));
+        $city = htmlspecialchars(strtoupper(trim($_POST['city'])));
+        $postalCode = htmlspecialchars(intval(trim($_POST['postalCode'])));
         $adress = htmlspecialchars(trim($_POST['adress']));
-        $patient = new Entreprise();
-        $patient->addEntreprise($name, $phone, $mail, $adress);
+        $password = htmlspecialchars(trim($_POST['password']));
+        $entreprise = new Entreprise();
+        $entreprise->addEntreprise($name, $siretNumber, $phone, $mail,  $city,  $postalCode,  $adress, $password);
 
-        $addPatientOk = true;
+        $addEntrepriseOk = true;
     }
 }

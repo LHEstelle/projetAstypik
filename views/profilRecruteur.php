@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/controller_details.php';
+require_once '../controller/controller_profilRecruteur.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,8 +32,15 @@ require_once '../controller/controller_details.php';
     <div class="row">
         <a href="index.php" class="navbar">
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
-        </a>
+            <div class="d-flex justify-content-end">
+            <button type="submit" class="btn text-white col-10 m-3" name="deconnectButton">
+                                se déconnecter
+                            </button>
 
+                            </div>
+        </a>
+    </div>
+   
         <div class="pb-3">
             <div class="d-flex justify-content-evenly align-items-end text-center">
             <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
@@ -49,35 +56,38 @@ require_once '../controller/controller_details.php';
     </div>
 
 
-    <?php foreach ($arrayAnnounces as $event) { ?>
+ 
         <div class="d-flex justify-content-center mt-4">
-            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
+            <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
         </div>
         <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
-<h2 class="text-center"><?= $event['enterprise'] ?></h2>
+<h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
         <div class="ms-3">
         <form method="POST" action="">
-           
-            <p class="mt-3"><b>PSEUDO</b></p>
+       
+            <p class="mt-3"><b>PSEUDO</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             <div class="d-flex">
-                <input value="<?= $event['pseudo'] ?? htmlspecialchars($_POST['pseudo'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $entrepriseInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text"  >
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>MES COORDONNEES</b></p>
             <div class="d-flex">
-                <input value="<?= $event['adress'] ?? htmlspecialchars($_POST['adress'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['postalCode'] ?? htmlspecialchars($_POST['postalCode'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['city'] ?? htmlspecialchars($_POST['city'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['mail'] ?? htmlspecialchars($_POST['mail'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['phone'] ?? htmlspecialchars($_POST['phone'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= $entrepriseInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text"  ><span class="text-danger"><?= $arrayErrors['adress'] ?? "" ?></span>
+                <input value="<?= $entrepriseInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text"  ><span class="text-danger"><?= $arrayErrors['postalCode'] ?? "" ?></span>
+                <input value="<?= $entrepriseInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text"  ><span class="text-danger"><?= $arrayErrors['city'] ?? "" ?></span>
+                <input value="<?= $entrepriseInfoArray['mail'] ?>" name="mail" class="form-control inputSearch me-2 ms-3" type="text"  ><span class="text-danger"><?= $arrayErrors['mail'] ?? "" ?></span>
+                <input value="<?= $entrepriseInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text"  ><span class="text-danger"><?= $arrayErrors['phone'] ?? "" ?></span>
             </div>
             
-            <button type="submit" class="btn btnMofidy text-white col-10 m-3">
+            <button type="submit" class="btn btnMofidy text-white col-10 m-3" name="modifyButton">
                                 Modifier
+                            </button>
+                            <button type="submit" class="btn text-start col-10 m-3 text-danger" name="deleteButton">
+                                Supprimer son compte
                             </button>
         </form>
         </div>
-<?php  } ?>
+
 
         
     <div class="row bg-dark text-light justify-content-between fixed-bottom ">

@@ -65,10 +65,6 @@ require '../controller/controller_connexionEntreprise.php';
                     <input class="form-control" value="<?= isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : "" ?>" type="password" name="password" id="password">
                 </div>
 
-
-                <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                    <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                    <div class="col text-end">Site by Estelle</div>
                 </div>
                 <a class="lienConnexion" href="inscriptionRecruteur.php">
                     <p>Pas encore inscrit? Veuillez vous inscrire</p>
@@ -77,6 +73,10 @@ require '../controller/controller_connexionEntreprise.php';
         </form>
         </div>
 
+
+        <div class="row bg-dark text-light justify-content-between fixed-bottom">
+                    <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
+                    <div class="col text-end">Site by Estelle</div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     </body>
