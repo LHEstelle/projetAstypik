@@ -18,7 +18,7 @@ require_once '../controller/controller_details.php';
     <title>Astypik recrutement</title>
     <script>
     tinymce.init({
-      selector: '#mytextarea',
+      selector: '#description',
       plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
       toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
       toolbar_mode: 'floating',
@@ -117,7 +117,7 @@ require_once '../controller/controller_details.php';
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
-            <textarea class="col-12" name="mytextarea" id="mytextarea"><?= $event['summary'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
+            <textarea class="col-12" name="description" id="description"><?= $event['summary'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
             <button type="submit" class="btn btnMofidy text-white col-10 m-3">
                                 Modifier
                             </button>

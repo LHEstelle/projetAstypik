@@ -55,6 +55,7 @@ require '../controller/controller_connexionEntreprise.php';
                     <label for="mail" class="form-label">Mail</label>
                     <span class="text-danger">
                         <?= $arrayError["error"] ?? "" ?>
+                        <?= $arrayError["false"] ?? "" ?>
                     </span>
                     <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : "" ?>" type="mail" class="form-control" name="mail" id="mail" placeholder="JohnDOE@gmail.com">
                 </div>

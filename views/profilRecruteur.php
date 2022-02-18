@@ -1,5 +1,7 @@
 <?php
 require_once '../controller/controller_profilRecruteur.php';
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,14 +59,40 @@ require_once '../controller/controller_profilRecruteur.php';
 
 
  
-        <div class="d-flex justify-content-center mt-4">
-            <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-        </div>
-        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
-<h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
+        
+    
+
+
         <div class="ms-3">
-        <form method="POST" action="">
-       
+        <form enctype="multipart/form-data" method="POST" action="">
+        <div class="d-flex justify-content-center mt-4">
+            <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg"  class="imageProfil3 p-0">
+        </div>
+        
+        <div class="d-flex justify-content-center text-center">
+            <div class="div"></div>
+        <input  name="changeProfilPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Changer ma photo de profil">
+    </div>
+
+    <div class="d-flex justify-content-center text-center">
+            <div class="div"></div>
+
+<?php  if(isset($_POST["changeProfilPicture"])){  ?>
+    <input id="fileToUpload" name="fileToUpload" type="file" />
+<input name="submitButton" type="submit" value="Envoyer le fichier" />
+
+
+    <?php  if (!empty($_POST['submitButton'])){ ?>
+<div>le fichier <?= $_FILES['fileToUpload']['name'] ?> a bien été uploadé</div>
+<?php }} ?>
+
+
+<?= $arrayErrors["mime"] ?? "" ?>
+<?= $arrayErrors["size"] ?? "" ?>
+<?= $arrayErrors["extension"] ?? "" ?>
+    </div>
+
+        <h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
             <p class="mt-3"><b>PSEUDO</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             <div class="d-flex">
                 <input value="<?= $entrepriseInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text"  >
@@ -82,9 +110,27 @@ require_once '../controller/controller_profilRecruteur.php';
             <button type="submit" class="btn btnMofidy text-white col-10 m-3" name="modifyButton">
                                 Modifier
                             </button>
-                            <button type="submit" class="btn text-start col-10 m-3 text-danger" name="deleteButton">
+                            <button type="button" class="btn text-start col-10 m-3 text-danger"  data-bs-toggle="modal" data-bs-target="#modalDelete">
                                 Supprimer son compte
                             </button>
+                            <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDel">Supprimer son compte</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Attention! Vous êtes sur le point de supprimer votre compte. Si vous continuez toutes vos données seront perdues.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" name="deleteButton" class="btn btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
         </form>
         </div>
 

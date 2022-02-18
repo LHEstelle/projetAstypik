@@ -4,6 +4,7 @@ require_once '../config.php';
 require_once '../models/dataBase.php';
 require_once '../models/entreprise.php';
 
+
 $regexCity = "/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/";
 $regexPostalCode = "/\d{5}$/";
 $regexPhone = "/^0[1-68][0-9]{8}$/";
@@ -13,8 +14,8 @@ $arrayErrors = [];
 session_start();
 var_dump($_POST);
 
-$entrepriseInfo= new Entreprise;
-$entrepriseInfoArray= $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
+$entrepriseInfo = new Entreprise;
+$entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
 
 if (isset($_POST["modifyButton"])) {
 
@@ -63,12 +64,38 @@ if (isset($_POST["modifyButton"])) {
 
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone);
-
+    }
+}
+if (!empty($_POST['submitButton'])) {
+    if (mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/png') {
+        $arrayErrors["mime"] = "Votre téléchargement n'est pas une image";
+    } else if ($_FILES['fileToUpload']['size'] > 1000000) {
+        $arrayErrors["size"] = "Désolé, votre fichier ne doit pas dépasser 1MO.Votre fichier n'a pas été téléchargé";
+    } else if ($_FILES['fileToUpload']['type'] != 'image/png' &&  $_FILES['fileToUpload']['type'] != 'image/jpg' && $_FILES['fileToUpload']['type'] != 'image/jpeg') {
+        $arrayErrors["extension"] = "L'extension n'est pas une image";
+    } else if ($_FILES['fileToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/png') && ($_FILES['fileToUpload']['type'] == 'image/png' ||  $_FILES['fileToUpload']['type'] == 'image/jpg' || $_FILES['fileToUpload']['type'] == 'image/jpeg')) {
+        $uploaddir = 'C:\wamp\www\phpVariables\PROJETRECRUTEMENT\assets\img/';
+        $_FILES['fileToUpload']['name'] = uniqid() . basename($_FILES['fileToUpload']['name']);
+        $uploadfile = $uploaddir . $_FILES['fileToUpload']['name'];
+        move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadfile);
+        $mail = htmlspecialchars(trim($_SESSION["mail"]));
+        $profilPicture = htmlspecialchars(trim($_FILES['fileToUpload']["name"]));
+        $entreprise = new Entreprise();
+        $entrepriseModifyArray = $entreprise->modifyprofilPictureEnterprise($mail, $profilPicture);
     }
 }
 
-if(isset($_POST['deconnectButton'])){
+if (isset($_POST["deleteButton"])) {
+    $mail = htmlspecialchars(trim($_POST["mail"]));
+    $entreprise = new Entreprise();
+    $entrepriseDeleteArray = $entreprise->deleteEnterprise($mail);
     session_unset();
     session_destroy();
-    header('location: ../index.php');
+    header('Location: ../views/index.php');
+    exit();
+}
+if (isset($_POST['deconnectButton'])) {
+    session_unset();
+    session_destroy();
+    header('Location: ../views/index.php');
 }

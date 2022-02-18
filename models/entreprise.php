@@ -72,6 +72,20 @@ class Entreprise extends DataBase
         $resultQuery->execute();
         return $resultQuery->fetch();
     }
+    public function modifyprofilPictureEnterprise(string $mail,string $profilPicture): void
+    {
+
+
+        $base = $this->connectDb();
+        $sql = "UPDATE `recruteur` SET 
+          `profilPicture`=:profilPicture
+          WHERE `mail`=:mail";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->bindValue(':profilPicture', $profilPicture, PDO::PARAM_STR);
+        $resultQuery->execute();
+    }
+
     public function modifyInfosEnterprise(string $pseudo,string $city,int $postalCode,string $adress,string $mail,string $phone): void
     {
 
@@ -83,6 +97,7 @@ class Entreprise extends DataBase
           `adress`=:adress,
           `mail`=:mail,
           `phone`=:phone
+ 
           WHERE `mail`=:mail";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
@@ -91,6 +106,18 @@ class Entreprise extends DataBase
         $resultQuery->bindValue(':adress', $adress, PDO::PARAM_STR);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->bindValue(':phone', $phone, PDO::PARAM_STR);
+
+        $resultQuery->execute();
+    }
+    public function deleteEnterprise($mail): void
+    {
+
+
+        $base = $this->connectDb();
+        $sql = "DELETE FROM recruteur
+        WHERE mail=:mail;";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->execute();
     }
 
