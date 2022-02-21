@@ -1,7 +1,6 @@
 <?php
-require_once '../controller/controller_index.php';
+require_once '../controller/controller_annoncesRecruteur.php';
 
-var_dump($_SERVER);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,7 +74,7 @@ var_dump($_SERVER);
 
         <div class="col-lg-9">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-            <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
+                <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
                 <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
                 <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-2">Profils candidats</a>
                 <a href="likesRecruteur.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark  p-3 col-2">Likes</a>
@@ -87,7 +86,8 @@ var_dump($_SERVER);
 
 
 
-            <?php foreach ($arrayAnnounces as $event) { ?>
+            <?php foreach ($annoncesArray as $annonces) { ?>
+                <form action="" method="POST">
                 <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
 
 
@@ -95,37 +95,60 @@ var_dump($_SERVER);
                     </div>
 
                     <div class="jobName col-lg-4 col-12 ms-3 me-3">
-                        <a href="modifierAnnonce.php?id=<?= $event['id'] ?>" class="announceLink">
-                            <h1 class="fs-3"><b><?= $event['job'] ?></b></h1>
-                            <p class="text-secondary"><?= $event['contract'] ?> - <?= $event['experience'] ?> ans d'expérience</p>
-                        </a>
+
+                        <h1 class="fs-3"><b><?= $annonces['job'] ?></b></h1>
+                        <p class="text-secondary"><?= $annonces['contractName'] ?> - <?= $annonces['experienceYear'] ?> ans d'expérience</p>
+
                     </div>
-                    <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p>
+                    <!-- <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p> -->
                     <div class="col-lg-3 col-12">
-                      
-                        <a href="modifierAnnonce.php" class="link">
-                            <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4">
-                                Modifier
+
+
+                    <input type="hidden" name="idAnnonce" value="<?= $annonces['idAnnonce'] ?>">
+                       <a href="modifierAnnonce.php?id=<?= $annonces['idAnnonce'] ?>"> <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4">
+                            Modifier
+                        </button></a>
+
+                        <button type="button" class="btn btnRemove text-white col-10 mb-2 ms-4" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                Supprimer
                             </button>
-                        </a>
+                            <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDel">Supprimer une annonce</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Attention! Vous êtes sur le point de supprimer votre annonce.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" name="deleteButton" class="btn btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                     </div>
                 </div>
-                        
+          
+                </form>
             <?php } ?>
 
 
 
 
-          
+
             <div class="d-flex justify-content-center">
-            <a href="creerAnnonce.php" class="link">
-                <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce" >
-                    Ajouter une annonce
-                </button>
-            </a>
+                <a href="creerAnnonce.php" class="link">
+                    <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce">
+                        Ajouter une annonce
+                    </button>
+                </a>
             </div>
-     
-           
+
+
 
             <div class="row bg-dark text-light justify-content-between fixed-bottom">
                 <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

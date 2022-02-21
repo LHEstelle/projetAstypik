@@ -8,9 +8,7 @@ require '../controller/controller_inscriptionCandidat.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&language=fr&key=AIzaSyDecTo4CO49wUS9-_FtES7kcZmnb6H_Reg"></script>
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <link rel="stylesheet" href="../assets/css/style.css" />
     <title>Document</title>
 </head>
 
@@ -43,10 +41,9 @@ require '../controller/controller_inscriptionCandidat.php';
             </div>
 
         </nav>
-        <?php if (!empty($_POST) && empty($arrayErrors)){ ?>
-    <p>Inscription ok , veuillez vous connectez</p>
-    <a class="btn connexion" href="connexion.php">Connexion</a>
-    <?php } else {?>
+        <?php if (!empty($_POST) && empty($arrayErrors)){ 
+header('location: testCandidat.php');
+    } else {?>
 
         <h1 class="text-center"> Inscription candidat </h1>
 
@@ -146,18 +143,8 @@ require '../controller/controller_inscriptionCandidat.php';
         </div>
         <?php } ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                autocomplete = new google.maps.places.Autocomplete(
-                    (document.getElementById('adress')), {
-                        types: ['geocode'],
-                        componentRestrictions: {
-                            country: 'fr'
-                        }
-                    }
-                );
-            }, false);
-        </script>
+
+    
     </body>
 
 </html>

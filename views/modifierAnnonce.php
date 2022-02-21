@@ -1,8 +1,9 @@
-<?php
-require_once '../controller/controller_details.php';
-?>
 <!DOCTYPE html>
 <html lang="fr">
+    <?php
+require_once '../controller/controller_modifierAnnonce.php';
+?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@ require_once '../controller/controller_details.php';
     <title>Astypik recrutement</title>
     <script>
     tinymce.init({
-      selector: '#mytextarea',
+        selector: '#description',
       plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
       toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
       toolbar_mode: 'floating',
@@ -49,63 +50,74 @@ require_once '../controller/controller_details.php';
             </div>
         </div>
     </div>
-    <?php foreach ($arrayAnnounces as $event) { 
-        if ($event["id"]== $_GET["id"]){?>
-         <div class="d-flex justify-content-center mt-4">
-            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-        </div>
-        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
+    <?php if (isset($annonceInfo)) { ?>
+
         <div class="ms-3">
         <form method="POST" action="">
-            <p class=""><b>TYPE DE POSTE</b></p>
-            <div class="d-flex">
-                <input value="<?= $event['job'] ?? htmlspecialchars($_POST['job'])?>" class="form-control inputSearch me-2 ms-3" name="" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-            </div>
-            <p class="mt-3"><b>NOM DE L'ENTREPRISE</b></p>
-            <div class="d-flex">
-                <input value="<?= $event['enterprise'] ?? htmlspecialchars($_POST['enterprise'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: Renault" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-            </div>
-            <p class="mt-3"><b>TYPE DE CONTRAT (facultatif)</b></p>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDI" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDI
-                </label>
-            </div>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDD" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDD
-                </label>
-            </div>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "Alternance" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    Alternance
-                </label>
-            </div>
-            <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
-            <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
-            <div class="d-flex">
-                <input value="<?= $event['experience'] ?? htmlspecialchars($_POST['experience'])?>" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
-                <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
-            </div>
+        <div class="ms-3">
+            <p class="mt-3"><b>NOM ENTREPRISE</b></p>
+            <select name="id_recruteur" id="idRecruteur" class="inputSearch ms-3">
+                        <option selected value="<?= $entrepriseInfoArray["id"] ?>"><?= $entrepriseInfoArray['name'] ?></option>
+                </select>
+ 
+            <p class="mt-3"><b>NOM DU POSTE</b></p>
+            <span class="text-danger">
+                        <?= $arrayErrors["job"] ?? "" ?>
+                    </span>
 
-            <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
             <div class="d-flex">
-                <input value="<?= $event['competences'] ?? htmlspecialchars($_POST['competences'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+                <input value="<?= isset($_POST["job"]) ? htmlspecialchars($_POST["job"]) : $annonceInfo['job'] ?>" name="job" class="form-control inputSearch me-2 ms-3" name="jobType" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
+
             </div>
-            <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
-            <textarea class="col-12" name="mytextarea" id="mytextarea"><?= $event['jobDescription'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
-            <button type="submit" class="btn btnMofidy text-white col-10 mb-2 ms-4 mb-5">
-                                Modifier
-                            </button>
-        </form>
+            <div class="mt-3">
+                <p class=""><b>DOMAINE</b></p>
+                <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
+                <select name="id_domaine" id="domaine" class="inputSearch ms-3">
+                    <option disabled selected value="">Choisissez un domaine</option>
+                    <?php foreach ($domainArray as $domain) { ?>
+                        <option value="<?= $domain["id"] ?>"  <?= $domain["id"] == $annonceInfo["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
+
+
+                    <?php } ?>
+                </select>
+                <p class="mt-3"><b>DATE DE DEBUT DU POSTE</b></p>
+                <span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span>
+                <div class="d-flex">
+                    <input value="<?= isset($_POST['startDate']) ? htmlspecialchars($_POST["startDate"]) : $annonceInfo['startDate'] ?>" name="startDate" class="form-control inputSearch me-2 ms-3" type="date">
+
+                </div>
+                <p class="mt-3"><b>TYPE DE CONTRAT</b></p>
+                <span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span>
+                <select name="id_contract" id="contract" class="inputSearch ms-3">
+                    <option disabled selected value="">Choisissez un contrat</option>
+                    <?php foreach ($contractArray as $contract) { ?>
+                        <option value="<?= $contract["id"] ?>" <?= $contract["id"] == $annonceInfo["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
+
+
+                    <?php } ?>
+                </select>
+
+                <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
+
+                <div class="d-flex">
+                    <input value="<?= isset($_POST['experienceYear']) ? htmlspecialchars($_POST["experienceYear"]) : $annonceInfo['experienceYear'] ?>" name="experienceYear" type="number" class="ms-3 me-2  inputSearch form-control" min="0" max="50">
+                    <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
+                </div>
+                <input type="hidden" name="idAnnonce" value="<?= $annonceInfo['idAnnonce'] ?>">
+
+                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
+                <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
+                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? htmlspecialchars($_POST["description"]) : $annonceInfo['description']?></textarea>
+                <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d')?>">
+                <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="modifyAnnonce">
+                    Modifier
+                </button>
+                
+            </div>
+        
+                    </form>
         </div>
-<?php  }} ?>
+<?php  } ?>
         <div class="row bg-dark text-light justify-content-between fixed-bottom">
         <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
         <div class="col text-end">Site by Estelle</div>
@@ -113,7 +125,6 @@ require_once '../controller/controller_details.php';
 
 
 </body>
-<script src="assets/js/script.js">
-</script>
+
 
 </html>

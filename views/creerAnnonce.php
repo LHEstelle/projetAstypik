@@ -66,7 +66,7 @@ echo strftime('%d/%m/%Y');
                     </span>
 
             <div class="d-flex">
-                <input value="<?= isset($_POST['jobType']) ? htmlspecialchars($_POST["jobType"]) : '' ?>" name="job" class="form-control inputSearch me-2 ms-3" name="jobType" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
+                <input value="<?= isset($_POST['job']) ? htmlspecialchars($_POST["job"]) : '' ?>" name="job" class="form-control inputSearch me-2 ms-3" name="jobType" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
 
             </div>
             <div class="mt-3">

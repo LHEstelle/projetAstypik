@@ -64,6 +64,7 @@ if (isset($_POST["modifyButton"])) {
 
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone);
+        header('location: profilRecruteur.php');
     }
 }
 if (!empty($_POST['submitButton'])) {
@@ -82,6 +83,7 @@ if (!empty($_POST['submitButton'])) {
         $profilPicture = htmlspecialchars(trim($_FILES['fileToUpload']["name"]));
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyprofilPictureEnterprise($mail, $profilPicture);
+        header('location: profilRecruteur.php');
     }
 }
 
@@ -99,3 +101,9 @@ if (isset($_POST['deconnectButton'])) {
     session_destroy();
     header('Location: ../views/index.php');
 }
+foreach ($counts as $key => $value) {
+    if($value = $max){
+        $max = $value;
+        $type = $key;
+        echo "vous êtes " . $key;
+    }
