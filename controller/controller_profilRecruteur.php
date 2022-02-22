@@ -101,9 +101,3 @@ if (isset($_POST['deconnectButton'])) {
     session_destroy();
     header('Location: ../views/index.php');
 }
-foreach ($counts as $key => $value) {
-    if($value = $max){
-        $max = $value;
-        $type = $key;
-        echo "vous êtes " . $key;
-    }
