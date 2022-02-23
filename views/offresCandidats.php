@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/controller_index.php';
+require_once '../controller/controller_offresCandidat.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -89,20 +89,20 @@ require_once '../controller/controller_index.php';
 
 
             <div class="myCards d-flex justify-content-evenly m-3 mt-5">
-            <?php foreach ($arrayAnnounces as $event) { ?>
-                    <a href="detailCandidate.php?id=<?= $event['id'] ?>">
+            <?php foreach ($allOfferssArray as $event) { ?>
+                    <!-- <a href="detailCandidate.php?id=<?= $event['id'] ?>"> -->
                     <div class="cardCandidate m-3">
                         <div class="d-flex justify-content-evenly m-2">
-                            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 me-1">
+                            <img src="../assets/img/<?= $event['profilPicture'] ?? '' ?>" alt="enterpriseImg" class="imageProfil3 me-1">
 
                             <div class="infoCandidate">
                                 <p class="fs-5 m-0"><?= $event['job'] ?></p>
-                                <p class="fs-6 fw-light m-0"><?= $event['enterprise'] ?></p>
-                                <p class="fs-6 fw-light"><?= $event['contract'] ?></p>
+                                <p class="fs-6 fw-light m-0"><?= $event['recruteurName'] ?></p>
+                                <p class="fs-6 fw-light"><?= $event['contractName'] ?></p>
                             </div>
                         </div>
-                        <p class="m-2 text-center jobDescriptionTruncate"><?= $event['jobDescription'] ?></p>
-                </a>
+                        <p class="m-2 text-center jobDescriptionTruncate"><?= $event['offerDescription'] ?></p>
+                <!-- </a> -->
 
                 <div class="row d-flex align-text-bottom">
                     <i class="far fa-heart text-white text-end fs-3 pe-5" onclick="setLike()" id="heartIconEmpty"></i>

@@ -2,7 +2,7 @@
 require_once '../controller/controller_profilRecruteur.php';
 
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -66,7 +66,7 @@ require_once '../controller/controller_profilRecruteur.php';
         <div class="ms-3">
         <form enctype="multipart/form-data" method="POST" action="">
         <div class="d-flex justify-content-center mt-4">
-            <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg"  class="imageProfil3 p-0">
+            <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="enterpriseImg"  class="imageProfil3 p-0">
         </div>
         
         <div class="d-flex justify-content-center text-center">
@@ -81,19 +81,14 @@ require_once '../controller/controller_profilRecruteur.php';
     <input id="fileToUpload" name="fileToUpload" type="file" />
 <input name="submitButton" type="submit" value="Envoyer le fichier" />
 
-
-    <?php  if (!empty($_POST['submitButton'])){ ?>
-<div>le fichier <?= $_FILES['fileToUpload']['name'] ?> a bien été uploadé</div>
-<?php }} ?>
-
-
 <?= $arrayErrors["mime"] ?? "" ?>
 <?= $arrayErrors["size"] ?? "" ?>
 <?= $arrayErrors["extension"] ?? "" ?>
     </div>
+    <?php    } ?>
 
         <h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
-            <p class="mt-3"><b>PSEUDO</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
+            <p class="mt-3"><b>PSEUDO OU SLOGAN...</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             <div class="d-flex">
                 <input value="<?= $entrepriseInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text"  >
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->

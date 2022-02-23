@@ -12,12 +12,15 @@ $addAnnonceOk = false;
 var_dump($_POST);
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
+
 $contractObj = new Annonce;
 $contractArray = $contractObj->getAllContract();
 
 $domainObj = new Annonce;
 $domainArray = $domainObj->getAllDomaines();
 
+$profilsObj = new Annonce;
+$profilsArray = $profilsObj->getAllProfils();
 
 if (isset($_POST["createAnnonce"])) {
 
@@ -32,25 +35,23 @@ if (isset($_POST["createAnnonce"])) {
     if (isset($_POST["id_domaine"])) {
         if (empty($_POST["id_domaine"])) {
             $arrayErrors["id_domaine"] = "Veuillez saisir votre domaine";
-        }
-    } else {
-        $arrayErrors["id_domaine"] = "Veuillez saisir votre domaine";
-    }
+        }}
+
+        if (isset($_POST["id_profils"])) {
+            if (empty($_POST["id_profils"])) {
+                $arrayErrors["id_profils"] = "Veuillez saisir des compétences préférentielles";
+            }}
 
     if (isset($_POST["id_contract"])) {
         if (empty($_POST["id_contract"])) {
             $arrayErrors["id_contract"] = "Veuillez saisir un contrat";
-        }
-    } else {
-        $arrayErrors["id_contract"] = "Veuillez saisir un contrat";
-    }
+        }}
+
 
     if (isset($_POST["startDate"])) {
         if (empty($_POST["startDate"])) {
             $arrayErrors["startDate"] = "Veuillez saisir une date de début";
         }
-    } else {
-        $arrayErrors["startDate"] = "Veuillez saisir une date de début";
     }
 
     if (isset($_POST["description"])) {
@@ -72,8 +73,9 @@ if (isset($_POST["createAnnonce"])) {
         $idContract = htmlspecialchars(trim($_POST['id_contract']));
         $experience = htmlspecialchars(trim($_POST['experienceYear']));
         $description = htmlspecialchars(trim($_POST['description']));
+        $idProfils = htmlspecialchars(trim($_POST['id_profils']));
         $annonce = new Annonce();
-        $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract,  $experience);
+        $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract,  $experience, $idProfils);
         $addAnnonceOk = true;
         header('location: annoncesRecruteur.php');
     }

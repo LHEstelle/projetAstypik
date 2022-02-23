@@ -1,8 +1,11 @@
-<?php
-require_once '../controller/controller_details.php';
-?>
 <!DOCTYPE html>
 <html lang="fr">
+
+
+<?php
+require_once '../controller/controller_profilCandidat.php';
+?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -17,26 +20,31 @@ require_once '../controller/controller_details.php';
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
     <script>
-    tinymce.init({
-      selector: '#description',
-      plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
-      toolbar_mode: 'floating',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-    });
-  </script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
+    </script>
 </head>
 
 <body class="">
     <div class="row">
         <a href="index.php" class="navbar">
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn text-white col-10 m-3" name="deconnectButton">
+                    se déconnecter
+                </button>
+            </div>
         </a>
 
         <div class="pb-3">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-            <a href="profilCandidat.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mon profil</a>
+                <a href="profilCandidat.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mon profil</a>
                 <a href="offresCandidats.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-3">Offres d'emplois</a>
                 <a href="likesCandidat.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark p-3 col-3">Likes</a>
 
@@ -48,84 +56,146 @@ require_once '../controller/controller_details.php';
     </div>
 
 
-    <?php foreach ($arrayCandidates as $event) { ?>
-        <div class="d-flex justify-content-center mt-4">
-            <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-        </div>
-        <p class="fs-6 fw-light text-center">Changer ma photo de profil</p>
-<h2 class="text-center text-danger"><?= $event['talentProfil'] ?></h2>
-<p class="text-center"><?= $event['talents'] ?></p>
-        <div class="ms-3">
-        <form method="POST" action="">
-            <p class=""><b>TYPE DE POSTE</b></p>
-            <div class="d-flex">
-                <input value="<?= $event['job'] ?? htmlspecialchars($_POST['job'])?>" class="form-control inputSearch me-2 ms-3" name="" type="text" placeholder="ex: chargé(e) de communication" >
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+
+    <div class="ms-3">
+        <form enctype="multipart/form-data" method="POST" action="">
+            <div class="d-flex justify-content-center mt-4">
+                <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
             </div>
+
+            <div class="d-flex justify-content-center text-center">
+                <div class="div"></div>
+                <input name="changeProfilPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Changer ma photo de profil">
+            </div>
+
+            <div class="d-flex justify-content-center text-center">
+                <div class="div"></div>
+
+                <?php if (isset($_POST["changeProfilPicture"])) {  ?>
+                    <input id="fileToUpload" name="fileToUpload" type="file" />
+                    <input name="submitButtonProfilPicture" type="submit" value="Envoyer le fichier" />
+
+                    <?= $arrayErrors["mime"] ?? "" ?>
+                    <?= $arrayErrors["size"] ?? "" ?>
+                    <?= $arrayErrors["extension"] ?? "" ?>
+                <?php    } ?>
+            </div>
+
+            <?= $candidatProfilArray['nameStruct'] ?>
+            <h3 class="text-center"><?= $candidatProfilArray['talents'] ?></h3>
             <p class="mt-3"><b>NOM</b></p>
+            <span class="text-danger"><?= $arrayErrors['lastName'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= $event['lastName'] ?? htmlspecialchars($_POST['lastName'])?>" class="form-control inputSearch me-2 ms-3" type="text">
+                <input value="<?= isset($_POST["lastName"]) ? htmlspecialchars($_POST["lastName"]) : $candidatInfoArray['lastName'] ?>" name="lastName" class="form-control inputSearch me-2 ms-3" type="text">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>PRENOM</b></p>
+            <span class="text-danger"><?= $arrayErrors['firstName'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= $event['firstName'] ?? htmlspecialchars($_POST['firstName'])?>" class="form-control inputSearch me-2 ms-3" type="text" >
+                <input value="<?= isset($_POST["firstName"]) ? htmlspecialchars($_POST["firstName"]) : $candidatInfoArray['firstName'] ?>" name="firstName" class="form-control inputSearch me-2 ms-3" type="text">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>PSEUDO</b></p>
+            <span class="text-danger"><?= $arrayErrors['pseudo'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= $event['pseudo'] ?? htmlspecialchars($_POST['pseudo'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= isset($_POST["pseudo"]) ? htmlspecialchars($_POST["pseudo"]) : $candidatInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
+            </div>
+            <p class="mt-3"><b>DATE DE NAISSANCE</b></p>
+            <span class="text-danger"><?= $arrayErrors['birthDate'] ?? '' ?></span>
+            <div class="d-flex">
+                <input type="date" value="<?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : $candidatInfoArray['birthDate'] ?>" class="form-control" name="birthDate" id="birthdate">
             </div>
             <p class="mt-3"><b>MES COORDONNEES</b></p>
             <div class="d-flex">
-                <input value="<?= $event['adress'] ?? htmlspecialchars($_POST['adress'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['postalCode'] ?? htmlspecialchars($_POST['postalCode'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['city'] ?? htmlspecialchars($_POST['city'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['mail'] ?? htmlspecialchars($_POST['mail'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
-                <input value="<?= $event['phone'] ?? htmlspecialchars($_POST['phone'])?>" class="form-control inputSearch me-2 ms-3" type="text"  >
+                <input value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text">
+                <span class="text-danger"><?= $arrayErrors['adress'] ?? '' ?></span>
+                <input value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text">
+                <span class="text-danger"><?= $arrayErrors['postalCode'] ?? '' ?></span>
+                <input value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text">
+                <span class="text-danger"><?= $arrayErrors['city'] ?? '' ?></span>
+                <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?>" name="mail" class="form-control inputSearch me-2 ms-3" type="text">
+                <span class="text-danger"><?= $arrayErrors['mail'] ?? '' ?></span>
+                <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text">
+                <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
             </div>
-            <p class="mt-3"><b>TYPE DE CONTRAT (facultatif)</b></p>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDI" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDI
-                </label>
-            </div>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "CDD" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDD
-                </label>
-            </div>
-            <div class="form-check d-flex ms-3">
-                <input <?= $event['contract'] == "Alternance" ? 'checked' : '' ?> class="form-check-input me-3" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    Alternance
-                </label>
-            </div>
-            <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
-            <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
+
+            <p class=""><b>DOMAINE</b></p>
+            <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
+            <select name="id_domaine" id="domaine" class="inputSearch ms-3">
+                <option disabled selected value="">Choisissez un domaine</option>
+                <?php foreach ($domainArray as $domain) { ?>
+                    <option value="<?= $domain["id"] ?>" <?= $domain["id"] == $candidatInfoArray["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
+
+
+                <?php } ?>
+            </select>
+
+            <p class="mt-3"><b>TYPE DE CONTRAT</b></p>
+            <span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span>
+            <select name="id_contract" id="contract" class="inputSearch ms-3">
+                <option disabled selected value="">Choisissez un contrat</option>
+                <?php foreach ($contractArray as $contract) { ?>
+                    <option value="<?= $contract["id"] ?>" <?= $contract["id"] == $candidatInfoArray["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
+                <?php } ?>
+            </select>
+            <p class="mt-3"><b>EXPERIENCE DANS LE DOMAINE(facultatif)</b></p>
+            <label for="experienceYears" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
             <div class="d-flex">
-                <input value="<?= $event['experience'] ?? htmlspecialchars($_POST['experience'])?>" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
+                <input value="<?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
                 <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
             </div>
 
-            <p class="mt-3"><b>COMPETENCES (facultatif)</b></p>
-            <div class="d-flex">
-                <input value="<?= $event['competences'] ?? htmlspecialchars($_POST['competences'])?>" class="form-control inputSearch me-2 ms-3" type="text" placeholder="ex: PHP, management" aria-label="Rechercher">
-                <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
-            </div>
-            <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
-            <textarea class="col-12" name="description" id="description"><?= $event['summary'] ?? htmlspecialchars($_POST['jobDescription'])?></textarea>
-            <button type="submit" class="btn btnMofidy text-white col-10 m-3">
-                                Modifier
-                            </button>
-        </form>
-        </div>
-<?php  } ?>
+            <p class="mt-3"><b>CV (facultatif)</b></p>
 
-        
+            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "" ?>" alt="cvImg" class="cvPicture p-0">
+
+
+
+
+            <input name="changeCvPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Ajouter ou changer un CV">
+
+            <?php if (isset($_POST["changeCvPicture"])) {  ?>
+                <input id="cvToUpload" name="cvToUpload" type="file" />
+                <input name="submitButtonCvPicture" type="submit" value="Envoyer le fichier" />
+
+                <?= $arrayErrors["mime"] ?? "" ?>
+                <?= $arrayErrors["size"] ?? "" ?>
+                <?= $arrayErrors["extension"] ?? "" ?>
+
+            <?php    } ?>
+            <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
+            <textarea class="col-12" name="description" id="description"><?= isset($_POST["description"]) ? htmlspecialchars($_POST["description"]) : $candidatInfoArray['description'] ?></textarea>
+
+
+            <button type="submit" name="modifyButton" class="btn btnMofidy text-white col-10 m-3">
+                Modifier
+            </button>
+            <button type="button" class="btn text-start col-10 m-3 text-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                Supprimer son compte
+            </button>
+            <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDel">Supprimer son compte</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Attention! Vous êtes sur le point de supprimer votre compte. Si vous continuez toutes vos données seront perdues.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="submit" name="deleteButton" class="btn btn-danger">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
     </div>
     <div class="row bg-dark text-light justify-content-between fixed-bottom ">
         <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>

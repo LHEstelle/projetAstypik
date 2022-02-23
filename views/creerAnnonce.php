@@ -97,6 +97,17 @@ echo strftime('%d/%m/%Y');
                     <?php } ?>
                 </select>
 
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
+                <span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span>
+                <select name="id_profils" id="profils" class="inputSearch ms-3">
+                    <option disabled selected value="">Choisissez des compétences</option>
+                    <?php foreach ($profilsArray as $competences) { ?>
+                        <option value="<?= $competences["id"] ?>"><?= $competences["name"] ?> : <?=$competences["talents"] ?></option>
+
+
+                    <?php } ?>
+                </select>
+
                 <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
 
                 <div class="d-flex">
@@ -107,7 +118,7 @@ echo strftime('%d/%m/%Y');
 
                 <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
                 <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? htmlspecialchars($_POST["description"]) : ''?></textarea>
+                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? $_POST["description"] : ''?></textarea>
                 <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d')?>">
                 <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="createAnnonce">
                     Ajouter une annonce
