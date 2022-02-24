@@ -19,7 +19,6 @@ var_dump($_POST);
 $candidatInfo = new Candidat;
 $candidatInfoArray = $candidatInfo->getOneCandidate($_SESSION['mail']);
 
-
 $contractObj = new Candidat;
 $contractArray = $contractObj->getAllContract();
 

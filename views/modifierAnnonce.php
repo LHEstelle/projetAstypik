@@ -2,6 +2,7 @@
 <html lang="fr">
     <?php
 require_once '../controller/controller_modifierAnnonce.php';
+
 ?>
 
 
@@ -97,6 +98,18 @@ require_once '../controller/controller_modifierAnnonce.php';
                     <?php } ?>
                 </select>
 
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
+                <span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span>
+                <select name="id_profils" id="profils" class="inputSearch ms-3">
+                    <option disabled selected value="">Choisissez des compétences</option>
+                    <?php foreach ($profilsArray as $competences) { ?>
+                        <option value="<?= $competences["id"] ?>" <?= $competences["id"] == $annonceInfo["id_profils"] ? 'selected' : '' ?> ><?= $competences["name"] ?> : <?=$competences["talents"] ?></option>
+
+
+                    <?php } ?>
+                </select>
+
+
                 <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
 
                 <div class="d-flex">
@@ -107,12 +120,31 @@ require_once '../controller/controller_modifierAnnonce.php';
 
                 <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
                 <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? htmlspecialchars($_POST["description"]) : $annonceInfo['description']?></textarea>
+                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? ($_POST["description"]) : $annonceInfo['description']?></textarea>
                 <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d')?>">
                 <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="modifyAnnonce">
                     Modifier
                 </button>
-                
+                <button type="button" class="btn btnRemove text-white  mb-3 ms-4" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                Supprimer
+                            </button>
+                    </form>
+                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalDel">Supprimer une annonce</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Attention! Vous êtes sur le point de supprimer votre annonce.
+                            </div>
+                            <div class="modal-footer">
+                                <form action="" method="POST">
+                <input type="hidden" name="idDeletePatient" value="<?= $annonceInfo['idAnnonce'] ?>">
+                                  
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" name="deleteButton" value="<?= $annonceInfo['idAnnonce'] ?>" class="btn btn-danger">Supprimer</button>
             </div>
         
                     </form>
@@ -123,6 +155,7 @@ require_once '../controller/controller_modifierAnnonce.php';
         <div class="col text-end">Site by Estelle</div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 

@@ -88,76 +88,81 @@ require_once '../controller/controller_annoncesRecruteur.php';
 
             <?php foreach ($annoncesArray as $annonces) { ?>
                 <form action="" method="POST">
-                <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
+                    <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
 
 
-                    <div class="jobColor ms-2">
-                    </div>
+                        <div class="jobColor ms-2">
+                        </div>
 
-                    <div class="jobName col-lg-4 col-12 ms-3 me-3">
+                        <div class="jobName col-lg-4 col-12 ms-3 me-3">
 
-                        <h1 class="fs-3"><b><?= $annonces['job'] ?></b></h1>
-                        <p class="text-secondary"><?= $annonces['contractName'] ?> - <?= $annonces['experienceYear'] ?> ans d'expérience</p>
+                            <h1 class="fs-3"><b><?= $annonces['job'] ?></b></h1>
+                            <p class="text-secondary"><?= $annonces['contractName'] ?> - <?= $annonces['experienceYear'] ?> ans d'expérience</p>
 
-                    </div>
-                    <!-- <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p> -->
-                    <div class="col-lg-3 col-12">
+                        </div>
+                        <!-- <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p> -->
+                        <div class="col-lg-3 col-12">
 
 
-                    <input type="hidden" name="idAnnonce" value="<?= $annonces['idAnnonce'] ?>">
-                       <a href="modifierAnnonce.php?id=<?= $annonces['idAnnonce'] ?>"> <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4">
-                            Modifier
-                        </button></a>
+                            <input type="hidden" name="idAnnonce" value="<?= $annonces['idAnnonce'] ?>">
+                            <a href="modifierAnnonce.php?id=<?= $annonces['idAnnonce'] ?>"> 
+                            <button type="button" class="btn btnMofidy text-white col-10 mt-4 ms-4">
+                                    Modifier/supprimer
+                                </button></a>
 
-                        <button type="button" class="btn btnRemove text-white col-10 mb-2 ms-4" data-bs-toggle="modal" data-bs-target="#modalDelete">
-                                Supprimer
-                            </button>
-                            <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalDel">Supprimer une annonce</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Attention! Vous êtes sur le point de supprimer votre annonce.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        <button type="submit" name="deleteButton" class="btn btn-danger">Supprimer</button>
-      </div>
-    </div>
-  </div>
-</div>
+                </form>
+                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalDel">Supprimer une annonce</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Attention! Vous êtes sur le point de supprimer votre annonce.
+                            </div>
+                            <div class="modal-footer">
 
+                                <form action="" method="POST">
+
+                                    <input type="hidden" name="idDeletePatient" value="<?= $annonces['idAnnonce'] ?>">
+                                    <input type="hidden" name="idAnnonce" value="<?= $annonces['idAnnonce'] ?>">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <button type="submit" name="deleteButton" value="<?= $annonces['idAnnonce'] ?>" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-          
-                </form>
-            <?php } ?>
+
+        </div>
+    </div>
+
+
+<?php } ?>
 
 
 
 
 
-            <div class="d-flex justify-content-center">
-                <a href="creerAnnonce.php" class="link">
-                    <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce">
-                        Ajouter une annonce
-                    </button>
-                </a>
-            </div>
+<div class="d-flex justify-content-center">
+    <a href="creerAnnonce.php" class="link">
+        <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce">
+            Ajouter une annonce
+        </button>
+    </a>
+</div>
 
 
 
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
-            </div>
+<div class="row bg-dark text-light justify-content-between fixed-bottom">
+    <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
+    <div class="col text-end">Site by Estelle</div>
+</div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-            <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 
 

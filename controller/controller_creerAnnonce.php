@@ -66,16 +66,14 @@ if (isset($_POST["createAnnonce"])) {
         $job = htmlspecialchars(trim($_POST['job']));
         $experienceYear = htmlspecialchars(intval(trim($_POST['experienceYear'])));
         $publicationDate = htmlspecialchars((trim($_POST['publicationDate'])));
-        $description = htmlspecialchars((trim($_POST['description'])));
+        $description = trim($_POST['description']);
         $startDate = htmlspecialchars((trim($_POST['startDate'])));
         $idRecruteur = htmlspecialchars(trim($_POST['id_recruteur']));
         $idDomaine = htmlspecialchars(trim($_POST['id_domaine']));
         $idContract = htmlspecialchars(trim($_POST['id_contract']));
-        $experience = htmlspecialchars(trim($_POST['experienceYear']));
-        $description = htmlspecialchars(trim($_POST['description']));
         $idProfils = htmlspecialchars(trim($_POST['id_profils']));
         $annonce = new Annonce();
-        $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract,  $experience, $idProfils);
+        $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $addAnnonceOk = true;
         header('location: annoncesRecruteur.php');
     }

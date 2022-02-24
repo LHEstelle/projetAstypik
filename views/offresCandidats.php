@@ -101,12 +101,14 @@ require_once '../controller/controller_offresCandidat.php';
                                 <p class="fs-6 fw-light"><?= $event['contractName'] ?></p>
                             </div>
                         </div>
-                        <p class="m-2 text-center jobDescriptionTruncate"><?= $event['offerDescription'] ?></p>
+                        <div class="container">
+                        <div class="m-2  jobDescriptionTruncate"><?= $event['offerDescription'] ?></div>
+                        </div>
                 <!-- </a> -->
 
                 <div class="row d-flex align-text-bottom">
                     <i class="far fa-heart text-white text-end fs-3 pe-5" onclick="setLike()" id="heartIconEmpty"></i>
-                    <i class="fas fa-heart text-end text-white fs-3 pe-5" onclick="deleteLike()" id="heartIcon"></i>
+
                 </div>
       
                 </div>

@@ -84,8 +84,9 @@ require_once '../controller/controller_profilRecruteur.php';
 <?= $arrayErrors["mime"] ?? "" ?>
 <?= $arrayErrors["size"] ?? "" ?>
 <?= $arrayErrors["extension"] ?? "" ?>
+<?php    } ?>
     </div>
-    <?php    } ?>
+    
 
         <h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
             <p class="mt-3"><b>PSEUDO OU SLOGAN...</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>

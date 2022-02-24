@@ -10,6 +10,8 @@ class Annonce extends DataBase
         $base = $this->connectDb();
         $sql = "INSERT INTO offre(job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, description, id_profils)
         VALUES(:job, :experienceYear, :publicationDate, :startDate, :id_recruteur, :id_domaine, :id_contract, :description , :id_profils)";
+        
+        var_dump($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':job', $job, PDO::PARAM_STR);
         $resultQuery->bindValue(':experienceYear', $experienceYear, PDO::PARAM_INT);
@@ -64,7 +66,7 @@ class Annonce extends DataBase
     public function getOneAnnonce(int $id): array
     {
         $base = $this->connectDb();
-        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, description
+        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, description , id_profils
         FROM `offre`
        WHERE offre.id =:idAnnonce";
         $resultQuery = $base->prepare($sql);
