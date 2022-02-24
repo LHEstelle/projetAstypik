@@ -86,39 +86,39 @@ require_once '../controller/controller_profilCandidat.php';
             <p class="mt-3"><b>NOM</b></p>
             <span class="text-danger"><?= $arrayErrors['lastName'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= isset($_POST["lastName"]) ? htmlspecialchars($_POST["lastName"]) : $candidatInfoArray['lastName'] ?>" name="lastName" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["lastName"]) ? htmlspecialchars($_POST["lastName"]) : $candidatInfoArray['lastName'] ?><p>
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>PRENOM</b></p>
             <span class="text-danger"><?= $arrayErrors['firstName'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= isset($_POST["firstName"]) ? htmlspecialchars($_POST["firstName"]) : $candidatInfoArray['firstName'] ?>" name="firstName" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["firstName"]) ? htmlspecialchars($_POST["firstName"]) : $candidatInfoArray['firstName'] ?>" name="firstName" class="form-control inputSearch me-2 ms-3" type="text">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>PSEUDO</b></p>
             <span class="text-danger"><?= $arrayErrors['pseudo'] ?? '' ?></span>
             <div class="d-flex">
-                <input value="<?= isset($_POST["pseudo"]) ? htmlspecialchars($_POST["pseudo"]) : $candidatInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["pseudo"]) ? htmlspecialchars($_POST["pseudo"]) : $candidatInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text">
                 <!-- <button class="btnSearch btn text-white me-3" type="submit">Modifier</button> -->
             </div>
             <p class="mt-3"><b>DATE DE NAISSANCE</b></p>
             <span class="text-danger"><?= $arrayErrors['birthDate'] ?? '' ?></span>
             <div class="d-flex">
-                <input type="date" value="<?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : $candidatInfoArray['birthDate'] ?>" class="form-control" name="birthDate" id="birthdate">
+                <p type="date"><?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : $candidatInfoArray['birthDate'] ?>" class="form-control" name="birthDate" id="birthdate">
             </div>
-            <p class="mt-3"><b>MES COORDONNEES</b></p>
+            <!-- <p class="mt-3"><b>MES COORDONNEES</b></p>
             <div class="d-flex">
-                <input value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['adress'] ?? '' ?></span>
-                <input value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['postalCode'] ?? '' ?></span>
-                <input value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['city'] ?? '' ?></span>
-                <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?>" name="mail" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?>" name="mail" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['mail'] ?? '' ?></span>
-                <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text">
+                <p><?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
-            </div>
+            </div> -->
 
             <p class=""><b>DOMAINE</b></p>
             <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
@@ -142,7 +142,7 @@ require_once '../controller/controller_profilCandidat.php';
             <p class="mt-3"><b>EXPERIENCE DANS LE DOMAINE(facultatif)</b></p>
             <label for="experienceYears" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
             <div class="d-flex">
-                <input value="<?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
+                <input><?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
                 <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
             </div>
 

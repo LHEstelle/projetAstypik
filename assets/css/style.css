@@ -7,6 +7,10 @@
         text-decoration: none;
         color: black;
     }
+    
+    a:hover {
+        color: black;
+    }
     /* Page d'accueil  */
     
     .homeBody {
@@ -164,6 +168,27 @@ Menu de navigation */
         width: 19rem;
         height: 19rem;
         background-color: #F1CD7B;
+        border-radius: 2rem;
+    }
+    
+    .cardRed {
+        width: 19rem;
+        height: 19rem;
+        background-color: #b918189f;
+        border-radius: 2rem;
+    }
+    
+    .cardBlue {
+        width: 19rem;
+        height: 19rem;
+        background-color: #7face6;
+        border-radius: 2rem;
+    }
+    
+    .cardGreen {
+        width: 19rem;
+        height: 19rem;
+        background-color: #87d8afd3;
         border-radius: 2rem;
     }
     

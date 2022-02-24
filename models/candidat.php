@@ -44,10 +44,10 @@ class Candidat extends DataBase
         return false;
     }
 
-    public function addCandidat(string $lastName, string $firstName, string $birthDate, string $phone, string $mail, string $city, int $postalCode, string $adress, string $password): void
+    public function addCandidat(string $lastName, string $firstName, string $birthDate, string $phone, string $mail, string $city, int $postalCode, string $adress, string $password, $id_profils, $id_contract, $id_domaine): void
     {
         $db = $this->connectDb();
-        $sql = "INSERT INTO `candidat` (`lastName`, `firstName`, `birthDate`, `phone`, `mail`, `city`, `postalCode`,`adress`, `password`) VALUES (:lastName, :firstName, :birthDate, :phone, :mail, :city, :postalCode, :adress, :password)";
+        $sql = "INSERT INTO `candidat` (`lastName`, `firstName`, `birthDate`, `phone`, `mail`, `city`, `postalCode`,`adress`, `password`, id_profils, id_contract, id_domaine) VALUES (:lastName, :firstName, :birthDate, :phone, :mail, :city, :postalCode, :adress, :password, :id_profils, :id_contract, :id_domaine)";
         $query = $db->prepare($sql);
         $query->bindValue(':lastName', $lastName, PDO::PARAM_STR);
         $query->bindValue(':firstName', $firstName, PDO::PARAM_STR);
@@ -57,6 +57,10 @@ class Candidat extends DataBase
         $query->bindValue(':city', $city, PDO::PARAM_STR);
         $query->bindValue(':postalCode', $postalCode, PDO::PARAM_INT);
         $query->bindValue(':adress', $adress, PDO::PARAM_STR);
+        $query->bindValue(':id_profils', $id_profils, PDO::PARAM_INT);
+        $query->bindValue(':id_contract', $id_contract, PDO::PARAM_INT);
+        $query->bindValue(':id_domaine', $id_domaine, PDO::PARAM_INT);
+
 
         $query->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
 
@@ -171,5 +175,18 @@ class Candidat extends DataBase
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->execute();
+    }
+    public function getAllCandidates(): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, birthDate, phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName', domaine.id AS 'domaineID', domaine.name AS 'domaineName', profils.nameStruct AS 'profilName', profils.name AS 'profilColor', profils.talents AS 'profilTalents'
+        FROM `candidat`
+       INNER JOIN `profils` ON id_profils = profils.id
+       INNER JOIN  `contract` ON id_contract = contract.id
+       INNER JOIN  `domaine` ON id_domaine = domaine.id 
+        ORDER BY candidat.id  DESC;";
+        $resultQuery = $base->query($sql);
+        $resultQuery->execute();
+        return $resultQuery->fetchAll();
     }
 }

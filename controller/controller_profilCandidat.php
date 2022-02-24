@@ -100,11 +100,27 @@ if (isset($_POST['modifyButton'])) {
         }
     }
 
+    if (isset($_POST["description"])) {
+        if (empty($_POST["description"])) {
+            $arrayErrors["description"] = "Veuillez saisir une description , vos motivations...";
+        }
+    }
+    if (isset($_POST["id_contract"])) {
+        if (empty($_POST["id_contract"])) {
+            $arrayErrors["id_contract"] = "Veuillez saisir le type de contrat recherché";
+        }
+    }
+    if (isset($_POST["id_domaine"])) {
+        if (empty($_POST["id_domaine"])) {
+            $arrayErrors["id_domaine"] = "Veuillez saisir le type de domaine recherché";
+        }
+    }
+
     if (count($arrayErrors) == 0) {
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
         $lastName = htmlspecialchars(strtoupper(trim($_POST['lastName'])));
         $firstName = htmlspecialchars(ucwords(trim($_POST['firstName'])));
-        $description = htmlspecialchars(trim($_POST['description']));
+        $description = trim($_POST['description']);
         $pseudo = htmlspecialchars(trim($_POST['pseudo']));
         $birthDate = htmlspecialchars(trim($_POST['birthDate']));
         $phone = htmlspecialchars(trim($_POST['phone']));
@@ -112,7 +128,7 @@ if (isset($_POST['modifyButton'])) {
         $city = htmlspecialchars(trim($_POST['city']));
         $postalCode = htmlspecialchars(intval(trim($_POST['postalCode'])));
         $adress = htmlspecialchars(trim($_POST['adress']));
-        $experienceYears = htmlspecialchars(trim($_POST['experienceYears']));
+        $experienceYears = htmlspecialchars(intval(trim($_POST['experienceYears'])));
         $id_contract = htmlspecialchars(intval(trim($_POST['id_contract'])));
         $id_domaine = htmlspecialchars(intval(trim($_POST['id_domaine'])));
         $candidatObj = new Candidat();

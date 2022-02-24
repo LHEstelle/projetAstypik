@@ -100,8 +100,11 @@ if (!empty($_POST)) {
             $postalCode = htmlspecialchars(trim($_POST['postalCode']));
             $adress = htmlspecialchars(trim($_POST['adress']));
             $password = htmlspecialchars(trim($_POST['password']));
+            $id_profils = htmlspecialchars(trim($_POST['id_profils']));
+            $id_contract = htmlspecialchars(trim($_POST['id_contract']));
+            $id_domaine = htmlspecialchars(trim($_POST['id_domaine']));
             $candidatObj = new Candidat();
-            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password);
+            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine);
 
             $addCandidatOk = true;
         }
