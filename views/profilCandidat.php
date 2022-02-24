@@ -166,7 +166,7 @@ require_once '../controller/controller_profilCandidat.php';
             <?php    } ?>
             <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
             <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-
+            <span class="text-danger">Attention ! Si vous écrivez de la même couleur qu'est inscrit votre profil de talent (en haut de la page) cela risque d'être illisible </span>
             <textarea class="col-12" name="description" id="description"><?= isset($_POST["description"]) ? htmlspecialchars($_POST["description"]) : $candidatInfoArray['description'] ?></textarea>
 
 

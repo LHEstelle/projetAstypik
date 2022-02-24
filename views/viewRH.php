@@ -99,23 +99,23 @@ require_once '../controller/controller_viewRH.php';
                 <?php foreach ($allCandidatesArray as $event) { ?>
                     <!-- <a href="detailRecrutor.php?id=<?= $event['id'] ?>"> -->
                     <?php if (isset($event['profilColor']) && $event['profilColor'] == 'superCactus') {  ?>
-                       <a href="<?= $event['profilColor'] ?>.php" class="link"> <div class="cardRed m-3 p-1"> 
+                       <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardRed m-3 p-1"> 
                         <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'peterPaon') {  ?>
-                            <div class="cardCandidate m-3 p-1">
+                            <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardCandidate m-3 p-1">
 
                             <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'ironSpoke') {  ?>
-                                <div class="cardBlue m-3 p-1">
+                                <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardBlue m-3 p-1">
 
                                 <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'spiderLutin') {  ?>
-                                    <div class="cardGreen m-3 p-1">
+                                    <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">  <div class="cardGreen m-3 p-1">
                                     <?php  } ?>
 
                                     <input type="hidden" name="profilColor" value="<?= $event['profilColor']  ?>">
                                     <div class="d-flex justify-content-evenly m-2">
                                         <img src="../assets/img/<?= $event['profilPicture'] ?? '' ?>" alt="candidateImg" class="imageProfil3">
                                         <div class="infoCandidate">
-                                            <p class="fs-5 m-0"><?= $event['firstName'] ?> <?= $event['lastName'] ?></p>
-                                            <p class="fs-6 fw-light m-0"><?= $event['pseudo'] ?></p>
+                                            <p class="fs-5 m-0"><?= $event['pseudo'] ?></p>
+                                            <p class="fs-6 fw-light m-0"> <?= $event['lastName'] ?> <?= $event['firstName'] ?></p>
                                             <p class="fs-6 fw-light"><?= $event['city'] ?></p>
                                         </div>
                                     </div>

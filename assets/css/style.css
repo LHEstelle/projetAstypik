@@ -120,6 +120,13 @@
         height: 8rem;
         width: auto;
     }
+    /* 
+    Page détail des candidats  */
+    
+    .cardDetail {
+        background-color: #0000000c;
+        border-radius: 20px;
+    }
     /* barre de filtre à gauche */
     
     .list {
