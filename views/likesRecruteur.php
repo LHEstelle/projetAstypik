@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/controller_index.php';
+require_once '../controller/controller_likesRecruteur.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -84,16 +84,16 @@ require_once '../controller/controller_index.php';
             </div>
 
 
-            <?php foreach ($arrayCandidates as $event) { ?>
+            <?php foreach ($likesRecrutorArray as $event) { ?>
 
                 <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
 
-                    <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-
+                    <img src="../assets/img/<?= $event['candidateProfilPicture'] ?? '' ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
+                 
                     <div class="jobName col-lg-4 col-12 ms-3 me-3">
-                        <a href="detailRecrutor.php?id=<?= $event['id'] ?>">
-                            <h1 class="fs-3"><b><?= $event['firstName'] ?> <?= $event['lastName'] ?></b></h1>
-                            <p class="text-secondary"><?= $event['city'] ?> - <?= $event['city'] ?></p>
+                        <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
+                            <h1 class="fs-3"><b> <?= $event['candidatePseudo'] ?> - <?= $event['firstName'] ?> <?= $event['lastName'] ?></b></h1>
+                            <p class="text-secondary"><?= $event['profilName'] ?> <?= $event['candidateCity'] ?></p>
                         </a>
                     </div>
 

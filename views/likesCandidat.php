@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/controller_index.php';
+require_once '../controller/controller_likesCandidat.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -82,25 +82,25 @@ require_once '../controller/controller_index.php';
                 <a href="likesCandidat.php" class="fas fa-heart menuIcon p-3 col-3 d-lg-none"></a>
             </div>
             
+              
 
-
-            <?php foreach ($arrayAnnounces as $event) { ?>
+            <?php foreach ($likesCandidatesArray as $event) {  ?>
                     
             <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
-                <img src="<?= $event['picture'] ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
+                <img src="../assets/img/<?= $event['recrutorProfilPicture'] ?? '' ?>" alt="recrutorImg" class="imageProfil3 p-0 ms-4">
                 <div class="jobName col-lg-4 col-12 ms-3 me-3">
-                <a href="detailCandidate.php?id=<?= $event['id'] ?>">
-                        <h1 class="fs-3"><b><?= $event['enterprise'] ?></b></h1>
-                        <p class="text-secondary"><?= $event['job'] ?> - <?= $event['contract'] ?></p>
+                <!-- <a href="detailCandidate.php?id=<?= $event['id'] ?>"> -->
+                        <h1 class="fs-3"><b><?= $event['job'] ?></b></h1>
+                        <p class="text-secondary"> <?= $event['recrutorName'] ?> - <?= $event['contractName'] ?></p>
                     </a>
                 </div>
 
                 <div class="col-lg-3 col-12">
-
+             <?php  if (in_array($allRecrutor['idCandidat'], $likesCandidatesArray) && (in_array($allRecrutor['id_recruteur'], $likesCandidatesArray)) ) {?>
                     <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4 mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Conversation
                       </button>
-
+<?php  } ?>
                 </div>
             </div>
             <?php } ?>

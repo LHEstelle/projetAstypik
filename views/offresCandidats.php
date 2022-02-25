@@ -104,6 +104,7 @@ require_once '../controller/controller_offresCandidat.php';
                         <div class="container">
                         <div class="m-2  jobDescriptionTruncate"><?= $event['offerDescription'] ?></div>
                         </div>
+                        <div class="publicationDate fw-light"><p>date de publication :<?= $event['publicationDate'] ?></p></div>
                 <!-- </a> -->
 
                 <div class="row d-flex align-text-bottom">

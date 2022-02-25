@@ -283,21 +283,6 @@ Menu de navigation */
         border-radius: 40px;
         box-shadow: 10px 8px 12px #404040;
     }
-    /* Page vue Recruteur detail d'un candidat */
-    
-    .profilCandidateDetail {
-        background-color: #F1CD7B;
-        border-radius: 40px;
-        box-shadow: 10px 8px 12px #404040;
-    }
-    
-    .infoProfil {
-        background-color: #f1ce7b00;
-    }
-    
-    .profilTextDetail {
-        color: #215B70;
-    }
     /* Page vue Candidat des annonces */
     
     .jobDescriptionTruncate {
@@ -308,6 +293,12 @@ Menu de navigation */
         /* number of lines to show */
         line-height: 1.5;
         -webkit-box-orient: vertical;
+    }
+    
+    .publicationDate {
+        position: relative;
+        bottom: 0px;
+        margin-left: 1rem;
     }
     
     @media screen and (max-width: 1000px) {
