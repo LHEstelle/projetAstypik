@@ -90,9 +90,22 @@ require_once '../controller/controller_annoncesRecruteur.php';
                 <form action="" method="POST">
                     <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
 
+                        <?php if (isset($annonces['profilColor']) && $annonces['profilColor'] == 'superCactus') {  ?>
+                            <div class="jobColorRed ms-2">
+                            </div>
+                        <?php  } else if (isset($annonces['profilColor']) && $annonces['profilColor'] == 'peterPaon') {  ?>
+                            <div class="jobColorYellow ms-2">
+                            </div>
 
-                        <div class="jobColor ms-2">
-                        </div>
+                        <?php  } else if (isset($annonces['profilColor']) && $annonces['profilColor'] == 'ironSpoke') {  ?>
+                            <div class="jobColorBlue ms-2">
+                            </div>
+
+                        <?php  } else if (isset($annonces['profilColor']) && $annonces['profilColor'] == 'spiderLutin') {  ?>
+                            <div class="jobColorGreen ms-2">
+                            </div>
+                        <?php  } ?>
+
 
                         <div class="jobName col-lg-4 col-12 ms-3 me-3">
 
@@ -105,8 +118,8 @@ require_once '../controller/controller_annoncesRecruteur.php';
 
 
                             <input type="hidden" name="idAnnonce" value="<?= $annonces['idAnnonce'] ?>">
-                            <a href="modifierAnnonce.php?id=<?= $annonces['idAnnonce'] ?>"> 
-                            <button type="button" class="btn btnMofidy text-white col-10 mt-4 ms-4">
+                            <a href="modifierAnnonce.php?id=<?= $annonces['idAnnonce'] ?>">
+                                <button type="button" class="btn btnMofidy text-white col-10 mt-4 ms-4">
                                     Modifier/supprimer
                                 </button></a>
 

@@ -94,20 +94,20 @@ require_once '../controller/controller_viewRH.php';
 
 
 
-            <div class="myCards d-flex justify-content-evenly m-3 mt-5">
+            <div class="myCards d-flex justify-content-start m-3 mt-5 ms-3">
 
                 <?php foreach ($allCandidatesArray as $event) { ?>
                     <!-- <a href="detailRecrutor.php?id=<?= $event['id'] ?>"> -->
                     <?php if (isset($event['profilColor']) && $event['profilColor'] == 'superCactus') {  ?>
-                       <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardRed m-3 p-1"> 
+                       <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardRed m-4 p-1"> 
                         <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'peterPaon') {  ?>
-                            <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardCandidate m-3 p-1">
+                            <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardCandidate m-4 p-1">
 
                             <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'ironSpoke') {  ?>
-                                <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardBlue m-3 p-1">
+                                <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>"> <div class="cardBlue m-4 p-1">
 
                                 <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'spiderLutin') {  ?>
-                                    <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">  <div class="cardGreen m-3 p-1">
+                                    <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">  <div class="cardGreen m-4 p-1">
                                     <?php  } ?>
 
                                     <input type="hidden" name="profilColor" value="<?= $event['profilColor']  ?>">
@@ -119,7 +119,7 @@ require_once '../controller/controller_viewRH.php';
                                             <p class="fs-6 fw-light"><?= $event['city'] ?></p>
                                         </div>
                                     </div>
-                                    <p class="m-2 text-center"><?= $event['candidateDescription'] ?></p>
+                                    <div class=" jobDescriptionTruncate"><p class="m-2 text-center"><?= $event['candidateDescription'] ?></p></div>
                                     </a>
                                     <div class="row d-flex align-text-bottom">
                                         <i class="far fa-heart text-white text-end fs-3 pe-5" onclick="setLike()" id="heartIconEmpty"></i>

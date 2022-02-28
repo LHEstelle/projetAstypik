@@ -49,7 +49,7 @@
             Ce test est obligatoire. Vous devez répondre à chaque question et une seule réponse est autorisée. Attention vous ne pouvez passer ce test qu'une seule fois !</p>
         <div class="m-3">
 
-            <form action="" method="POST">
+            <form action="autreQuestion.php" method="POST">
 
                 <div class="mb-3">
 
@@ -324,7 +324,8 @@
                             Cela ne change pas radicalement votre façon de vivre mais vous apporte la stabilité </label>
                     </div>
                 </div>
-<?php if(isset($arrayAnswer)){ ?>
+<?php if(!empty($arrayAnswer)){ ?>
+    <span class="text-danger"><?= $arrayAnswer ?></span>
     <div class="mb-3">
                     <label for="lastname" class="form-label"><b> Vous êtes plutôt :</b></label>
                     <span class="text-danger">
@@ -358,7 +359,7 @@
                 </div>
 <?php } ?>
                 <button type="submit" class="btn btnEnregist mb-5" name="testProfilButton"><b>Envoyer</b></button>
-                <?php var_dump(count($_POST) == 'IronSpoke');
+                <?php 
                 var_dump($_POST);  ?>
 
 

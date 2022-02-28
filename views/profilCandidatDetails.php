@@ -43,7 +43,7 @@ require_once '../controller/controller_profilCandidatDetails.php';
         </a>
 
         <div class="pb-3">
-        <div class="d-flex justify-content-evenly align-items-end text-center">
+            <div class="d-flex justify-content-evenly align-items-end text-center">
                 <a href="profilRecruteur.php" id="jobOffer1" class="menu text-dark p-3 col-2">Mon profil</a>
                 <a href="annoncesRecruteur.php" id="jobOffer1" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
                 <a href="viewRH.php" id="candidateProfil1" class="menu text-dark p-3 col-2">Profils candidats</a>
@@ -57,73 +57,99 @@ require_once '../controller/controller_profilCandidatDetails.php';
     </div>
 
 
-    <div class="container text-center mb-5">
+    <div class="ms-3">
+        <div class="container text-center mb-5">
+            <?php if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'superCactus') {  ?>
+                <div class="cardInfosRed">
+                    <div class="cardDetailRed m-3 p-1 m-3 p-1">
 
-        <div class="cardDetail m-3 p-1">
+                    <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'peterPaon') {  ?>
+                        <div class="cardInfosYellow">
+                            <div class="cardDetailYellow m-3 p-1">
 
-            <div class="ms-3">
+                            <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'ironSpoke') {  ?>
+                                <div class="cardInfosBlue">
+                                    <div class="cardDetailBlue m-3 p-1">
 
-                <div class="d-flex justify-content-center mt-4">
-                    <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
-                </div>
+                                    <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'spiderLutin') {  ?>
+                                        <div class="cardInfosGreen">
+                                            <div class="cardDetailGreen m-3 p-1">
 
-                <?= $candidatInfoArray['profilName'] ?>
-                <h3 class="text-center mb-5"><?= $candidatInfoArray['profilTalents'] ?></h3>
-
-                <p>😎</p>
-
-                <p class="m-3"><?= $candidatInfoArray['lastName'] ?> <?= $candidatInfoArray['firstName'] ?></p>
-
-                <p class="m-3"><?= isset($_POST["pseudo"]) ? htmlspecialchars($_POST["pseudo"]) : $candidatInfoArray['pseudo'] ?></p>
-
-
-                <p>🎂</p>
-
-                <p class="m-3"><?= $candidatInfoArray['birthDate'] ?></p>
-
-                <!-- <p class="mt-3"><b>MES COORDONNEES</b></p>
-            <div class="d-flex">
-                <p class="text-center"><?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?></p>
-               
-                <p class="text-center"><?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?></p>
-                
-                <p class="text-center"><?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?></p>
-                
-                <p class="text-center"><?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?></p>
-               
-                <p class="text-center"><?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?></p>
-             
-            </div> -->
-
-                <p>💼</p>
-                <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
-
-
-                <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
-
-                <p class="m-3"> <?= isset($candidatInfoArray['experienceYears']) ?? ''  ?> ans d'expérience</p>
-
-                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
-                <p>💪</p>
-                <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
+                                            <?php  } ?>
 
 
 
-            </div>
-        </div>
+                                            <div class="d-flex justify-content-center mt-4">
+
+                                                <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
+                                            </div>
 
 
 
 
-        <div class="row bg-dark text-light justify-content-between fixed-bottom ">
-            <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>
-            <div class="col text-end ">Site by Estelle</div>
-        </div>
+                                            <h2 class="m-3 text-white"> <?= $candidatInfoArray['lastName'] ?> <?= $candidatInfoArray['firstName'] ?></h2>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+                                            <p class="m-3 text-white"><?= $candidatInfoArray['pseudo'] ?></p>
+                                            <p class="m-3 text-white"><?= $candidatInfoArray['birthDate'] ?></p>
+                                            <i class="far fa-heart d-flex text-white justify-content-end fs-3 mb-5 me-5" onclick="setLike()" id="heartIconEmpty"></i>
+                                            </div>
 
-        <script src="../assets/js/script.js ">
-        </script>
+                                            <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
+                                                <div class="mt-3"><?= $candidatInfoArray['profilName'] ?></div>
+                                            </div>
+                                            <p><?= $candidatInfoArray['profilTalents'] ?></p>
+
+
+                                            <?php if (isset($_POST['conversationButton'])) {  ?>
+
+                                                <div class="d-flex justify-content-center mt-3">
+                                                    <div class="coordonnees">
+                                                        <h4 class="text-center mt-3">COORDONNEES</h4>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['adress']   ?> <?= $candidatInfoArray['postalCode']   ?> <?= $candidatInfoArray['city']   ?></p>
+                                                        </div>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['mail']   ?></p>
+                                                        </div>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['phone']   ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            <?php } ?>
+                                            <h4 class="mt-4">SOUHAITS ET EXPERIENCES</h4>
+                                            <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
+
+
+                                            <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
+
+                                            <p class="m-3"> <?= isset($candidatInfoArray['experienceYears']) ?? ''  ?> ans d'expérience</p>
+
+                                            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
+                                            <div class="mt-5">
+                                                <h4>SA DESCRIPTION</h4>
+                                            </div>
+                                            <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="row bg-dark text-light justify-content-between fixed-bottom ">
+                                        <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>
+                                        <div class="col text-end ">Site by Estelle</div>
+                                    </div>
+
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+                                    <script src="../assets/js/script.js ">
+                                    </script>
 </body>
 
 

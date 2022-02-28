@@ -123,8 +123,39 @@
     /* 
     Page détail des candidats  */
     
-    .cardDetail {
-        background-color: #0000000c;
+    .profilRed {
+        color: #b918189f;
+    }
+    
+    .profilYellow {
+        color: #F1CD7B;
+    }
+    
+    .profilBlue {
+        color: #7face6;
+    }
+    
+    .profilGreen {
+        color: #87d8afd3;
+    }
+    
+    .cardDetailRed {
+        background-color: #b918189f;
+        border-radius: 20px;
+    }
+    
+    .cardDetailYellow {
+        background-color: #F1CD7B;
+        border-radius: 20px;
+    }
+    
+    .cardDetailBlue {
+        background-color: #7face6;
+        border-radius: 20px;
+    }
+    
+    .cardDetailGreen {
+        background-color: #87d8afd3;
         border-radius: 20px;
     }
     /* barre de filtre à gauche */
@@ -211,12 +242,53 @@ Menu de navigation */
         border-width: 4px;
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.30), 0 5px 12px rgba(0, 0, 0, 0.1);
     }
+    
+    .cardInfosYellow {
+        border: #F1CD7B solid 2px;
+        border-radius: 40px;
+    }
+    
+    .cardInfosRed {
+        border: #b918189f solid 2px;
+        border-radius: 40px;
+    }
+    
+    .cardInfosBlue {
+        border: #7face6 solid 2px;
+        border-radius: 40px;
+    }
+    
+    .cardInfosGreen {
+        border: #87d8afd3 solid 2px;
+        border-radius: 40px;
+    }
     /* Page vue Recruteur des annonces */
     
-    .jobColor {
+    .jobColorBlue {
         height: 6rem;
         width: 6rem;
-        background-color: #488ec0;
+        background-color: #7face6;
+        border-radius: 1rem;
+    }
+    
+    .jobColorRed {
+        height: 6rem;
+        width: 6rem;
+        background-color: #b918189f;
+        border-radius: 1rem;
+    }
+    
+    .jobColorYellow {
+        height: 6rem;
+        width: 6rem;
+        background-color: #F1CD7B;
+        border-radius: 1rem;
+    }
+    
+    .jobColorGreen {
+        height: 6rem;
+        width: 6rem;
+        background-color: #87d8afd3;
         border-radius: 1rem;
     }
     
@@ -252,15 +324,39 @@ Menu de navigation */
     }
     /* Page vue Recruteur zoom sur l'annonce */
     
-    .titleAnnounce {
-        background-color: #488ec0;
+    .titleAnnounceBlue {
+        background-color: #7face6;
         border-radius: 2rem;
-        width: 90vh;
+        width: 70rem;
+    }
+    
+    .titleAnnounceRed {
+        background-color: #b918189f;
+        border-radius: 2rem;
+        width: 70rem;
+    }
+    
+    .titleAnnounceYellow {
+        background-color: #F1CD7B;
+        border-radius: 2rem;
+        width: 70rem;
+    }
+    
+    .titleAnnounceGreen {
+        background-color: #87d8afd3;
+        border-radius: 2rem;
+        width: 70rem;
     }
     
     .back {
         text-decoration: none;
         color: #E28850;
+    }
+    
+    .coordonnees {
+        background-color: rgba(217, 227, 235, 0.61);
+        width: 50rem;
+        border-radius: 2rem;
     }
     /* Page vue Candidat de son profil */
     
@@ -290,6 +386,16 @@ Menu de navigation */
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 4;
+        /* number of lines to show */
+        line-height: 1.5;
+        -webkit-box-orient: vertical;
+    }
+    
+    .jobNameTruncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
         /* number of lines to show */
         line-height: 1.5;
         -webkit-box-orient: vertical;

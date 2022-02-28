@@ -32,20 +32,20 @@ if (isset($_POST["createAnnonce"])) {
         }
     }
 
-    if (isset($_POST["id_domaine"])) {
-        if (empty($_POST["id_domaine"])) {
+    if (!isset($_POST["id_domaine"])) {
+
             $arrayErrors["id_domaine"] = "Veuillez saisir votre domaine";
-        }}
+        }
 
-        if (isset($_POST["id_profils"])) {
-            if (empty($_POST["id_profils"])) {
+        if (!isset($_POST["id_profils"])) {
+         
                 $arrayErrors["id_profils"] = "Veuillez saisir des compétences préférentielles";
-            }}
+            }
 
-    if (isset($_POST["id_contract"])) {
-        if (empty($_POST["id_contract"])) {
+    if (!isset($_POST["id_contract"])) {
+
             $arrayErrors["id_contract"] = "Veuillez saisir un contrat";
-        }}
+        }
 
 
     if (isset($_POST["startDate"])) {
@@ -75,6 +75,6 @@ if (isset($_POST["createAnnonce"])) {
         $annonce = new Annonce();
         $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $addAnnonceOk = true;
-        header('location: annoncesRecruteur.php');
+        header('annoncesRecruteur.php');
     }
 }

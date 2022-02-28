@@ -11,7 +11,3 @@ $likesCandidatesArray = $likesCandidatesObj -> getLikesOfOneCandidate($_SESSION[
 
 $RecrutorLikesObj = new Likes();
 $allRecrutor = $RecrutorLikesObj-> getLikesOfAllRecrutorForOneCandidate($_SESSION['mail']);
-
-var_dump($likesCandidatesArray);
-var_dump($allRecrutor);
-

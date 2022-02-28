@@ -66,14 +66,14 @@ require '../controller/controller_connexionEntreprise.php';
                     <input class="form-control" value="<?= isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : "" ?>" type="password" name="password" id="password">
                 </div>
 
-                </div>
+                
                 <a class="lienConnexion" href="inscriptionRecruteur.php">
                     <p>Pas encore inscrit? Veuillez vous inscrire</p>
                 </a>
                 <button type="submit" class="btn btnEnregist mb-5" name="createButton"><b>Envoyer</b></button>
         </form>
         </div>
-
+        </div>
 
         <div class="row bg-dark text-light justify-content-between fixed-bottom">
                     <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

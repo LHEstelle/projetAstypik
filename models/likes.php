@@ -53,25 +53,40 @@ class Likes extends DataBase
         $resultQuery->execute();
 
     }
-    public function getLikesOfAllRecrutor(): array
-    { 
-        $base = $this->connectDb();
-        $sql = "SELECT likerecrutor.id AS 'idCandidateLiked', likerecrutor.id_recruteur AS 'recrutorLike', candidat.id AS 'idCandidat', recruteur.id AS 'idRecrutor', recruteur.name AS 'recrutorName'
-        FROM likerecrutor
-        LEFT JOIN recruteur ON recruteur.id = likerecrutor.id_recruteur
-        LEFT JOIN candidat ON likerecrutor.id = candidat.id";
+    // public function getLikesOfAllRecrutor(): array
+    // { 
+    //     $base = $this->connectDb();
+    //     $sql = "SELECT likerecrutor.id AS 'idCandidateLiked', likerecrutor.id_recruteur AS 'recrutorLike', candidat.id AS 'idCandidat', recruteur.id AS 'idRecrutor', recruteur.name AS 'recrutorName'
+    //     FROM likerecrutor
+    //     LEFT JOIN recruteur ON recruteur.id = likerecrutor.id_recruteur
+    //     LEFT JOIN candidat ON likerecrutor.id = candidat.id";
   
-        $resultQuery = $base->query($sql);
-        $resultQuery->execute();
-        return $resultQuery->fetchAll();
+    //     $resultQuery = $base->query($sql);
+    //     $resultQuery->execute();
+    //     return $resultQuery->fetchAll();
 
-    }
+    // }
     public function getLikesOfAllRecrutorForOneCandidate($mail): array
     { 
         $base = $this->connectDb();
         $sql = "SELECT likerecrutor.id AS 'idCandidat', likerecrutor.id_recruteur, candidat.mail FROM astypikrecrutment.likerecrutor
         INNER JOIN candidat ON candidat.id = likerecrutor.id
         WHERE candidat.mail=:mail";
+  
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->execute();
+        return $resultQuery->fetchAll();
+
+    }
+    public function getLikesOfAllCandidateForOneRecrutor($mail): array
+    { 
+        $base = $this->connectDb();
+        $sql = "SELECT likecandidates.id AS 'idOffer', recruteur.id as 'recrutorId', likecandidates.id_candidat, candidat.mail FROM astypikrecrutment.likecandidates
+        INNER JOIN candidat ON candidat.id = likecandidates.id_candidat
+        INNER JOIN offre ON likecandidates.id = offre.id
+        INNER JOIN recruteur ON offre.id_recruteur = recruteur.id
+        WHERE recruteur.mail=:mail";
   
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);

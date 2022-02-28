@@ -73,7 +73,7 @@ require_once '../controller/controller_likesRecruteur.php';
 
         <div class="col-lg-9">
             <div class="d-flex justify-content-evenly align-items-end text-center">
-            <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
+                <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
                 <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
                 <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-2">Profils candidats</a>
                 <a href="likesRecruteur.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark  p-3 col-2">Likes</a>
@@ -89,7 +89,7 @@ require_once '../controller/controller_likesRecruteur.php';
                 <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
 
                     <img src="../assets/img/<?= $event['candidateProfilPicture'] ?? '' ?>" alt="candidateImg" class="imageProfil3 p-0 ms-4">
-                 
+
                     <div class="jobName col-lg-4 col-12 ms-3 me-3">
                         <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
                             <h1 class="fs-3"><b> <?= $event['candidatePseudo'] ?> - <?= $event['firstName'] ?> <?= $event['lastName'] ?></b></h1>
@@ -99,9 +99,15 @@ require_once '../controller/controller_likesRecruteur.php';
 
                     <div class="col-lg-3 col-12">
 
-                        <button type="button" class="btn btnMofidy text-white col-10 mb-2 ms-4 mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Conversation
-                        </button>
+                        <?php if (($allCandidatesLikes[0]['id_candidat'] == $event['idCandidat']) && ($allCandidatesLikes[0]['recrutorId'] == $event['id_recruteur'])) { ?>
+                
+                                <form action="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>" method="POST">
+                                    <button type="submit" name="conversationButton" class="btn btnMofidy text-white col-10 mb-2 ms-4 mt-4">
+                                        Conversation
+                                    </button>
+                                </form>
+                        
+                        <?php  } ?>
                     </div>
 
                 </div>

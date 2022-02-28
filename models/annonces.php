@@ -52,10 +52,11 @@ class Annonce extends DataBase
     public function getAllAnnoncesofOneRecrutor($mail): array
     {
         $base = $this->connectDb();
-        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, description, contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture
+        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear,  date_format(startDate, '%d/%m/%Y') AS 'startDate', date_format(publicationDate, '%d/%m/%Y') AS 'publicationDate', id_recruteur, id_domaine, id_contract, offre.description, contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, profils.name AS 'profilColor'
         FROM `offre`
        INNER JOIN `recruteur` ON id_recruteur = recruteur.id
        INNER JOIN  `contract` ON id_contract = contract.id
+       INNER JOIN  `profils` ON id_profils = profils.id
        WHERE `mail`=:mail
        GROUP BY offre.id";
         $resultQuery = $base->prepare($sql);
@@ -107,14 +108,30 @@ class Annonce extends DataBase
     public function getAllOffers(): array
     {
         $base = $this->connectDb();
-        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, offre.description AS 'offerDescription', contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, contract.name AS 'contractName', domaine.name AS 'domaine.name'
+        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear,  date_format(startDate, '%d/%m/%Y') AS 'startDate', date_format(publicationDate, '%d/%m/%Y') AS 'publicationDate', id_recruteur, id_domaine, id_contract, offre.description AS 'offerDescription', contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, contract.name AS 'contractName', domaine.name AS 'domaine.name', profils.id AS 'idProfil', profils.name AS 'profilColor'
         FROM `offre`
        INNER JOIN `recruteur` ON id_recruteur = recruteur.id
        INNER JOIN  `contract` ON id_contract = contract.id
        INNER JOIN  `domaine` ON id_domaine = domaine.id 
+       INNER JOIN  `profils` ON id_profils = profils.id 
         ORDER BY offre.id  DESC;";
         $resultQuery = $base->query($sql);
         $resultQuery->execute();
         return $resultQuery->fetchAll();
     }
+    public function getOneAnnonceDetails(int $id): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, offre.description AS 'offerDescription', contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, contract.name AS 'contractName', domaine.name AS 'domaine.name', profils.id AS 'idProfil', profils.name AS 'profilColor', date_format(startDate, '%d/%m/%Y') AS 'startDate', date_format(publicationDate, '%d/%m/%Y') AS 'publicationDate'
+        FROM `offre`
+        INNER JOIN `recruteur` ON id_recruteur = recruteur.id
+       INNER JOIN `profils` ON id_profils = profils.id
+       INNER JOIN  `contract` ON id_contract = contract.id
+       INNER JOIN  `domaine` ON id_domaine = domaine.id 
+       WHERE offre.id =:idOffre";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->bindValue(':idOffre', $id, PDO::PARAM_INT);
+        $resultQuery->execute();
+        return $resultQuery->fetch();
+}
 }

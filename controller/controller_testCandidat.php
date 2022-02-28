@@ -59,6 +59,7 @@ $arrayAnswer = [];
 $arrayAnswers = array_values($_POST);
 $counts = array_count_values($arrayAnswers);
 
+var_dump($counts);
 
 foreach ($counts as $key => $value) {
 
@@ -69,16 +70,16 @@ foreach ($counts as $key => $value) {
         $type = $key;
         echo " vous êtes " . $key;
         $arrayAnswer = "Nous allons vous poser une dernière question";
-    } else if ($value > $max) {
+    } if ($value > $max) {
         $max = 0;
         $type = "";
         $max = $value;
         $type = $key;
         echo "vous êtes " . $key;
 
-        var_dump($key);
 
         // header('location: test' . $key . '.html');
     }
 }
-var_dump($max, $type);
+
+var_dump($arrayAnswer);

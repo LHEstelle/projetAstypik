@@ -88,29 +88,40 @@ require_once '../controller/controller_offresCandidat.php';
 
 
 
-            <div class="myCards d-flex justify-content-evenly m-3 mt-5">
-            <?php foreach ($allOfferssArray as $event) { ?>
-                    <!-- <a href="detailCandidate.php?id=<?= $event['id'] ?>"> -->
-                    <div class="cardCandidate m-3">
+            <div class="myCards d-flex justify-content-start m-3 mt-5 ms-3">
+            <?php foreach ($allOfferssArray as $event) {  ?>
+               
+                    <?php if (isset($event['profilColor']) && $event['profilColor'] == 'superCactus') {  ?>
+                       <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>"> <div class="cardRed m-4 p-1"> 
+                        <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'peterPaon') {  ?>
+                            <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>"> <div class="cardCandidate m-4 p-1">
+
+                            <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'ironSpoke') {  ?>
+                                <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>"> <div class="cardBlue m-4 p-1">
+
+                                <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'spiderLutin') {  ?>
+                                    <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>">  <div class="cardGreen m-4 p-1">
+                                    <?php  } ?>
+                    
                         <div class="d-flex justify-content-evenly m-2">
                             <img src="../assets/img/<?= $event['profilPicture'] ?? '' ?>" alt="enterpriseImg" class="imageProfil3 me-1">
 
                             <div class="infoCandidate">
-                                <p class="fs-5 m-0"><?= $event['job'] ?></p>
+                                <p class="fs-5 m-0 jobNameTruncate"><?= $event['job'] ?></p>
                                 <p class="fs-6 fw-light m-0"><?= $event['recruteurName'] ?></p>
                                 <p class="fs-6 fw-light"><?= $event['contractName'] ?></p>
                             </div>
                         </div>
                         <div class="container">
-                        <div class="m-2  jobDescriptionTruncate"><?= $event['offerDescription'] ?></div>
+                        <div class="m-2 jobDescriptionTruncate"><?= $event['offerDescription'] ?></div>
                         </div>
-                        <div class="publicationDate fw-light"><p>date de publication :<?= $event['publicationDate'] ?></p></div>
-                <!-- </a> -->
-
-                <div class="row d-flex align-text-bottom">
-                    <i class="far fa-heart text-white text-end fs-3 pe-5" onclick="setLike()" id="heartIconEmpty"></i>
+                        <div class="d-flex justify-content-evenly">
+                        <div class="publicationDate fw-light"><p>date de publication : <?= $event['publicationDate'] ?></p></div>
+                
+                    <i class="far fa-heart text-white text-end fs-3" onclick="setLike()" id="heartIconEmpty"></i>
 
                 </div>
+                
       
                 </div>
                 <?php } ?>

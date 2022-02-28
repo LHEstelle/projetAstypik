@@ -8,3 +8,7 @@ session_start();
 
 $likesObj = new Likes();
 $likesRecrutorArray = $likesObj -> getLikesOfOneRecrutor($_SESSION['mail']);
+
+
+$candidatesLikesObj = new Likes();
+$allCandidatesLikes = $candidatesLikesObj-> getLikesOfAllCandidateForOneRecrutor($_SESSION['mail']);
