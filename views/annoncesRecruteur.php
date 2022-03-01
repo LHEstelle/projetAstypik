@@ -1,6 +1,6 @@
 <?php
 require_once '../controller/controller_annoncesRecruteur.php';
-
+include 'filtresCandidat.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,60 +16,6 @@ require_once '../controller/controller_annoncesRecruteur.php';
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
 </head>
-
-<body class="viewRH">
-
-    <div class="row">
-        <div class="col-lg-3 filters pb-5">
-
-
-            <div class="d-flex justify-content-center">
-                <a href="index.php">
-                    <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3">
-                </a>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
-            <div class="d-flex">
-                <input class="form-control inputSearch me-2 ms-3" type="search" placeholder="Rechercher" aria-label="Rechercher">
-                <button class="btnSearch btn text-white me-3" type="submit">Search</button>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE CONTRAT</b></p>
-            <div class="form-check col-10 ms-3">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDI
-                </label>
-            </div>
-            <div class="form-check col-10  ms-3">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioCDD">
-                <label class="form-check-label" for="flexRadioCDD">
-                    CDD
-                </label>
-            </div>
-            <div class="form-check col-10  ms-3">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioAlternance">
-                <label class="form-check-label" for="flexRadioAlternance">
-                    Alternance
-                </label>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
-            <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
-            <div class="d-flex">
-                <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
-                <button class="btnSearch btn text-white mt-3 me-3" type="submit">Search</button>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES</b></p>
-            <div class="d-flex">
-                <input class="form-control inputSearch me-2 ms-3" type="search" placeholder="Rechercher" aria-label="Rechercher">
-                <button class="btnSearch btn text-white me-3" type="submit">Search</button>
-            </div>
-
-        </div>
-
 
 
         <div class="col-lg-9">

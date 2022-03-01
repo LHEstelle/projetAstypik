@@ -72,7 +72,7 @@
 
                 <p class="m-2 mb-3"><b>En bref, vous rayonnez! Vous avez gardé votre âme d'enfant et n'hésitez pas à jouer de vos charmes tel un paon pour parvenir à vos fin !</b>
                 </p>
-                <h2 class="text-center mt-3 text-success">Votre orientation métier</h2>
+                <h2 class="text-center mt-3 text-warning">Votre orientation métier</h2>
                 <p class="m-2 mb-3">Le peter-Paon s'épanouit quand il dispose de liberté et de flexibilité. Ainsi, les postes qui exigent de jongler fréquemment avec les responsabilités sont bien adaptés à la soif de variété et de spontanéité du peter-Paon. C’est cette variété
                     qui va lui permettre de rester engagé sur le long terme. Par contre, un cadre très structuré et formalisé peut sérieusement étouffer le talent d'un peter-Paon tant au niveau de sa capacité à motiver les autres qu’à stimuler l’innovation.En
                     résumé, le peter-Paon développe son plein potentiel dans des environnements où ils peuvent explorer de nouvelles idées, découvrir de nouvelles approches pour faire les choses, être créatifs et établir un lien constant avec les gens.
@@ -83,11 +83,8 @@
 
                 <p class="text-center mt-3 mb-2"><b>Communication - enthousiasme - créativité - aisance relationnelle</b></p>
             </div>
-            <p class="text-center">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? Connectez-vous !!</p>
-            <div class="d-flex justify-content-center">
-
-                <a href="connexionCandidat.php"><button type="button" class="btn btnEnregist mb-5" name="connexionButton"><b>Connexion</b></button>
-                </div></a>
+            <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
+         
             </div>
             <div class="row bg-dark text-light justify-content-between fixed-bottom">
                 <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

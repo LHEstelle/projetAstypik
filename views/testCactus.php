@@ -62,7 +62,7 @@
                 <p class="m-2 mb-3"> Le super Cactus n’a pas peur de se tromper. Il préfère se tromper que de rester immobile. Il peut prendre des décisions avec très peu de cartes en main et n’a aucun souci à reconnaître ses erreurs éventuelles.</p>
                 <p class="m-2 mb-3"><b>En bref, le super Cactus est très performant et n'a pas peur de piquer quiconque se mettrait en travers de sa route !</b>
                 </p>
-                <h2 class="text-center mt-3 text-success">Votre orientation métier</h2>
+                <h2 class="text-center mt-3 text-danger">Votre orientation métier</h2>
                 <p class="m-2 mb-3">Le super Cactus a tendance à graviter vers des postes à forte autorité (CEO, Directeur de Réseau …) qui peuvent être pour lui d'énormes sources de motivation.Le super Cactus est orienté vers les résultats. Il va directement au but, accélère
                     les efforts des autres. Il est orienté vers le changement et les nouveaux défis, garde un rythme serré, maintient la concentration et le contrôle des objectifs. Il ne se décourage pas, il agit de manière indépendante, il résout froidement
                     les problèmes, même dans les situations d'urgence.
@@ -73,11 +73,8 @@
 
                 <p class="text-center mt-3 mb-2"><b>Directif - autonome - factuel - énergique</b></p>
             </div>
-            <p class="text-center">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? Connectez-vous !!</p>
-            <div class="d-flex justify-content-center">
-
-                <a href="connexionCandidat.php"><button type="button" class="btn btnEnregist mb-5" name="connexionButton"><b>Connexion</b></button>
-                </div></a>
+            <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
+        
             </div>
             <div class="row bg-dark text-light justify-content-between fixed-bottom">
                 <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

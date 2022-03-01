@@ -20,7 +20,7 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
     if ($candidat->verifyPassword($_POST['mail'], $_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
         $_SESSION['mail']=$_POST['mail'];
-        header("Location: offresCandidats.php");
+        header("Location: profilCandidat.php");
     } else {
         $arrayError['false'] = "Mauvais mot de passe et/ou mail";
     }

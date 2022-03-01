@@ -60,7 +60,7 @@ require_once '../controller/controller_profilCandidat.php';
     <div class="ms-3">
         <form enctype="multipart/form-data" method="POST" action="">
             <div class="d-flex justify-content-center mt-4">
-                <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
+                <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "../assets/img/avatar.jpg" ?>" alt="candidateImg" class="imageProfil3 p-0">
             </div>
 
             <div class="d-flex justify-content-center text-center">
@@ -148,9 +148,7 @@ require_once '../controller/controller_profilCandidat.php';
 
             <p class="mt-3"><b>CV (facultatif)</b></p>
 
-            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "" ?>" alt="cvImg" class="cvPicture p-0">
-
-
+            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg" class="cvPicture p-0">
 
 
             <input name="changeCvPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Ajouter ou changer un CV">

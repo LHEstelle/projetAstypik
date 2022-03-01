@@ -4,6 +4,8 @@ require_once '../config.php';
 require_once '../models/database.php';
 require_once '../models/candidat.php';
 
+
+
 $regexNom = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}$/";
 $regexMail = "/^([a-z.-]+)@([a-z]+).([a-z]){2,4}$/";
 // $regexDate = "/^[0-9\-]+$/";
@@ -91,6 +93,7 @@ if (!empty($_POST)) {
 
         if (count($arrayErrors) == 0) {
             // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
+ 
             $lastName = htmlspecialchars(strtoupper(trim($_POST['lastname'])));
             $firstName = htmlspecialchars(ucwords(trim($_POST['firstname'])));
             $birthDate = htmlspecialchars(trim($_POST['birthdate']));
@@ -103,10 +106,16 @@ if (!empty($_POST)) {
             $id_profils = htmlspecialchars(trim($_POST['id_profils']));
             $id_contract = htmlspecialchars(trim($_POST['id_contract']));
             $id_domaine = htmlspecialchars(trim($_POST['id_domaine']));
+            $cvPicture = htmlspecialchars(trim($_POST['cvPicture']));
+            $profilPicture = htmlspecialchars(trim($_POST['profilPicture']));
             $candidatObj = new Candidat();
-            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine);
-
+            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine, $cvPicture, $profilPicture);
             $addCandidatOk = true;
+            session_start();
+            $_SESSION['mail']=$_POST['mail'];
+            header('location: testCandidat.php');
         }
     }
 }
+
+    

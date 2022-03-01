@@ -58,7 +58,8 @@ require_once '../controller/controller_annonceRecruteurZoom.php';
                         <p class="text-center ms-2"><?= $annonceInfoArray['recruteurName']   ?></p>
                         <p class="text-center ms-2"><?= $annonceInfoArray['contractName']   ?></p>
                         <p class="text-center ms-2"> offre à pourvoir à partir du : <?= $annonceInfoArray['startDate'] ?></p>
-                        </div>
+                        <i class="far fa-heart d-flex text-white justify-content-end fs-3 mb-5 me-5" onclick="setLike()" id="heartIconEmpty"></i>    
+                    </div>
                     </div>
                 </div>
 

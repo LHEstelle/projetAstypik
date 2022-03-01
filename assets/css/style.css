@@ -170,9 +170,31 @@
         border: solid red 2px;
     } */
     
+    .filtersButton {
+        background: #215B70;
+        border-radius: 3rem;
+        display: none;
+    }
+    
     .filters {
         background-color: #215B70;
+    }
+    
+    .filtersHide {
+        background-color: #215B70;
+    }
+    
+    .filtersBig {
+        background-color: #215B70;
         min-height: 100%;
+    }
+    
+    .filtersButton {
+        display: none;
+    }
+    
+    .filtersSmall {
+        display: none;
     }
     
     .btnSearch {
@@ -408,6 +430,22 @@ Menu de navigation */
     }
     
     @media screen and (max-width: 1000px) {
+        .filtersSmall {
+            display: block;
+        }
+        .filtersBig {
+            display: none;
+        }
+        .filtersButton {
+            background: #215B70;
+            border-radius: 3rem;
+            display: block;
+        }
+        /* .filters {
+            position: fixed;
+            top: 0%;
+            width: 100%;
+        } */
         .homeBody {
             background-image: url("../img/rh.svg");
             background-size: contain;

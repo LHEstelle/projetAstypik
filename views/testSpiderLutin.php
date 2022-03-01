@@ -84,11 +84,8 @@
 
                 <p class="text-center mt-3 mb-2"><b>Patience - fiabilité - coopération - empathie</b></p>
             </div>
-            <p class="text-center">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? Connectez-vous !!</p>
-            <div class="d-flex justify-content-center">
-
-                <a href="connexionCandidat.php"><button type="button" class="btn btnEnregist mb-5" name="connexionButton"><b>Connexion</b></button>
-                </div></a>
+            <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
+            
             </div>
             <div class="row bg-dark text-light justify-content-between fixed-bottom">
                 <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>

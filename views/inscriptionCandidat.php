@@ -42,9 +42,7 @@ require '../controller/controller_inscriptionCandidat.php';
             </div>
 
         </nav>
-        <?php if (!empty($_POST) && empty($arrayErrors)) {
-            header('location: testCandidat.php');
-        } else { ?>
+
 
             <h1 class="text-center"> Inscription candidat </h1>
 
@@ -133,6 +131,8 @@ require '../controller/controller_inscriptionCandidat.php';
                     <input type="hidden" name="id_profils" value="1">
                     <input type="hidden" name="id_contract" value="1">
                     <input type="hidden" name="id_domaine" value="1">
+                    <input type="hidden" name="cvPicture" value="cv.jpg">
+                    <input type="hidden" name="profilPicture" value="avatar.jpg">
 
                     <div class="row bg-dark text-light justify-content-between fixed-bottom">
                         <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
@@ -144,7 +144,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     <button type="submit" class="btn btnEnregist mb-5" name="createButton"><b>Envoyer</b></button>
             </form>
             </div>
-        <?php } ?>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 

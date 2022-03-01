@@ -161,12 +161,12 @@ if (!empty($_POST['submitButtonProfilPicture'])) {
 
 if (!empty($_POST['submitButtonCvPicture'])) {
     var_dump($_FILES);
-    if (mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png') {
-        $arrayErrors["mime"] = "Votre téléchargement n'est pas une image";
+    if (mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png') {
+        $arrayErrors["mime"] = "Mauvais format";
     } else if ($_FILES['cvToUpload']['size'] > 1000000) {
         $arrayErrors["size"] = "Désolé, votre fichier ne doit pas dépasser 1MO.Votre fichier n'a pas été téléchargé";
     } else if ($_FILES['cvToUpload']['type'] != 'image/png' &&  $_FILES['cvToUpload']['type'] != 'image/jpg' && $_FILES['cvToUpload']['type'] != 'image/jpeg') {
-        $arrayErrors["extension"] = "L'extension n'est pas une image";
+        $arrayErrors["extension"] = "Mauvais format";
     } else if ($_FILES['cvToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/png') && ($_FILES['cvToUpload']['type'] == 'image/png' ||  $_FILES['cvToUpload']['type'] == 'image/jpg' || $_FILES['cvToUpload']['type'] == 'image/jpeg')) {
         $uploaddir = 'C:\wamp\www\phpVariables\PROJETRECRUTEMENT\assets\img/';
         $_FILES['cvToUpload']['name'] = uniqid() . basename($_FILES['cvToUpload']['name']);
