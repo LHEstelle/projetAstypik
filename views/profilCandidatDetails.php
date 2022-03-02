@@ -124,10 +124,9 @@ require_once '../controller/controller_profilCandidatDetails.php';
 
 
                                             <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
-
-                                            <p class="m-3"> <?= isset($candidatInfoArray['experienceYears']) ?? ''  ?> ans d'expérience</p>
-
-
+                                            <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
+                                                <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> ans d'expérience</p>
+                                            <?php } ?>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">

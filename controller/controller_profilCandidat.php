@@ -28,7 +28,7 @@ $domainArray = $domainObj->getAllDomaines();
 
 $candidatObj = new Candidat;
 $candidatProfilArray = $candidatObj->getCandidateProfil($_SESSION['mail']);
-var_dump($candidatInfoArray);
+
 $modifyCandidatOk = false;
 
 if (isset($_POST['modifyButton'])) {
@@ -130,7 +130,7 @@ if (isset($_POST['modifyButton'])) {
         $experienceYears = htmlspecialchars(intval(trim($_POST['experienceYears'])));
         $id_contract = htmlspecialchars(intval(trim($_POST['id_contract'])));
         $id_domaine = htmlspecialchars(intval(trim($_POST['id_domaine'])));
-        $idCandidat = $_SESSION;
+        $idCandidat = $_SESSION['id'];
         $candidatObj = new Candidat();
         $modifyCandidat = $candidatObj->modifyCandidate($lastName,  $firstName,  $description,  $pseudo,  $birthDate,  $phone,  $city,  $postalCode,  $adress,  $experienceYears, $id_contract, $id_domaine, $idCandidat);
 var_dump($modifyCandidat);
@@ -157,7 +157,7 @@ if (!empty($_POST['submitButtonProfilPicture'])) {
         $profilPicture = htmlspecialchars(trim($_FILES['fileToUpload']["name"]));
         $candidatObj = new Candidat();
         $candidatModifyArray = $candidatObj->modifyprofilPicture($mail, $profilPicture);
-        header('location: profilCandidat.php');
+        header('Location: profilCandidat.php');
     }
 }
 
@@ -178,7 +178,7 @@ if (!empty($_POST['submitButtonCvPicture'])) {
         $cvPicture = htmlspecialchars(trim($_FILES['cvToUpload']["name"]));
         $candidat = new Candidat();
         $candidatModifyArray = $candidat->modifyCvPicture($mail, $cvPicture);
-        header('location: profilCandidat.php');
+        header('Location: profilCandidat.php');
     }
 }
 
