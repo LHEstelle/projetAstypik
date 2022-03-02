@@ -108,7 +108,7 @@ echo strftime('%d/%m/%Y');
                     <?php } ?>
                 </select>
 
-                <p class="mt-3"><b>EXPERIENCE (facultatif)</b></p>
+                <p class="mt-3"><b>NOMBRE D'ANNEES D'EXPERIENCE MINIMUM REQUIS (facultatif)</b></p>
 
                 <div class="d-flex">
                     <input value="<?= isset($_POST['experienceYear']) ? htmlspecialchars($_POST["experienceYear"]) : '' ?>" name="experienceYear" type="number" class="ms-3 me-2  inputSearch form-control" min="0" max="50">

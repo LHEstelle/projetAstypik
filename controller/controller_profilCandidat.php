@@ -28,8 +28,7 @@ $domainArray = $domainObj->getAllDomaines();
 
 $candidatObj = new Candidat;
 $candidatProfilArray = $candidatObj->getCandidateProfil($_SESSION['mail']);
-
-
+var_dump($candidatInfoArray);
 $modifyCandidatOk = false;
 
 if (isset($_POST['modifyButton'])) {
@@ -117,6 +116,7 @@ if (isset($_POST['modifyButton'])) {
     }
 
     if (count($arrayErrors) == 0) {
+
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
         $lastName = htmlspecialchars(strtoupper(trim($_POST['lastName'])));
         $firstName = htmlspecialchars(ucwords(trim($_POST['firstName'])));
@@ -124,17 +124,19 @@ if (isset($_POST['modifyButton'])) {
         $pseudo = htmlspecialchars(trim($_POST['pseudo']));
         $birthDate = htmlspecialchars(trim($_POST['birthDate']));
         $phone = htmlspecialchars(trim($_POST['phone']));
-        $mail = htmlspecialchars(trim($_POST['mail']));
         $city = htmlspecialchars(trim($_POST['city']));
         $postalCode = htmlspecialchars(intval(trim($_POST['postalCode'])));
         $adress = htmlspecialchars(trim($_POST['adress']));
         $experienceYears = htmlspecialchars(intval(trim($_POST['experienceYears'])));
         $id_contract = htmlspecialchars(intval(trim($_POST['id_contract'])));
         $id_domaine = htmlspecialchars(intval(trim($_POST['id_domaine'])));
+        $idCandidat = $_SESSION;
         $candidatObj = new Candidat();
-        $modifyCandidat = $candidatObj->modifyCandidate($lastName,  $firstName,  $description,  $pseudo,  $birthDate,  $phone,  $mail,  $city,  $postalCode,  $adress,  $experienceYears, $id_contract, $id_domaine);
-
+        $modifyCandidat = $candidatObj->modifyCandidate($lastName,  $firstName,  $description,  $pseudo,  $birthDate,  $phone,  $city,  $postalCode,  $adress,  $experienceYears, $id_contract, $id_domaine, $idCandidat);
+var_dump($modifyCandidat);
+var_dump($_SESSION);
         $modifyCandidatOk = true;
+
     }
 }
 

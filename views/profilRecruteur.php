@@ -104,7 +104,7 @@ require_once '../controller/controller_profilRecruteur.php';
             </div>
             
             <button type="submit" class="btn btnMofidy text-white col-10 m-3" name="modifyButton">
-                                Modifier
+            Modifier et Enregistrer
                             </button>
                             <button type="button" class="btn text-start col-10 m-3 text-danger"  data-bs-toggle="modal" data-bs-target="#modalDelete">
                                 Supprimer son compte

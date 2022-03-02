@@ -19,6 +19,8 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
     var_dump($candidat->verifyPassword($_POST['mail'], $_POST['password']));
     if ($candidat->verifyPassword($_POST['mail'], $_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
+        $sessionObj = new Candidat;
+        $_SESSION = $sessionObj->getOneCandidate($_POST['mail']);
         $_SESSION['mail']=$_POST['mail'];
         header("Location: profilCandidat.php");
     } else {

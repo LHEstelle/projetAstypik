@@ -145,7 +145,7 @@ class Candidat extends DataBase
 
         $resultQuery->execute();
     }
-    public function modifyCandidate(string $lastName, string $firstName, string $description, string $pseudo, string $birthDate, string $phone, string $mail, string $city, int $postalCode, string $adress, int $experienceYears, int $id_contract, int $id_domaine): void
+    public function modifyCandidate(string $lastName, string $firstName, string $description, string $pseudo, string $birthDate, string $phone, string $city, int $postalCode, string $adress, int $experienceYears, int $id_contract, int $id_domaine, $idCandidat): void
     {
         $base = $this->connectDb();
         $sql = "UPDATE `candidat` SET 
@@ -155,14 +155,13 @@ class Candidat extends DataBase
         `pseudo`= :pseudo,
         `birthDate`= :birthDate,
         `phone`= :phone,
-        `mail`= :mail,
         `city`= :city,
         `postalCode`= :postalCode,
         `adress`= :adress,
         `experienceYears`= :experienceYears,
         `id_contract`= :id_contract,
         `id_domaine`= :id_domaine
-        WHERE `mail`= :mail";
+        WHERE candidat.id = :idCandidat";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':lastName', $lastName, PDO::PARAM_STR);
         $resultQuery->bindValue(':firstName', $firstName, PDO::PARAM_STR);
@@ -170,13 +169,13 @@ class Candidat extends DataBase
         $resultQuery->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         $resultQuery->bindValue(':birthDate', $birthDate, PDO::PARAM_STR);
         $resultQuery->bindValue(':phone', $phone, PDO::PARAM_STR);
-        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->bindValue(':city', $city, PDO::PARAM_STR);
         $resultQuery->bindValue(':postalCode', $postalCode, PDO::PARAM_INT);
         $resultQuery->bindValue(':adress', $adress, PDO::PARAM_STR);
         $resultQuery->bindValue(':experienceYears', $experienceYears, PDO::PARAM_INT);
         $resultQuery->bindValue(':id_contract', $id_contract, PDO::PARAM_INT);
         $resultQuery->bindValue(':id_domaine', $id_domaine, PDO::PARAM_INT);
+        $resultQuery->bindValue(':idCandidat', $idCandidat, PDO::PARAM_INT);
         $resultQuery->execute();
     }
     public function deleteCandidat($mail): void

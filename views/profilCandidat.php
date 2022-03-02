@@ -108,14 +108,13 @@ require_once '../controller/controller_profilCandidat.php';
             </div>
             <p class="mt-3"><b>MES COORDONNEES</b></p>
             <div class="d-flex">
+                <p name="mail"><?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?></p>
                 <input value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['adress'] ?? '' ?></span>
                 <input value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['postalCode'] ?? '' ?></span>
                 <input value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['city'] ?? '' ?></span>
-                <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?>" name="mail" class="form-control inputSearch me-2 ms-3" type="text">
-                <span class="text-danger"><?= $arrayErrors['mail'] ?? '' ?></span>
                 <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
             </div>
@@ -139,7 +138,7 @@ require_once '../controller/controller_profilCandidat.php';
                     <option value="<?= $contract["id"] ?>" <?= $contract["id"] == $candidatInfoArray["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
                 <?php } ?>
             </select>
-            <p class="mt-3"><b>EXPERIENCE DANS LE DOMAINE(facultatif)</b></p>
+            <p class="mt-3"><b>NOMBRE D'ANNEES D'EXPERIENCE DANS LE DOMAINE(facultatif)</b></p>
             <label for="experienceYears" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
             <div class="d-flex">
                 <input value="<?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
@@ -147,29 +146,29 @@ require_once '../controller/controller_profilCandidat.php';
             </div>
 
             <p class="mt-3"><b> CV (facultatif)</b><span class="text-danger"> formats acceptés : jpg, jpeg</span></p>
-            
-             <!-- Button trigger modal -->
-             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-             <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg" class="cvPicture p-0">
-                                            </button>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg" class="cvPicture p-0">
+            </button>
 
-                                                        </div>
-                                                        <div class="modal-body">
-                                                        <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        </div>
+                        <div class="modal-body">
+                            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-           
+
 
 
             <input name="changeCvPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Ajouter ou changer un CV">
@@ -189,7 +188,7 @@ require_once '../controller/controller_profilCandidat.php';
 
 
             <button type="submit" name="modifyButton" class="btn btnMofidy text-white col-10 m-3">
-                Modifier
+                Modifier et Enregistrer
             </button>
             <button type="button" class="btn text-start col-10 m-3 text-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">
                 Supprimer son compte
