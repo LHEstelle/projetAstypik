@@ -127,7 +127,28 @@ require_once '../controller/controller_profilCandidatDetails.php';
 
                                             <p class="m-3"> <?= isset($candidatInfoArray['experienceYears']) ?? ''  ?> ans d'expérience</p>
 
-                                            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="mt-5">
                                                 <h4>SA DESCRIPTION</h4>
                                             </div>

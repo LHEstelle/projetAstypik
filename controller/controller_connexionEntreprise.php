@@ -19,7 +19,8 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
     var_dump($entreprise->verifyPassword($_POST['mail'], $_POST['password']));
     if ($entreprise->verifyPassword($_POST['mail'], $_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
-        $_SESSION['mail']=$_POST['mail'];
+        $sessionObj = new Entreprise;
+        $_SESSION = $sessionObj->getOneRecrutor($_POST['mail']);
         header("Location: viewRH.php");
     } else {
         $arrayError['false'] = "Mauvais mot de passe et/ou mail";

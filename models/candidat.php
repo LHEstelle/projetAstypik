@@ -78,7 +78,6 @@ class Candidat extends DataBase
         $resultQuery->bindValue(':id_profils', $id_profils, PDO::PARAM_INT);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->execute();
-    
     }
 
     public function getOneCandidate(string $mail): array
@@ -120,7 +119,7 @@ class Candidat extends DataBase
         $resultQuery->execute();
         return $resultQuery->fetch();
     }
-    public function modifyprofilPicture(string $mail,string $profilPicture): void
+    public function modifyprofilPicture(string $mail, string $profilPicture): void
     {
         $base = $this->connectDb();
         $sql = "UPDATE `candidat` SET 
@@ -133,7 +132,7 @@ class Candidat extends DataBase
 
         $resultQuery->execute();
     }
-    public function modifyCvPicture(string $mail,string $cvPicture): void
+    public function modifyCvPicture(string $mail, string $cvPicture): void
     {
         $base = $this->connectDb();
         $sql = "UPDATE `candidat` SET 
@@ -217,21 +216,54 @@ class Candidat extends DataBase
         $resultQuery->bindValue(':idCandidat', $id, PDO::PARAM_INT);
         $resultQuery->execute();
         return $resultQuery->fetch();
-}
-public function getAllCandidatesSearch($terme): array
-{
-    $base = $this->connectDb();
-    $sql = "candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName', domaine.id AS 'domaineID', domaine.name AS 'domaineName', profils.nameStruct AS 'profilName', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+    }
+    public function getAllCandidatesContractSearch(string $contractName): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName', domaine.id AS 'domaineID', domaine.name AS 'domaineName', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
     FROM `candidat`
    INNER JOIN `profils` ON id_profils = profils.id
    INNER JOIN  `contract` ON id_contract = contract.id
    INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    ORDER BY candidat.id  DESC 
-    WHERE contractID LIKE '%" . $terme . "%' OR domaineID LIKE '%" . $terme . "%' OR profilID LIKE '%" . $terme . "%'
-    ORDER BY `candidat.id`  DESC";
-    $resultQuery = $base->prepare($sql);
-    $resultQuery->bindValue(':terme', $terme, PDO::PARAM_STR);
-    $resultQuery->execute();
-    return $resultQuery->fetchAll();
-}
+    WHERE contract.name = :contractName
+    ORDER BY candidat.id  DESC";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->execute(array(
+            'contractName' => $contractName,
+        ));
+        return $resultQuery->fetchAll();
+    }
+    public function getAllCandidatesDomaineSearch(string $domaineName): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+    FROM `candidat`
+   INNER JOIN `profils` ON id_profils = profils.id
+   INNER JOIN  `contract` ON id_contract = contract.id
+   INNER JOIN  `domaine` ON id_domaine = domaine.id 
+    WHERE domaine.name = :domaineName
+    ORDER BY candidat.id  DESC";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->execute(array(
+            'domaineName' => $domaineName,
+        ));
+        return $resultQuery->fetchAll();
+    }
+    public function getAllCandidatesProfilSearch(string $profilName): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+    FROM `candidat`
+   INNER JOIN `profils` ON id_profils = profils.id
+   INNER JOIN  `contract` ON id_contract = contract.id
+   INNER JOIN  `domaine` ON id_domaine = domaine.id 
+    WHERE profils.name = :profilName
+    ORDER BY candidat.id  DESC";
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->execute(array(
+
+            'profilName' => $profilName,
+        ));
+        return $resultQuery->fetchAll();
+    }
 }

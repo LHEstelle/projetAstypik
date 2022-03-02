@@ -1,5 +1,6 @@
 <?php
 require_once '../controller/controller_offresCandidat.php';
+include 'filtresCandidat.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,75 +18,8 @@ require_once '../controller/controller_offresCandidat.php';
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
 
-    <head>
-        <script type="text/javascript">
-            function setLike() {
-    document.getElementById("<?= $event['idAnnonce'] ?>").style.display = "none"
-    document.getElementById("<?= $event['idAnnonce'] ?>").style.display = "block"
-}
 
-function deleteLike() {
-    document.getElementById("1").style.display = "block"
-    document.getElementById("<?= $event['idAnnonce'] ?>").style.display = "none"
-}
-        </script>
-    </head>
 </head>
-
-<body class="viewRH">
-
-    <div class="row">
-        <div class="col-lg-3 filters pb-5">
-
-
-            <div class="d-flex justify-content-center">
-                <a href="index.php">
-                    <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3">
-                </a>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
-            <div class="d-flex">
-                <input class="form-control inputSearch me-2 ms-3" type="search" placeholder="Rechercher" aria-label="Rechercher">
-                <button class="btnSearch btn text-white me-3" type="submit">Search</button>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE CONTRAT</b></p>
-            <div class="form-check col-10 ms-3">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioCDI">
-                <label class="form-check-label" for="flexRadioCDI">
-                    CDI
-                </label>
-            </div>
-            <div class="form-check col-10  ms-3">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioCDD">
-                <label class="form-check-label" for="flexRadioCDD">
-                    CDD
-                </label>
-            </div>
-            <div class="form-check col-10  ms-3">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioAlternance">
-                <label class="form-check-label" for="flexRadioAlternance">
-                    Alternance
-                </label>
-            </div>
-
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
-            <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
-            <div class="d-flex">
-                <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
-                <button class="btnSearch btn text-white mt-3 me-3" type="submit">Search</button>
-            </div>
-
-            <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES</b></p>
-            <div class="d-flex">
-                <input class="form-control inputSearch me-2 ms-3" type="search" placeholder="Rechercher" aria-label="Rechercher">
-                <button class="btnSearch btn text-white me-3" type="submit">Search</button>
-            </div>
-
-        </div>
-
 
 
         <div class="col-lg-9">
@@ -131,27 +65,27 @@ function deleteLike() {
                                                             <p class="fs-6 fw-light"><?= $event['contractName'] ?></p>
                                                         </div>
                                                     </div>
-                                                    <div class="container">
-                                                        <div class="m-2 jobDescriptionTruncate"><?= $event['offerDescription'] ?></div>
-                                                    </div>
+                                                 
+                                                        <div class="m-2 jobDescriptionTruncate"><div class="m-2 jobDescriptionTruncate"><?= strip_tags($event['offerDescription']) ?></div></div>
+                                               
                                                     <div class="d-flex justify-content-evenly">
                                                         <div class="publicationDate fw-light">
                                                             <p>date de publication : <?= $event['publicationDate'] ?></p>
                                                         </div>
 
 
-                                                        <form action="" method="POST">
+                                                        <!-- <form action="" method="POST">
                                                             <button type="button" onclick="setLike('<?= $event['idAnnonce'] ?>')">
                                                                 <i class="far fa-heart text-white text-end fs-3" id="<?= $event['idAnnonce'] ?>" name="idLikeCandidate" value="<?= $event['idAnnonce'] ?>"></i>
                                                             </button>
                                                             <button type="button" onclick="deleteLike('1')">
                                                                 <i class="fa-solid fa-heart text-white text-end fs-3" id="1" value="<?= $event['idAnnonce'] ?>"></i>
                                                             </button>
-                                                        </form>
+                                                        </form> -->
 
                                                     </div>
 
-
+                                            </a>
                                                     </div>
                                                 <?php } ?>
 

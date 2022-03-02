@@ -146,9 +146,30 @@ require_once '../controller/controller_profilCandidat.php';
                 <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
             </div>
 
-            <p class="mt-3"><b>CV (facultatif)</b></p>
+            <p class="mt-3"><b> CV (facultatif)</b><span class="text-danger"> formats acceptés : jpg, jpeg</span></p>
+            
+             <!-- Button trigger modal -->
+             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+             <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg" class="cvPicture p-0">
+                                            </button>
 
-            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg" class="cvPicture p-0">
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?? "../assets/img/cv.jpg" ?>" alt="cvImg">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+           
 
 
             <input name="changeCvPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Ajouter ou changer un CV">
@@ -164,7 +185,6 @@ require_once '../controller/controller_profilCandidat.php';
             <?php    } ?>
             <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS...</b></p>
             <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-            <span class="text-danger">Attention ! Si vous écrivez de la même couleur qu'est inscrit votre profil de talent (en haut de la page) cela risque d'être illisible </span>
             <textarea class="col-12" name="description" id="description"><?= isset($_POST["description"]) ? htmlspecialchars($_POST["description"]) : $candidatInfoArray['description'] ?></textarea>
 
 
