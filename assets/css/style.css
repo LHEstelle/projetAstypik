@@ -212,6 +212,31 @@ Menu de navigation */
     .menu {
         border-bottom: gray 4px solid;
         text-decoration: none;
+        width: 14rem;
+    }
+    
+    .myProfil {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 14rem;
+    }
+    
+    .offres {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 14rem;
+    }
+    
+    .candidatesProfil {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 14rem;
+    }
+    
+    .recrutorsLikes {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 14rem;
     }
     /* Page vue Recruteurs des profils de candidats */
     
@@ -407,10 +432,11 @@ Menu de navigation */
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 6;
         /* number of lines to show */
-        line-height: 1.5;
+        line-height: 1.2;
         -webkit-box-orient: vertical;
+        height: 7.8em;
     }
     
     .jobNameTruncate {
@@ -419,8 +445,44 @@ Menu de navigation */
         display: -webkit-box;
         -webkit-line-clamp: 2;
         /* number of lines to show */
-        line-height: 1.5;
+        line-height: 1.2;
         -webkit-box-orient: vertical;
+    }
+    
+    .candidateNameTruncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* number of lines to show */
+        line-height: 1.2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .recruteurName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* number of lines to show */
+        line-height: 1.2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .infoCandidate {
+        height: 6.5em;
+    }
+    
+    #scroll_to_top {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        bottom: 50px;
+        right: 30px;
+    }
+    
+    #scroll_to_top img {
+        width: 25px;
     }
     
     .publicationDate {
@@ -475,10 +537,51 @@ Menu de navigation */
             text-decoration: none;
             display: none;
         }
+        .myProfil {
+            border-bottom: gray 4px solid;
+            text-decoration: none;
+            display: none;
+        }
+        .offres {
+            border-bottom: gray 4px solid;
+            text-decoration: none;
+            display: none;
+        }
+        .candidatesProfil {
+            border-bottom: gray 4px solid;
+            text-decoration: none;
+            display: none;
+        }
+        .recrutorsLikes {
+            border-bottom: gray 4px solid;
+            text-decoration: none;
+            display: none;
+        }
         .menuIcon {
             border-bottom: gray 4px solid;
             text-decoration: none;
             display: flex;
+            width: 5.5rem;
+        }
+        .myProfilIcon {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 5.5rem;
+        }
+        .offresIcon {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 5.5rem;
+        }
+        .candidateProfilIcon {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 5.5rem;
+        }
+        .recrutorsLikesIcon {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 5.5rem;
         }
         .profilCandidate {
             width: 80vw;

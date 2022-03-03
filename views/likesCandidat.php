@@ -66,7 +66,7 @@ include 'filtresCandidat.php';
 
 
             <div class="d-flex justify-content-center">
-                <a href="viewRH.php">
+                <a href="offresCandidats.php">
                     <button type="button" class="mb-5 btn btn-secondary btnAddAnnonce" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Trouver d'autres annonces
                     </button>

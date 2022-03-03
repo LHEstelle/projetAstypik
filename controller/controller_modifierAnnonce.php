@@ -105,3 +105,7 @@ if(isset($_POST['idDeletePatient'])){
     $annonceDelete = $annonceObj -> deleteAnnonce($id);
     header('location: annoncesRecruteur.php');
 }
+
+if(!isset($_SESSION)){
+    header('Location: pageErreur.php');
+}

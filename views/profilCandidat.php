@@ -65,22 +65,28 @@ require_once '../controller/controller_profilCandidat.php';
 
             <div class="d-flex justify-content-center text-center">
                 <div class="div"></div>
-                <input name="changeProfilPicture" type="submit" class="btn text-primary fs-6 fw-light text-center" value="Changer ma photo de profil">
+                <input id="changeProfilPicture" name="changeProfilPicture" type="button" class="changeProfilPicture btn text-primary fs-6 fw-light text-center" value="Changer ma photo de profil">
             </div>
 
             <div class="d-flex justify-content-center text-center">
                 <div class="div"></div>
 
-                <?php if (isset($_POST["changeProfilPicture"])) {  ?>
+                <div id="profilPictureButtons">
                     <input id="fileToUpload" name="fileToUpload" type="file" />
                     <input name="submitButtonProfilPicture" type="submit" value="Envoyer le fichier" />
 
                     <?= $arrayErrors["mime"] ?? "" ?>
                     <?= $arrayErrors["size"] ?? "" ?>
                     <?= $arrayErrors["extension"] ?? "" ?>
-                <?php    } ?>
+                </div>
             </div>
-
+            <script>
+                const test = document.getElementById('changeProfilPicture');
+                document.getElementById('profilPictureButtons').style.display = "none";
+                test.addEventListener('click', function() {
+                    document.getElementById('profilPictureButtons').style.display = "block";
+                })
+            </script>
             <?= $candidatProfilArray['nameStruct'] ?>
             <h3 class="text-center"><?= $candidatProfilArray['talents'] ?></h3>
             <p class="mt-3"><b>NOM</b></p>
@@ -124,7 +130,7 @@ require_once '../controller/controller_profilCandidat.php';
             <select name="id_domaine" id="domaine" class="inputSearch ms-3">
                 <option disabled selected value="">Choisissez un domaine</option>
                 <?php foreach ($domainArray as $domain) { ?>
-                    <option value="<?= $domain["id"] ?>" <?= $domain["id"] == $candidatInfoArray["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
+                    <option value="<?= $domain["id"] ?>"  <?= $domain["id"] == $candidatInfoArray["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
 
 
                 <?php } ?>

@@ -1,5 +1,6 @@
 <?php
 
+
 class Entreprise extends DataBase
 {
     /**
@@ -72,6 +73,7 @@ class Entreprise extends DataBase
         $resultQuery->execute();
         return $resultQuery->fetch();
     }
+
     public function modifyprofilPictureEnterprise(string $mail,string $profilPicture): void
     {
 

@@ -78,3 +78,6 @@ if (isset($_POST["createAnnonce"])) {
         header('annoncesRecruteur.php');
     }
 }
+if(!isset($_SESSION)){
+    header('Location: pageErreur.php');
+}

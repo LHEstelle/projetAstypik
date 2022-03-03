@@ -37,6 +37,14 @@ if (!empty($_POST)) {
     if (isset($_POST["birthdate"])) {
         if (empty($_POST["birthdate"])) {
             $arrayErrors["birthdate"] = "Veuillez saisir la date de naissance";
+        } else {
+            $dateNaissance = $_POST['birthdate'];
+            $aujourdhui = date("Y-m-d");
+            $diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
+            $age = $diff->format('%y');
+            if($age<'16'){
+                $arrayErrors["birthdate"] = "Vous devez avoir 16ans minimum pour vous inscrire";
+            }
         }
     }
 
@@ -93,7 +101,7 @@ if (!empty($_POST)) {
 
         if (count($arrayErrors) == 0) {
             // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
- 
+
             $lastName = htmlspecialchars(strtoupper(trim($_POST['lastname'])));
             $firstName = htmlspecialchars(ucwords(trim($_POST['firstname'])));
             $birthDate = htmlspecialchars(trim($_POST['birthdate']));
@@ -112,10 +120,11 @@ if (!empty($_POST)) {
             $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine, $cvPicture, $profilPicture);
             $addCandidatOk = true;
             session_start();
-            $_SESSION['mail']=$_POST['mail'];
+            $sessionObj = new Candidat;
+            $_SESSION = $sessionObj->getOneCandidate($_POST['mail']);
+          
+
             header('location: testCandidat.php');
         }
     }
 }
-
-    

@@ -49,6 +49,9 @@ require '../controller/controller_filtresCandidats.php';
             <div id="filtersHide" class="filtersHide">
                 <div class="div">
                     <form action="" method="POST">
+                    <div class="d-flex justify-content-center m-2">
+                <input type="search" name="inputSearch" class="inputSearch">
+                </div>
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 
                         <?php foreach ($domainArray as $domain) { ?>
@@ -80,7 +83,7 @@ require '../controller/controller_filtresCandidats.php';
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
                         <?php foreach ($profilsArray as $competences) { ?>
                             <div class="form-check col-10 ms-3">
-                                <input class="form-check-input" type="checkbox" name="pro" value="<?= $competences["id"] ?>" id="<?= $competences["name"] ?>">
+                                <input class="form-check-input" type="checkbox" name="profilName[]" value="<?= $competences["name"] ?>" id="<?= $competences["name"] ?>">
                                 <label class="form-check-label text-white" for="<?= $competences["name"] ?>">
 
                                     <?= $competences["name"] ?> : <?= $competences["talents"] ?>
@@ -91,8 +94,8 @@ require '../controller/controller_filtresCandidats.php';
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
                         <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
                         <div class="d-flex">
-                            <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
-                            <button class="btnSearch btn text-white mt-3 me-3 mb-3" type="submit">Search</button>
+                            <input type="number" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
+                            <button class="btnSearch btn text-white mt-3 me-3 mb-3" name="searchFilters" type="submit">Search</button>
                         </div>
                     </form>
                 </div>
@@ -112,7 +115,10 @@ require '../controller/controller_filtresCandidats.php';
             </div>
 
             <form action="" method="POST">
-                <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
+                <div class="d-flex justify-content-center m-2">
+                <input type="search" name="inputSearch" class="inputSearch">
+                </div>
+                <p class="border-bottom mb-4 ms-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 
                 <?php foreach ($domainArray as $domain) { ?>
                     <div class="form-check col-10 ms-3">
@@ -150,11 +156,12 @@ require '../controller/controller_filtresCandidats.php';
                         </label>
                     </div>
                 <?php } ?>
+      
 
                 <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
                 <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
                 <div class="d-flex">
-                    <input type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
+                    <input type="number" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
 
                 </div>
                 <div class="d-flex justify-content-center">

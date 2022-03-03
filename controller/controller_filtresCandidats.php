@@ -16,3 +16,4 @@ $domainArray = $domainObj->getAllDomaines();
 
 $profilsObj = new Annonce;
 $profilsArray = $profilsObj->getAllProfils();
+

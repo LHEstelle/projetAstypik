@@ -125,7 +125,7 @@ require_once '../controller/controller_profilCandidatDetails.php';
 
                                             <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
                                             <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
-                                                <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> ans d'expérience</p>
+                                                <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> an(s) d'expérience</p>
                                             <?php } ?>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">

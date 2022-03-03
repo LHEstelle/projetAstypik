@@ -21,7 +21,7 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
         $sessionObj = new Entreprise;
         $_SESSION = $sessionObj->getOneRecrutor($_POST['mail']);
-        header("Location: viewRH.php");
+        header("Location: profilRecruteur.php");
     } else {
         $arrayError['false'] = "Mauvais mot de passe et/ou mail";
     }

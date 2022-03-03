@@ -21,7 +21,6 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
         $sessionObj = new Candidat;
         $_SESSION = $sessionObj->getOneCandidate($_POST['mail']);
-        $_SESSION['mail']=$_POST['mail'];
         header("Location: profilCandidat.php");
     } else {
         $arrayError['false'] = "Mauvais mot de passe et/ou mail";

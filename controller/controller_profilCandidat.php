@@ -149,7 +149,7 @@ if (!empty($_POST['submitButtonProfilPicture'])) {
     } else if ($_FILES['fileToUpload']['type'] != 'image/png' &&  $_FILES['fileToUpload']['type'] != 'image/jpg' && $_FILES['fileToUpload']['type'] != 'image/jpeg') {
         $arrayErrors["extension"] = "L'extension n'est pas une image";
     } else if ($_FILES['fileToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/png') && ($_FILES['fileToUpload']['type'] == 'image/png' ||  $_FILES['fileToUpload']['type'] == 'image/jpg' || $_FILES['fileToUpload']['type'] == 'image/jpeg')) {
-        $uploaddir = 'C:\wamp\www\phpVariables\PROJETRECRUTEMENT\assets\img/';
+        $uploaddir = 'C:\wamp\www\projet\PROJETRECRUTEMENT\assets\img/';
         $_FILES['fileToUpload']['name'] = uniqid() . basename($_FILES['fileToUpload']['name']);
         $uploadfile = $uploaddir . $_FILES['fileToUpload']['name'];
         move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadfile);
@@ -170,7 +170,7 @@ if (!empty($_POST['submitButtonCvPicture'])) {
     } else if ($_FILES['cvToUpload']['type'] != 'image/png' &&  $_FILES['cvToUpload']['type'] != 'image/jpg' && $_FILES['cvToUpload']['type'] != 'image/jpeg') {
         $arrayErrors["extension"] = "Mauvais format";
     } else if ($_FILES['cvToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/png') && ($_FILES['cvToUpload']['type'] == 'image/png' ||  $_FILES['cvToUpload']['type'] == 'image/jpg' || $_FILES['cvToUpload']['type'] == 'image/jpeg')) {
-        $uploaddir = 'C:\wamp\www\phpVariables\PROJETRECRUTEMENT\assets\img/';
+        $uploaddir = 'C:\wamp\www\projet\PROJETRECRUTEMENT\assets\img/';
         $_FILES['cvToUpload']['name'] = uniqid() . basename($_FILES['cvToUpload']['name']);
         $uploadfile = $uploaddir . $_FILES['cvToUpload']['name'];
         move_uploaded_file($_FILES['cvToUpload']['tmp_name'], $uploadfile);
@@ -196,4 +196,8 @@ if (isset($_POST['deconnectButton'])) {
     session_unset();
     session_destroy();
     header('Location: ../views/index.php');
+}
+
+if(!isset($_SESSION)){
+    header('Location: pageErreur.php');
 }

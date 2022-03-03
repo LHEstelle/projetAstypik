@@ -1,21 +1,22 @@
 <?php
-
 require_once '../config.php';
 require_once '../models/dataBase.php';
 require_once '../models/entreprise.php';
 
-
+session_start();
 $regexCity = "/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/";
 $regexPostalCode = "/\d{5}$/";
 $regexPhone = "/^0[1-68][0-9]{8}$/";
 // Tableau vide qui va nous permettre de stocker les erreurs 
 $arrayErrors = [];
 
-session_start();
-var_dump($_POST);
 
+var_dump($_POST);
+var_dump($_COOKIE);
+if(!empty($_SESSION)){
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
+}
 
 if (isset($_POST["modifyButton"])) {
 
@@ -98,6 +99,13 @@ if (isset($_POST["deleteButton"])) {
 }
 if (isset($_POST['deconnectButton'])) {
     session_unset();
+    unset($_COOKIE["PHPSESSID"]);
+    setcookie("PHPSESSID", '', - 4200);
     session_destroy();
+
     header('Location: ../views/index.php');
+}
+
+if(empty($_SESSION)){
+    header('Location: pageErreur.php');
 }

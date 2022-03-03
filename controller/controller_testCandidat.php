@@ -4,7 +4,7 @@ require_once '../models/database.php';
 require_once '../models/candidat.php';
 
 session_start();
-var_dump($_SESSION);
+
 if (isset($_POST['testProfilButton'])) {
     if (!isset($_POST['emission'])) {
         $arrayErrors["emission"] = "Veuillez saisir une réponse";
@@ -36,14 +36,11 @@ if (isset($_POST['testProfilButton'])) {
     }
 }
 
-
 $arrayAnswer = [];
 $drawAnswer = [];
 $arrayAnswers = array_values($_POST);
 $counts = array_count_values($arrayAnswers);
 $countsTry = arsort($counts);
-var_dump($counts);
-
 
 if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     $max = 0;
@@ -70,18 +67,14 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     }
 
     $drawAnswerProfile = array_unique($drawAnswer);
-    var_dump($drawAnswerProfile);
     if (empty($drawAnswerProfile)) {
 
         foreach ($counts as $key => $value) {
-            var_dump($counts);
-           
             if ($value == $max) {
                 var_dump($value);
                 $maxKey = $key;
                 $max = $value;
                 $type = $key;
-               var_dump($key);
                 if (isset($key) && $key == 'Cactus') {
                     $id_profils = intval(1);
                 } else if (!empty($key) && $key == 'peterPaon') {
@@ -92,13 +85,16 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
                 } else if ($key == 'IronSpoke') {
                     $id_profils = intval(4);
                 }
-               
                 $candidateProfil = new Candidat;
                 $modifyCandidateProfil = $candidateProfil->modifyProfil($id_profils, $_SESSION['mail']);
                 session_unset();
-                header("Location: test" . $key . ".php");
-             
+                header("Location: test".$key.".php");
             }
         }
     }
 }
+
+if(!isset($_SESSION)){
+    header('Location: pageErreur.php');
+}
+?>

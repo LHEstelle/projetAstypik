@@ -104,4 +104,17 @@ class Likes extends DataBase
         $candidats = explode(",",$myArray['candidats']);
         return $candidats;
     } 
+    public function getAllLikesFromOneCandidate($id_candidat): array
+    {
+        $base = $this->connectDb();
+        $sql = "SELECT id_candidat, GROUP_CONCAT(likecandidates.id) AS 'recrutor' FROM likecandidates
+        WHERE id_candidat = :id_candidat";
+
+        $resultQuery = $base->prepare($sql);
+        $resultQuery->bindValue(':id_candidat', $id_candidat, PDO::PARAM_STR);
+        $resultQuery->execute();
+        $myArray = $resultQuery->fetch();
+        $candidats = explode(",",$myArray['recrutor']);
+        return $candidats;
+    } 
 }

@@ -7,6 +7,8 @@ require_once '../models/likes.php';
 
 session_start();
 
+$filtersArray = [];
+var_dump($_POST);
 
 if (isset($_POST["searchFilters"])) {
     if (isset($_POST['contractName'])) {
@@ -15,6 +17,7 @@ if (isset($_POST["searchFilters"])) {
 
             $candidatsObj = new Candidat;
             $allCandidatesArray = $candidatsObj->getAllCandidatesContractSearch($contract);
+            $filtersArray['contract'] = $contract;
         }
     }
     if (isset($_POST['domaineName'])) {
@@ -24,6 +27,7 @@ if (isset($_POST["searchFilters"])) {
             $candidatsObj = new Candidat;
             var_dump($domaine);
             $allCandidatesArray = $candidatsObj->getAllCandidatesDomaineSearch($domaine);
+            $filtersArray['domaine'] = $domaine;
         }
     }
     if (isset($_POST['profilName'])) {
@@ -31,7 +35,15 @@ if (isset($_POST["searchFilters"])) {
         foreach ($profilName as $profil) {
             $candidatsObj = new Candidat;
             $allCandidatesArray = $candidatsObj->getAllCandidatesProfilSearch($profil);
+            $filtersArray['profil'] = $profil;
         }
+    }
+    if (isset($_POST['experienceYears']) && !empty($_POST['experienceYears'])) {
+        $experienceYears = $_POST['experienceYears'];
+
+        $candidatsObj = new Candidat;
+        $allCandidatesArray = $candidatsObj->getAllCandidatesExperienceYearsSearch($experienceYears);
+        $filtersArray['experience'] = $experienceYears. "année(s) d'exp.";
     } else {
         $candidates = new Candidat;
         $allCandidatesArray = $candidates->getAllCandidates();
@@ -42,8 +54,9 @@ if (isset($_POST["searchFilters"])) {
 }
 
 $likesObj = new Likes();
-$likesRecrutorArray = $likesObj -> getAllLikesFromOneRecrutor($_SESSION['id']);
-var_dump($likesRecrutorArray);
-var_dump($_POST);
-var_dump($_SESSION);
+$likesRecrutorArray = $likesObj->getAllLikesFromOneRecrutor($_SESSION['id']);
 
+
+if (!isset($_SESSION)) {
+    header('Location: pageErreur.php');
+}
