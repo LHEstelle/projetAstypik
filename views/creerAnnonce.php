@@ -1,12 +1,12 @@
-
 <!DOCTYPE HTML>
 <html lang="fr">
 <?php
 require_once '../controller/controller_creerAnnonce.php';
 setlocale(LC_TIME, 'fr_FR');
 date_default_timezone_set('Europe/Paris');
-echo strftime('%d/%m/%Y'); 
+echo strftime('%d/%m/%Y');
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,14 +20,14 @@ echo strftime('%d/%m/%Y');
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
     <script>
-    tinymce.init({
-      selector: '#description',
-      plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
-      toolbar_mode: 'floating',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-    });
+        tinymce.init({
+            selector: '#description',
+            plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
     </script>
 </head>
 
@@ -37,41 +37,28 @@ echo strftime('%d/%m/%Y');
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
         </a>
 
-        <div class="pb-3">
-            <div class="d-flex justify-content-evenly align-items-end text-center">
-
-
-                <a href="profilRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-2">Mon profil</a>
-                <a href="annoncesRecruteur.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark  p-3 col-2">Mes offres d'emplois</a>
-                <a href="viewRH.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-2">Profils candidats</a>
-                <a href="likesRecruteur.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark  p-3 col-2">Likes</a>
-                <a href="profilRecruteur.php" class="fas fa-user menuIcon p-3 col-2 d-lg-none"></a>
-                <a href="annoncesRecruteur.php" class="fas fa-briefcase menuIcon p-3 col-2 d-lg-none"></a>
-                <a href="viewRH.php" class="fas fa-users menuIcon p-3 col-2 d-lg-none"></a>
-                <a href="likesRecruteur.php" class="fas fa-heart menuIcon p-3 col-2 d-lg-none"></a>
-            </div>
-        </div>
+        <?php include 'menuRecruteurs.php' ?>
     </div>
 
     <form method="POST" action="">
         <div class="ms-3">
             <p class="mt-3"><b>NOM ENTREPRISE</b></p>
             <select name="id_recruteur" id="idRecruteur" class="inputSearch ms-3">
-                        <option selected value="<?= $entrepriseInfoArray["id"] ?>"><?= $entrepriseInfoArray['name'] ?></option>
-                </select>
- 
-            <p class="mt-3"><b>NOM DU POSTE</b></p>
-            <span class="text-danger">
-                        <?= $arrayErrors["job"] ?? "" ?>
-                    </span>
+                <option selected value="<?= $entrepriseInfoArray["id"] ?>"><?= $entrepriseInfoArray['name'] ?></option>
+            </select>
+
+            <p class="mt-3"><b>NOM DU POSTE</b> <span class="text-danger">
+                    <?= $arrayErrors["job"] ?? "" ?>
+                </span></p>
+
 
             <div class="d-flex">
                 <input value="<?= isset($_POST['job']) ? htmlspecialchars($_POST["job"]) : '' ?>" name="job" class="form-control inputSearch me-2 ms-3" name="jobType" type="text" placeholder="ex: chargé(e) de communication" aria-label="Rechercher">
 
             </div>
             <div class="mt-3">
-                <p class=""><b>DOMAINE</b></p>
-                <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
+                <p class=""><b>DOMAINE </b><span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span></p>
+
                 <select name="id_domaine" id="domaine" class="inputSearch ms-3">
                     <option disabled selected value="">Choisissez un domaine</option>
                     <?php foreach ($domainArray as $domain) { ?>
@@ -80,14 +67,15 @@ echo strftime('%d/%m/%Y');
 
                     <?php } ?>
                 </select>
-                <p class="mt-3"><b>DATE DE DEBUT DU POSTE</b></p>
-                <span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span>
+
+                <p class="mt-3"><b>DATE DE DEBUT DU POSTE </b><span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span></p>
+
                 <div class="d-flex">
                     <input value="<?= isset($_POST['startDate']) ? htmlspecialchars($_POST["startDate"]) : '' ?>" name="startDate" class="form-control inputSearch me-2 ms-3" type="date">
 
                 </div>
-                <p class="mt-3"><b>TYPE DE CONTRAT</b></p>
-                <span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span>
+                <p class="mt-3"><b>TYPE DE CONTRAT </b><span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span></p>
+
                 <select name="id_contract" id="contract" class="inputSearch ms-3">
                     <option disabled selected value="">Choisissez un contrat</option>
                     <?php foreach ($contractArray as $contract) { ?>
@@ -96,18 +84,18 @@ echo strftime('%d/%m/%Y');
 
                     <?php } ?>
                 </select>
+      
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE </b><span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span></p>
 
-                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
-                <span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span>
                 <select name="id_profils" id="profils" class="inputSearch ms-3">
                     <option disabled selected value="">Choisissez des compétences</option>
                     <?php foreach ($profilsArray as $competences) { ?>
-                        <option value="<?= $competences["id"] ?>"><?= $competences["name"] ?> : <?=$competences["talents"] ?></option>
+                        <option value="<?= $competences["id"] ?>"><?= $competences["name"] ?> : <?= $competences["talents"] ?></option>
 
 
                     <?php } ?>
                 </select>
-
+                
                 <p class="mt-3"><b>NOMBRE D'ANNEES D'EXPERIENCE MINIMUM REQUIS (facultatif)</b></p>
 
                 <div class="d-flex">
@@ -116,20 +104,16 @@ echo strftime('%d/%m/%Y');
                 </div>
 
 
-                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
-                <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-                <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? $_POST["description"] : ''?></textarea>
-                <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d')?>">
+                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE </b><span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span></p>
+                <textarea class="col-12" id="description" name="description"><?= isset($_POST['description']) ? $_POST["description"] : '' ?></textarea>
+                <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d') ?>">
                 <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="createAnnonce">
                     Ajouter une annonce
                 </button>
-                
+
             </div>
-                    </form>
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
-            </div>
+    </form>
+    <?php include 'footer.php' ?>
 
 
 </body>

@@ -1,7 +1,5 @@
 <?php
-
 require_once '../controller/controller_annonceRecruteurZoom.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -25,19 +23,8 @@ require_once '../controller/controller_annonceRecruteurZoom.php';
         <a href="index.php" class="navbar">
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
         </a>
-        <div class="pb-3">
-            <div class="d-flex justify-content-evenly align-items-end text-center">
-                <a href="profilCandidat.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mon profil</a>
-                <a href="offresCandidats.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-3">Offres d'emplois</a>
-                <a href="likesCandidat.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark p-3 col-3">Likes</a>
-
-                <a href="profilCandidat.php" class="fas fa-user menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="offresCandidats.php" class="fas fa-briefcase menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="likesCandidat.php" class="fas fa-heart menuIcon p-3 col-3 d-lg-none"></a>
-            </div>
-        </div>
     </div>
-
+<?php include 'menuCandidats.php'; ?>
 
     <div class="d-flex justify-content-center col-12">
         <?php if (isset($annonceInfoArray['profilColor']) && $annonceInfoArray['profilColor'] == 'superCactus') {  ?>
@@ -91,10 +78,7 @@ require_once '../controller/controller_annonceRecruteurZoom.php';
             </div>
 
 
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
-            </div>
+            <?php include 'footer.php' ?>
 
 
 </body>

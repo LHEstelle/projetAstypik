@@ -13,6 +13,6 @@ $likesRecrutorArray = $likesObj -> getLikesOfOneRecrutor($_SESSION['mail']);
 $candidatesLikesObj = new Likes();
 $allCandidatesLikes = $candidatesLikesObj-> getLikesOfAllCandidateForOneRecrutor($_SESSION['mail']);
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

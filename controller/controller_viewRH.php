@@ -57,6 +57,7 @@ $likesObj = new Likes();
 $likesRecrutorArray = $likesObj->getAllLikesFromOneRecrutor($_SESSION['id']);
 
 
-if (!isset($_SESSION)) {
+if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }
+var_dump($_SESSION);

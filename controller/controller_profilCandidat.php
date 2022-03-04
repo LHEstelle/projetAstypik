@@ -198,6 +198,6 @@ if (isset($_POST['deconnectButton'])) {
     header('Location: ../views/index.php');
 }
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

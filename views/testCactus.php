@@ -35,10 +35,10 @@
                     <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                         <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                         </li>
                         <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                            <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                            <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                     </div>
@@ -46,7 +46,7 @@
 
             </nav>
 
-            <h1 class="text-center text-danger">Vous êtes un super Cactus ! </h1>
+            <h1 class="text-center profilRed">Vous êtes un super Cactus ! </h1>
             <h2 class="text-center">"travaille le terrain, élimine les obstacles avec force et énergie."</h2>
             <div class="d-flex justify-content-center">
                 <img src="../assets/img/supercactus.jpg" class="supercactusImg" alt="image super cactus">
@@ -62,23 +62,21 @@
                 <p class="m-2 mb-3"> Le super Cactus n’a pas peur de se tromper. Il préfère se tromper que de rester immobile. Il peut prendre des décisions avec très peu de cartes en main et n’a aucun souci à reconnaître ses erreurs éventuelles.</p>
                 <p class="m-2 mb-3"><b>En bref, le super Cactus est très performant et n'a pas peur de piquer quiconque se mettrait en travers de sa route !</b>
                 </p>
-                <h2 class="text-center mt-3 text-danger">Votre orientation métier</h2>
+                <h2 class="text-center mt-3 profilRed">Votre orientation métier</h2>
                 <p class="m-2 mb-3">Le super Cactus a tendance à graviter vers des postes à forte autorité (CEO, Directeur de Réseau …) qui peuvent être pour lui d'énormes sources de motivation.Le super Cactus est orienté vers les résultats. Il va directement au but, accélère
                     les efforts des autres. Il est orienté vers le changement et les nouveaux défis, garde un rythme serré, maintient la concentration et le contrôle des objectifs. Il ne se décourage pas, il agit de manière indépendante, il résout froidement
                     les problèmes, même dans les situations d'urgence.
 
 
                 </p>
-                <h2 class="text-center mt-3 text-danger">Vos talents naturels</h2>
+                <h2 class="text-center mt-3 profilRed">Vos talents naturels</h2>
 
-                <p class="text-center mt-3 mb-2"><b>Directif - autonome - factuel - énergique</b></p>
+                <p class="text-center mt-3 mb-2"><b>Leader - autonome - factuel - énergique</b></p>
             </div>
             <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
         
             </div>
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
+            <?php include 'footer.php' ?>
         </body>
 
 </html>

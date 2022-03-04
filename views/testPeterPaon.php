@@ -35,10 +35,10 @@
                     <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                         <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                         </li>
                         <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                            <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                            <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                     </div>
@@ -46,7 +46,7 @@
 
             </nav>
 
-            <h1 class="text-center text-warning">Vous êtes un Peter-Paon ! </h1>
+            <h1 class="text-center profilYellow">Vous êtes un Peter-Paon ! </h1>
             <h2 class="text-center">"sème généreusement, donne confiance."</h2>
             <div class="d-flex justify-content-center">
                 <img src="../assets/img/peterpaon.png" class="supercactusImg" alt="image peterPaon">
@@ -72,23 +72,21 @@
 
                 <p class="m-2 mb-3"><b>En bref, vous rayonnez! Vous avez gardé votre âme d'enfant et n'hésitez pas à jouer de vos charmes tel un paon pour parvenir à vos fin !</b>
                 </p>
-                <h2 class="text-center mt-3 text-warning">Votre orientation métier</h2>
+                <h2 class="text-center mt-3 profilYellow">Votre orientation métier</h2>
                 <p class="m-2 mb-3">Le peter-Paon s'épanouit quand il dispose de liberté et de flexibilité. Ainsi, les postes qui exigent de jongler fréquemment avec les responsabilités sont bien adaptés à la soif de variété et de spontanéité du peter-Paon. C’est cette variété
                     qui va lui permettre de rester engagé sur le long terme. Par contre, un cadre très structuré et formalisé peut sérieusement étouffer le talent d'un peter-Paon tant au niveau de sa capacité à motiver les autres qu’à stimuler l’innovation.En
                     résumé, le peter-Paon développe son plein potentiel dans des environnements où ils peuvent explorer de nouvelles idées, découvrir de nouvelles approches pour faire les choses, être créatifs et établir un lien constant avec les gens.
                     Ils préféreront probablement des environnements collaboratifs, où ils peut utiliser ses compétences verbales pour communiquer une vision et persuader les autres. Ils développent leur plein potentiel dans des environnements où ils peuvent
                     explorer de nouvelles idées, découvrir de nouvelles approches pour faire les choses, être créatifs et établir un lien constant avec les gens. </p>
 
-                <h2 class="text-center mt-3 text-warning">Vos talents naturels</h2>
+                <h2 class="text-center mt-3 profilYellow">Vos talents naturels</h2>
 
                 <p class="text-center mt-3 mb-2"><b>Communication - enthousiasme - créativité - aisance relationnelle</b></p>
             </div>
             <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
          
             </div>
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
+            <?php include 'footer.php' ?>
         </body>
 
 </html>

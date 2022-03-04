@@ -15,9 +15,6 @@
     <title>Document</title>
 </head>
 
-<body>
-
-
     <body class="">
         <nav class="navbar navbar-expand-lg navbar-dark text-white sticky-top row">
             <div class="container">
@@ -34,10 +31,10 @@
                 <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                     <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                     </li>
                     <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                        <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                        <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                 </div>
@@ -50,8 +47,7 @@
             Ce test est obligatoire. Vous devez répondre à chaque question et une seule réponse est autorisée. Attention vous ne pouvez passer ce test qu'une seule fois !</p>
         <div class="m-3">
 
-            <form action="" method="POST">
-
+    <form action="" method="POST">
                 <div class="mb-3">
 
                     <label for=""><b> Vous êtes en train de regarder votre émission préférée et votre conjoint ou votre ami(e) vous demande de changer de chaîne TV afin de suivre une autre émission.</b></label>
@@ -325,41 +321,6 @@
                             Cela ne change pas radicalement votre façon de vivre mais vous apporte la stabilité </label>
                     </div>
                 </div>
-                <?php if (!empty($drawAnswerProfile)) { ?>
-
-                    <div class="mb-3">
-                        <label for="lastname" class="form-label"><b> Vous êtes plutôt :</b></label>
-                        <span class="text-danger">
-                            <?= $arrayErrors["caractere"] ?? "" ?>
-                        </span>
-
-                        <?php var_dump($key) ?>
-                        <div class="form-check d-flex ms-3">
-                            <input class="form-check-input me-3" type="radio" name="caractere" id="caractere" value="IronSpoke" <?= (in_array('IronSpoke', $drawAnswerProfile)) ? '' : 'disabled' ?>>
-                            <label class="form-check-label" for="caractere">
-                                Rigoureux, précis
-                            </label>
-                        </div>
-                        <div class="form-check d-flex ms-3">
-                            <input class="form-check-input me-3" type="radio" name="caractere" id="caractere1" value="peterPaon" <?= (in_array('peterPaon', $drawAnswerProfile)) ? '' : 'disabled' ?>>
-                            <label class="form-check-label" for="caractere1">
-                                Enthousiaste, plein d’humour
-                            </label>
-                        </div>
-                        <div class="form-check d-flex ms-3">
-                            <input class="form-check-input me-3" type="radio" name="caractere" id="caractere2" value="Cactus" <?= (in_array('Cactus', $drawAnswerProfile)) ? '' : 'disabled' ?>>
-                            <label class="form-check-label" for="caractere2">
-                                Rapide, décidant facilement
-                            </label>
-                        </div>
-                        <div class="form-check d-flex ms-3">
-                            <input class="form-check-input me-3" type="radio" name="caractere" id="caractere3" value="SpiderLutin" <?= (in_array('SpiderLutin', $drawAnswerProfile)) ? '' : 'disabled' ?>>
-                            <label class="form-check-label" for="caractere3">
-                                Compréhensif, attentif aux autres </label>
-                        </div>
-                    </div>
-                <?php }
-                ?>
                 <button type="submit" class="btn btnEnregist mb-5" name="testProfilButton"><b>Envoyer</b></button>
                 <?php
                 var_dump($_POST);  ?>
@@ -368,9 +329,7 @@
             </form>
 
         </div>
-        <div class="row bg-dark text-light justify-content-between fixed-bottom">
-            <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-            <div class="col text-end">Site by Estelle</div>
+        <?php include 'footer.php' ?>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 

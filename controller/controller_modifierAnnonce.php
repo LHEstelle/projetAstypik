@@ -106,6 +106,6 @@ if(isset($_POST['idDeletePatient'])){
     header('location: annoncesRecruteur.php');
 }
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

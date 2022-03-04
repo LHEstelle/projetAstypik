@@ -33,10 +33,10 @@ require '../controller/controller_inscriptionEntreprise.php';
                 <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                     <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                     </li>
                     <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                        <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                        <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                 </div>
@@ -144,19 +144,8 @@ require '../controller/controller_inscriptionEntreprise.php';
 
         </div>
         <?php } ?>
+        <?php include 'footer.php' ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <!-- <script>
-    
-            document.addEventListener('DOMContentLoaded', function() {
-                autocomplete = new google.maps.places.Autocomplete(
-                    (document.getElementById('adress')), {
-                        types: ['geocode'],
-                        componentRestrictions: {
-                            country: 'fr'
-                        }
-                    }
-                );
-            }, false); -->
         </script>
     </body>
 

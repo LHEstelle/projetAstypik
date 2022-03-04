@@ -206,13 +206,17 @@
     .inputSearch {
         border-radius: 20rem;
     }
+    
+    .footer {
+        background-color: #4040405e;
+    }
     /*     
 Menu de navigation */
     
     .menu {
         border-bottom: gray 4px solid;
         text-decoration: none;
-        width: 14rem;
+        width: 11.4rem;
     }
     
     .myProfil {
@@ -491,6 +495,26 @@ Menu de navigation */
         margin-left: 1rem;
     }
     
+    .superCactus {
+        border-bottom: #b918189f solid 3px;
+        width: 7rem;
+    }
+    
+    .peterPaon {
+        border-bottom: #F1CD7B solid 3px;
+        width: 7rem;
+    }
+    
+    .spiderLutin {
+        border-bottom: #87d8afd3 solid 3px;
+        width: 7rem;
+    }
+    
+    .ironSpoke {
+        border-bottom: #7face6 solid 3px;
+        width: 7rem;
+    }
+    
     @media screen and (max-width: 1000px) {
         .filtersSmall {
             display: block;
@@ -532,30 +556,9 @@ Menu de navigation */
         .whoAreWe {
             text-align: center;
         }
-        .menu {
-            border-bottom: gray 4px solid;
-            text-decoration: none;
-            display: none;
-        }
-        .myProfil {
-            border-bottom: gray 4px solid;
-            text-decoration: none;
-            display: none;
-        }
-        .offres {
-            border-bottom: gray 4px solid;
-            text-decoration: none;
-            display: none;
-        }
-        .candidatesProfil {
-            border-bottom: gray 4px solid;
-            text-decoration: none;
-            display: none;
-        }
-        .recrutorsLikes {
-            border-bottom: gray 4px solid;
-            text-decoration: none;
-            display: none;
+        .profilCandidate {
+            width: 80vw;
+            height: auto;
         }
         .menuIcon {
             border-bottom: gray 4px solid;
@@ -563,31 +566,28 @@ Menu de navigation */
             display: flex;
             width: 5.5rem;
         }
-        .myProfilIcon {
-            border-bottom: #E28850 6px solid;
+        .menu {
+            border-bottom: gray 4px solid;
             text-decoration: none;
-            width: 5.5rem;
-        }
-        .offresIcon {
-            border-bottom: #E28850 6px solid;
-            text-decoration: none;
-            width: 5.5rem;
-        }
-        .candidateProfilIcon {
-            border-bottom: #E28850 6px solid;
-            text-decoration: none;
-            width: 5.5rem;
-        }
-        .recrutorsLikesIcon {
-            border-bottom: #E28850 6px solid;
-            text-decoration: none;
-            width: 5.5rem;
-        }
-        .profilCandidate {
-            width: 80vw;
-            height: auto;
+            display: none;
         }
         .imgCandidatOuEntrepriseConnexion {
             display: none;
+        }
+        .superCactus {
+            border-bottom: #b918189f solid 3px;
+            width: 5rem;
+        }
+        .peterPaon {
+            border-bottom: #F1CD7B solid 3px;
+            width: 5rem;
+        }
+        .spiderLutin {
+            border-bottom: #87d8afd3 solid 3px;
+            width: 5rem;
+        }
+        .ironSpoke {
+            border-bottom: #7face6 solid 3px;
+            width: 5rem;
         }
     }

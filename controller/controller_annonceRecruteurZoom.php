@@ -13,6 +13,6 @@ if (isset($_GET["id"])) {
 
 }
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

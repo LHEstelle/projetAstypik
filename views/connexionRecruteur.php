@@ -33,10 +33,10 @@ require '../controller/controller_connexionEntreprise.php';
                 <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                     <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                     </li>
                     <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                        <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                        <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                 </div>

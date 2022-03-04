@@ -10,8 +10,7 @@ $allOfferssArray = $offers -> getAllOffers();
 
 $likesObj = new Likes();
 $likesCandidateArray = $likesObj->getAllLikesFromOneCandidate($_SESSION['id']);
-var_dump($likesCandidateArray);
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

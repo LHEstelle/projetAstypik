@@ -35,10 +35,10 @@
                     <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                         <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                            <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                         </li>
                         <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                            <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                            <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                     </div>
@@ -46,7 +46,7 @@
 
             </nav>
 
-            <h1 class="text-center text-success">Vous êtes un spider-Lutin ! </h1>
+            <h1 class="text-center profilGreen">Vous êtes un spider-Lutin ! </h1>
             <h2 class="text-center">"chaque jour avec constance en respectant les petits changements."</h2>
             <div class="d-flex justify-content-center">
                 <img src="../assets/img/spiederlutin.jpg" class="supercactusImg" alt="image spiderLutin">
@@ -74,22 +74,20 @@
                         attention, vous avez des limites et si on vous pousse trop loin vous vous transformez en
                         araignée piquante!</b>
                 </p>
-                <h2 class="text-center mt-3 text-success">Votre orientation métier</h2>
+                <h2 class="text-center mt-3 profilGreen">Votre orientation métier</h2>
                 <p class="m-2 mb-3">Le spider-Lutin est orienté vers un travail constant et prévisible, il rend les pratiques et les procédures stables. Il fonctionne mieux dans un groupe où, grâce à des actions quotidiennes, il renforce sa stabilité et ses liens relationnels.
                     Il est très utile à ses collègues, il est fidèle à son groupe cible, qui peut aussi être la marque ou l'entreprise, il est résistant et fait preuve de beaucoup de patience. Il est amical et cordial avec tout le monde, il sait écouter
                     attentivement les gens. Le spider-Lutin est souvent dans des postes en lien avec les ressources humaines, et aussi tout ce qui est conseil, coaching et accompagnement de la personne que ce soit à son compte en tant que thérapeute ou
                     bien au sein d’une hôpital.
                 </p>
-                <h2 class="text-center mt-3 text-success">Vos talents naturels</h2>
+                <h2 class="text-center mt-3 profilGreen">Vos talents naturels</h2>
 
                 <p class="text-center mt-3 mb-2"><b>Patience - fiabilité - coopération - empathie</b></p>
             </div>
             <p class="text-center mb-5">Votre inscription est maintenant terminée. Alors? Hâte de voir quels offres d'emplois sont faites pour vous? <a href="connexionCandidat.php" class="text-primary"> Connectez-vous !! </a></p>
             
             </div>
-            <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                <div class="col text-end">Site by Estelle</div>
+            <?php include 'footer.php' ?>
         </body>
 
 </html>

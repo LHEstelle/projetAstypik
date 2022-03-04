@@ -11,6 +11,14 @@ require_once '../controller/controller_profilCandidat.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    a[href="profilCandidat.php"]
+    {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 14rem;
+    }
+    </style>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- cdn -->
@@ -42,17 +50,7 @@ require_once '../controller/controller_profilCandidat.php';
             </div>
         </a>
 
-        <div class="pb-3">
-            <div class="d-flex justify-content-evenly align-items-end text-center">
-                <a href="profilCandidat.php" id="jobOffer1" onclick="colorOrangeJobOffer1()" class="menu text-dark p-3 col-3">Mon profil</a>
-                <a href="offresCandidats.php" id="candidateProfil1" onclick="colorOrangeCandidateProfil1()" class="menu text-dark p-3 col-3">Offres d'emplois</a>
-                <a href="likesCandidat.php" id="likes1" onclick="colorOrangeLikes1()" class="menu text-dark p-3 col-3">Likes</a>
-
-                <a href="profilCandidat.php" class="fas fa-user menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="offresCandidats.php" class="fas fa-briefcase menuIcon p-3 col-3 d-lg-none"></a>
-                <a href="likesCandidat.php" class="fas fa-heart menuIcon p-3 col-3 d-lg-none"></a>
-            </div>
-        </div>
+        <?php include 'menuCandidats.php'; ?>
     </div>
 
 
@@ -87,7 +85,8 @@ require_once '../controller/controller_profilCandidat.php';
                     document.getElementById('profilPictureButtons').style.display = "block";
                 })
             </script>
-            <?= $candidatProfilArray['nameStruct'] ?>
+            <a href="<?= $candidatProfilArray['name'] ?>.php">
+            <?= $candidatProfilArray['nameStruct'] ?></a>
             <h3 class="text-center"><?= $candidatProfilArray['talents'] ?></h3>
             <p class="mt-3"><b>NOM</b></p>
             <span class="text-danger"><?= $arrayErrors['lastName'] ?? '' ?></span>
@@ -109,19 +108,27 @@ require_once '../controller/controller_profilCandidat.php';
             </div>
             <p class="mt-3"><b>DATE DE NAISSANCE</b></p>
             <span class="text-danger"><?= $arrayErrors['birthDate'] ?? '' ?></span>
-            <div class="d-flex">
-                <input type="date" value="<?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : $candidatInfoArray['birthDate'] ?>" class="form-control" name="birthDate" id="birthdate">
+            <div class="d-flex m-2">
+                <input type="date" value="<?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : $candidatInfoArray['birthDate'] ?>" class="form-control inputSearch" name="birthDate" id="birthdate">
             </div>
             <p class="mt-3"><b>MES COORDONNEES</b></p>
-            <div class="d-flex">
-                <p name="mail"><?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?></p>
-                <input value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text">
+            <div class="d-flex mt-2">
+                <p class="ms-1" name="mail"><?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : $candidatInfoArray['mail'] ?></p>
+            </div>
+            <div class="d-flex mt-2">
+                <input value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : $candidatInfoArray['adress'] ?>" name="adress" class="form-control inputSearch ms-1" type="text">
                 <span class="text-danger"><?= $arrayErrors['adress'] ?? '' ?></span>
-                <input value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch me-2 ms-3" type="text">
+            </div>
+            <div class="d-flex mt-2">
+                <input value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : $candidatInfoArray['postalCode'] ?>" name="postalCode" class="form-control inputSearch ms-1" type="text">
                 <span class="text-danger"><?= $arrayErrors['postalCode'] ?? '' ?></span>
-                <input value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch me-2 ms-3" type="text">
+            </div>
+            <div class="d-flex mt-2">
+                <input value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : $candidatInfoArray['city'] ?>" name="city" class="form-control inputSearch ms-1" type="text">
                 <span class="text-danger"><?= $arrayErrors['city'] ?? '' ?></span>
-                <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch me-2 ms-3" type="text">
+            </div>
+            <div class="d-flex mt-2 mb-3">
+                <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : $candidatInfoArray['phone'] ?>" name="phone" class="form-control inputSearch ms-1" type="text">
                 <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
             </div>
 
@@ -130,7 +137,7 @@ require_once '../controller/controller_profilCandidat.php';
             <select name="id_domaine" id="domaine" class="inputSearch ms-3">
                 <option disabled selected value="">Choisissez un domaine</option>
                 <?php foreach ($domainArray as $domain) { ?>
-                    <option value="<?= $domain["id"] ?>"  <?= $domain["id"] == $candidatInfoArray["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
+                    <option value="<?= $domain["id"] ?>" <?= $domain["id"] == $candidatInfoArray["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
 
 
                 <?php } ?>
@@ -147,7 +154,7 @@ require_once '../controller/controller_profilCandidat.php';
             <p class="mt-3"><b>NOMBRE D'ANNEES D'EXPERIENCE DANS LE DOMAINE(facultatif)</b></p>
             <label for="experienceYears" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
             <div class="d-flex">
-                <input value="<?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 mt-3 inputSearch form-control pe-3" min="0" max="50">
+                <input value="<?= isset($_POST["experienceYears"]) ? htmlspecialchars($_POST["experienceYears"]) : $candidatInfoArray['experienceYears'] ?>" name="experienceYears" type="number" class="ms-3 me-2 inputSearch form-control pe-3" min="0" max="50">
                 <!-- <button class="btnSearch btn text-white mt-3 me-3" type="submit">Modifier</button> -->
             </div>
 
@@ -222,10 +229,7 @@ require_once '../controller/controller_profilCandidat.php';
 
 
     </div>
-    <div class="row bg-dark text-light justify-content-between fixed-bottom ">
-        <a class="col text-start text-light text-decoration-none " href="# ">Mentions légales</a>
-        <div class="col text-end ">Site by Estelle</div>
-    </div>
+    <?php include 'footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
 

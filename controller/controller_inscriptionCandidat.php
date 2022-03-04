@@ -9,7 +9,7 @@ require_once '../models/candidat.php';
 $regexNom = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}$/";
 $regexMail = "/^([a-z.-]+)@([a-z]+).([a-z]){2,4}$/";
 // $regexDate = "/^[0-9\-]+$/";
-$regexPhone = "/^0[1-68][0-9]{8}$/";
+$regexPhone = "/^0[1-98][0-9]{8}$/";
 $regexCity = "/^[^0-9]$/";
 $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];

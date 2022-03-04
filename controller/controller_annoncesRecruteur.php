@@ -11,6 +11,6 @@ $mail=$_SESSION['mail'];
 $annoncesObj = new Annonce;
 $annoncesArray = $annoncesObj -> getAllAnnoncesofOneRecrutor($mail);
 
-if(!isset($_SESSION)){
+if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

@@ -33,10 +33,10 @@ require '../controller/controller_connexionCandidat.php';
                 <div class="list row col-lg-4 col" id="navbarSupportedContent">
 
                     <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
-                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.html"><b>Connexion</b></a>
+                        <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
                     </li>
                     <li class="whoAreWe col-lg-8 col-5 m-2 mt-5">
-                        <a class="nav-link text-white text-center" href="quisommesnous.html">Qui sommes nous</a>
+                        <a class="nav-link text-white text-center" href="quisommesnous.php">Qui sommes nous</a>
 
 
                 </div>
@@ -66,18 +66,13 @@ require '../controller/controller_connexionCandidat.php';
                     <input class="form-control" value="<?= isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : "" ?>" type="password" name="password" id="password">
                 </div>
 
-
-                <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                    <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                    <div class="col text-end">Site by Estelle</div>
-                </div>
                 <a class="lienConnexion" href="inscriptionCandidat.php">
                     <p>Pas encore inscrit? Veuillez vous inscrire</p>
                 </a>
                 <button type="submit" class="btn btnEnregist mb-5" name="createButton"><b>Envoyer</b></button>
         </form>
         </div>
-
+        <?php include 'footer.php' ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
        
     </body>

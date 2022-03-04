@@ -42,12 +42,14 @@ $arrayAnswers = array_values($_POST);
 $counts = array_count_values($arrayAnswers);
 $countsTry = arsort($counts);
 
+
 if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     $max = 0;
     $maxKey = '';
     foreach ($counts as $key => $value) {
-        echo $key . '<br>';
-
+     
+        $_SESSION[$key] = $key;
+    
         if ($value == $max) {
             $drawAnswer[] = $maxKey;
             $drawAnswer[] = $key;
@@ -67,6 +69,9 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     }
 
     $drawAnswerProfile = array_unique($drawAnswer);
+    if(!empty($drawAnswerProfile)){
+        header("Location: autreQuestion.php");   
+    }
     if (empty($drawAnswerProfile)) {
 
         foreach ($counts as $key => $value) {
@@ -85,16 +90,17 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
                 } else if ($key == 'IronSpoke') {
                     $id_profils = intval(4);
                 }
+                $sessionObj = new Candidat;
+                $_SESSION = $sessionObj->getOneCandidate($_SESSION['mail']);
                 $candidateProfil = new Candidat;
                 $modifyCandidateProfil = $candidateProfil->modifyProfil($id_profils, $_SESSION['mail']);
                 session_unset();
-                header("Location: test".$key.".php");
+                header("Location: test" . $key . ".php");
             }
         }
     }
 }
 
-if(!isset($_SESSION)){
+if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }
-?>

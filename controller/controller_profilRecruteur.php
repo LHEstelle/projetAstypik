@@ -13,6 +13,7 @@ $arrayErrors = [];
 
 var_dump($_POST);
 var_dump($_COOKIE);
+var_dump($_SESSION);
 if(!empty($_SESSION)){
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
@@ -98,12 +99,14 @@ if (isset($_POST["deleteButton"])) {
     exit();
 }
 if (isset($_POST['deconnectButton'])) {
-    session_unset();
-    unset($_COOKIE["PHPSESSID"]);
-    setcookie("PHPSESSID", '', - 4200);
-    session_destroy();
-
+   
+session_unset();
+session_destroy();
+setcookie(session_name(), '', time(), '/projet/');
+header('location:../index.php');
     header('Location: ../views/index.php');
+    exit();
+ 
 }
 
 if(empty($_SESSION)){
