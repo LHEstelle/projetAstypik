@@ -12,26 +12,29 @@ var_dump($_POST);
 
 if (isset($_POST["searchFilters"])) {
     if (isset($_POST['contractName'])) {
-        $contract = "'". implode("','", $_POST['contractName']) ."'";
+        $contract = '"'. implode('","', $_POST['contractName']) .'"';
         var_dump($contract);
     } else {
-        $contract = '';
+        $contract = '"CDI","CDD","contrat d'."'".'apprentissage","contrat de professionalisation","stage","indépendant"';
+        var_dump($contract);
     }
     if (isset($_POST['domaineName'])) {
-        $domaine = "'". implode("','", $_POST['domaineName']) ."'";
+        $domaine = '"'. implode('","', $_POST['domaineName']) .'"';
         echo $domaine;
    
     } else {
-        $domaine = '';
+        $domaine = '"Commercial","Marketing","Communication","Création","Direction d'."'".'entreprise","Etudes, Recherche et Développement","Gestion, Finance, Administration","Production Industrielle, Travaux, Chantiers","Ressources Humaines","Sanitaire, Social, Culture","Services Techniques","Informatique"';
+        var_dump($domaine);
     }
     if (isset($_POST['profilName'])) {
-        $profil = "'". implode("','", $_POST['profilName']) ."'";
+        $profil = '"'. implode('","', $_POST['profilName']) .'"';
         var_dump($profil);
     } else {
-        $profil = '';
+        $profil = "'superCactus','peterPaon','spiderLutin','ironSpoke'";
         var_dump($profil);
     }
     if (isset($_POST['experienceYears'])) {
+
         $exp =  intval($_POST['experienceYears']);
         var_dump($exp);
         

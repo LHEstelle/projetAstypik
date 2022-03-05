@@ -286,7 +286,7 @@ class Candidat extends DataBase
     public function getAllCandidatesFilters(string $contract, string $domaine, string $profil, int $exp): array
     {
         $base = $this->connectDb();
-        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', domaine.id AS 'domaineID',  profils.id AS 'profilid', contract.name AS 'contractName', domaine.name AS'domaineName', profils.name AS 'profilColor'
+        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, birthDate, phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', domaine.id AS 'domaineID',  profils.id AS 'profilid', contract.name AS 'contractName', domaine.name AS'domaineName', profils.name AS 'profilColor'
         FROM candidat
         INNER JOIN `profils` ON id_profils = profils.id
         INNER JOIN  `contract` ON id_contract = contract.id
