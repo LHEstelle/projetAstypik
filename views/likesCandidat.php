@@ -16,6 +16,14 @@ include 'filtresCandidat.php';
         text-decoration: none;
         width: 14rem;
     }
+    @media screen and (max-width: 1000px) {
+        a[href="likesCandidat.php"]
+    {
+        border-bottom: #E28850 6px solid;
+        text-decoration: none;
+        width: 7rem;  
+    }
+    }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--ICI CDN BOOTSRAP-->
