@@ -88,7 +88,7 @@ class Entreprise extends DataBase
         $resultQuery->execute();
     }
 
-    public function modifyInfosEnterprise(string $pseudo,string $city,int $postalCode,string $adress,string $mail,string $phone): void
+    public function modifyInfosEnterprise(string $pseudo,string $city,int $postalCode,string $adress,string $mail,string $phone, int $id): void
     {
 
 
@@ -100,7 +100,7 @@ class Entreprise extends DataBase
           `mail`=:mail,
           `phone`=:phone
  
-          WHERE `mail`=:mail";
+          WHERE `id`=:id";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         $resultQuery->bindValue(':city', $city, PDO::PARAM_STR);
@@ -108,18 +108,19 @@ class Entreprise extends DataBase
         $resultQuery->bindValue(':adress', $adress, PDO::PARAM_STR);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->bindValue(':phone', $phone, PDO::PARAM_STR);
+        $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
 
         $resultQuery->execute();
     }
-    public function deleteEnterprise($mail): void
+    public function deleteEnterprise(int $id): void
     {
 
 
         $base = $this->connectDb();
         $sql = "DELETE FROM recruteur
-        WHERE mail=:mail;";
+        WHERE id=:id;";
         $resultQuery = $base->prepare($sql);
-        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
         $resultQuery->execute();
     }
 

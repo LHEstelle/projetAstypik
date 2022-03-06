@@ -12,8 +12,6 @@ class Annonce extends DataBase
         $base = $this->connectDb();
         $sql = "INSERT INTO offre(job, experienceYear, publicationDate, startDate, id_recruteur, id_domaine, id_contract, description, id_profils)
         VALUES(:job, :experienceYear, :publicationDate, :startDate, :id_recruteur, :id_domaine, :id_contract, :description , :id_profils)";
-        
-        var_dump($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':job', $job, PDO::PARAM_STR);
         $resultQuery->bindValue(':experienceYear', $experienceYear, PDO::PARAM_INT);
@@ -51,7 +49,7 @@ class Annonce extends DataBase
         $resultQuery->execute();
         return $resultQuery->fetchAll();
     }
-    public function getAllAnnoncesofOneRecrutor($mail): array
+    public function getAllAnnoncesofOneRecrutor(int $id): array
     {
         $base = $this->connectDb();
         $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear,  date_format(startDate, '%d/%m/%Y') AS 'startDate', date_format(publicationDate, '%d/%m/%Y') AS 'publicationDate', id_recruteur, id_domaine, id_contract, offre.description, contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, profils.name AS 'profilColor'
@@ -59,10 +57,10 @@ class Annonce extends DataBase
        INNER JOIN `recruteur` ON id_recruteur = recruteur.id
        INNER JOIN  `contract` ON id_contract = contract.id
        INNER JOIN  `profils` ON id_profils = profils.id
-       WHERE `mail`=:mail
+       WHERE recruteur.id=:id
        GROUP BY offre.id";
         $resultQuery = $base->prepare($sql);
-        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
         $resultQuery->execute();
         return $resultQuery->fetchAll();
     }

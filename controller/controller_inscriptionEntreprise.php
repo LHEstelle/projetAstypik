@@ -5,7 +5,7 @@ require_once '../models/database.php';
 require_once '../models/entreprise.php';
 $regexSiret = "/^\d{14}$/";
 $regexMail = "/^([a-z.-]+)@([a-z]+).([a-z]){2,4}$/";
-$regexPhone = "/^0[1-68][0-9]{8}$/";
+$regexPhone = "/^0[1-98][0-9]{8}$/";
 $regexCity = "/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/";
 $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];

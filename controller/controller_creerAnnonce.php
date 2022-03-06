@@ -75,7 +75,7 @@ if (isset($_POST["createAnnonce"])) {
         $annonce = new Annonce();
         $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $addAnnonceOk = true;
-        header('annoncesRecruteur.php');
+        header('Location: annoncesRecruteur.php');
     }
 }
 if(empty($_SESSION)){

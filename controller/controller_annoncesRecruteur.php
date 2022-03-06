@@ -7,9 +7,9 @@ require_once '../models/annonces.php';
 
 session_start();
 
-$mail=$_SESSION['mail'];
+$id=$_SESSION['id'];
 $annoncesObj = new Annonce;
-$annoncesArray = $annoncesObj -> getAllAnnoncesofOneRecrutor($mail);
+$annoncesArray = $annoncesObj -> getAllAnnoncesofOneRecrutor($id);
 
 if(empty($_SESSION)){
     header('Location: pageErreur.php');

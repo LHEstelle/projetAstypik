@@ -6,18 +6,18 @@ require_once '../models/entreprise.php';
 session_start();
 $regexCity = "/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/";
 $regexPostalCode = "/\d{5}$/";
-$regexPhone = "/^0[1-68][0-9]{8}$/";
+$regexPhone = "/^0[1-98][0-9]{8}$/";
 // Tableau vide qui va nous permettre de stocker les erreurs 
 $arrayErrors = [];
 
 
-var_dump($_POST);
+
 var_dump($_COOKIE);
 var_dump($_SESSION);
-if(!empty($_SESSION)){
+
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
-}
+
 
 if (isset($_POST["modifyButton"])) {
 
@@ -45,28 +45,30 @@ if (isset($_POST["modifyButton"])) {
         $arrayErrors["adress"] = "Veuillez indiquer votre adresse";
     }
 
-    if (empty($_POST["mail"])) {
-        $arrayErrors["mail"] = "Veuillez indiquer un mail";
-    } else if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
-        $arrayErrors["mail"] = "Format invalide";
-    }
-
     if (empty($_POST["phone"])) {
         $arrayErrors["phone"] = "Veuillez indiquer votre numéro de téléphone";
     } else if (!preg_match($regexPostalCode, $_POST["phone"])) {
         $arrayErrors["phone"] = "Format invalide";
     }
+    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) >25) {
+        $arrayErrors["pseudo"] = "35 caractères maximum";
+    
+    } var_dump($arrayErrors);
     if (count($arrayErrors) == 0) {
-        $pseudo = htmlspecialchars(strtoupper(trim($_POST["pseudo"])));
+        $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
         $city = htmlspecialchars(strtoupper(trim($_POST["city"])));
         $postalCode = htmlspecialchars(intval(trim($_POST["postalCode"])));
         $adress = htmlspecialchars(trim($_POST["adress"]));
-        $mail = htmlspecialchars(trim($_POST["mail"]));
+        $mail = htmlspecialchars(trim($_SESSION["mail"]));
         $phone = htmlspecialchars(trim($_POST["phone"]));
-
+      
+        $id = $_SESSION['id'];
         $entreprise = new Entreprise();
-        $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone);
+        $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone, $id);
+        $modifyRecruteurOk = true;
         header('location: profilRecruteur.php');
+    
+        var_dump(strlen($_POST['pseudo']));
     }
 }
 if (!empty($_POST['submitButton'])) {
@@ -77,11 +79,11 @@ if (!empty($_POST['submitButton'])) {
     } else if ($_FILES['fileToUpload']['type'] != 'image/png' &&  $_FILES['fileToUpload']['type'] != 'image/jpg' && $_FILES['fileToUpload']['type'] != 'image/jpeg') {
         $arrayErrors["extension"] = "L'extension n'est pas une image";
     } else if ($_FILES['fileToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/png') && ($_FILES['fileToUpload']['type'] == 'image/png' ||  $_FILES['fileToUpload']['type'] == 'image/jpg' || $_FILES['fileToUpload']['type'] == 'image/jpeg')) {
-        $uploaddir = 'C:\wamp\www\phpVariables\PROJETRECRUTEMENT\assets\img/';
+        $uploaddir = 'C:\wamp\www\projet\PROJETRECRUTEMENT\assets\img/';
         $_FILES['fileToUpload']['name'] = uniqid() . basename($_FILES['fileToUpload']['name']);
         $uploadfile = $uploaddir . $_FILES['fileToUpload']['name'];
         move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadfile);
-        $mail = htmlspecialchars(trim($_SESSION["mail"]));
+        $mail = $_SESSION["mail"];
         $profilPicture = htmlspecialchars(trim($_FILES['fileToUpload']["name"]));
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyprofilPictureEnterprise($mail, $profilPicture);
@@ -90,9 +92,9 @@ if (!empty($_POST['submitButton'])) {
 }
 
 if (isset($_POST["deleteButton"])) {
-    $mail = htmlspecialchars(trim($_POST["mail"]));
+    $id = intval($_POST["id"]);
     $entreprise = new Entreprise();
-    $entrepriseDeleteArray = $entreprise->deleteEnterprise($mail);
+    $entrepriseDeleteArray = $entreprise->deleteEnterprise($id);
     session_unset();
     session_destroy();
     header('Location: ../views/index.php');

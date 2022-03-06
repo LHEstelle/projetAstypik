@@ -5,6 +5,8 @@ require_once '../models/candidat.php';
 
 session_start();
 
+
+var_dump($_SESSION);
 if (isset($_POST['testProfilButton'])) {
     if (!isset($_POST['emission'])) {
         $arrayErrors["emission"] = "Veuillez saisir une réponse";
@@ -94,7 +96,7 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
                 $_SESSION = $sessionObj->getOneCandidate($_SESSION['mail']);
                 $candidateProfil = new Candidat;
                 $modifyCandidateProfil = $candidateProfil->modifyProfil($id_profils, $_SESSION['mail']);
-                session_unset();
+                $modifyCandidatOk = true;
                 header("Location: test" . $key . ".php");
             }
         }
