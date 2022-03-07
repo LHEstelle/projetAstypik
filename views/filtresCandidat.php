@@ -48,15 +48,15 @@ require '../controller/controller_filtresCandidats.php';
             </div>
             <div id="filtersHide" class="filtersHide">
                 <div class="div">
-                    <form action="" method="POST">
+                    <form action="" method="GET">
                     <div class="d-flex justify-content-center m-2">
-                <input type="search" placeholder="ville, mots-clés" name="inputSearch" class="inputSearch" value="<?= isset($_POST['inputSearch']) ? $_POST['inputSearch'] : '' ?>">
+                <input type="search" placeholder="ville, mots-clés" name="inputSearch" class="inputSearch" value="<?= isset($_GET['inputSearch']) ? $_GET['inputSearch'] : '' ?>">
                 </div>
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 
                         <?php foreach ($domainArray as $domain) { ?>
                             <div class="form-check col-10 ms-3">
-                                <input class="form-check-input" type="checkbox" name="domaineName[]" value="<?= $domain["name"] ?>" id="<?= $domain["id"] ?>" <?= isset($_POST['domaineName']) && in_array($domain["name"], $_POST['domaineName'])  ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="checkbox" name="domaineName[]" value="<?= $domain["name"] ?>" id="<?= $domain["id"] ?>" <?= isset($_POST['domaineName']) && in_array($domain["name"], $_GET['domaineName'])  ? 'checked' : '' ?>>
                                 <label class="form-check-label text-white" for="<?= $domain["id"] ?>">
 
                                     <?= $domain["name"] ?>
@@ -72,7 +72,7 @@ require '../controller/controller_filtresCandidats.php';
 
                         <?php foreach ($contractArray as $contract) { ?>
                             <div class="form-check col-10 ms-3">
-                                <input class="form-check-input" type="checkbox" name="contractName[]" value="<?= $contract["name"] ?>" id="<?= $contract["name"] ?>" <?=  isset($_POST['contractName']) && in_array($contract["name"], $_POST['contractName'])  ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="checkbox" name="contractName[]" value="<?= $contract["name"] ?>" id="<?= $contract["name"] ?>" <?=  isset($_GET['contractName']) && in_array($contract["name"], $_GET['contractName'])  ? 'checked' : '' ?>>
                                 <label class="form-check-label text-white" for="<?= $contract["name"] ?>">
 
                                     <?= $contract["name"] ?>
@@ -80,10 +80,10 @@ require '../controller/controller_filtresCandidats.php';
                             </div>
                         <?php } ?>
 
-                        <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
+                        <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES PREFERENTIELLES POUR LE GETE</b></p>
                         <?php foreach ($profilsArray as $competences) { ?>
                             <div class="form-check col-10 ms-3">
-                                <input class="form-check-input" type="checkbox" name="profilName[]" value="<?= $competences["name"] ?>" id="<?= $competences["name"] ?>" <?=  isset($_POST['profilName']) && in_array($competences["name"], $_POST['profilName'])  ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="checkbox" name="profilName[]" value="<?= $competences["name"] ?>" id="<?= $competences["name"] ?>" <?=  isset($_GET['profilName']) && in_array($competences["name"], $_GET['profilName'])  ? 'checked' : '' ?>>
                                 <label class="form-check-label text-white" for="<?= $competences["name"] ?>">
 
                                     <?= $competences["name"] ?> : <?= $competences["talents"] ?>
@@ -94,7 +94,7 @@ require '../controller/controller_filtresCandidats.php';
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
                         <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
                         <div class="d-flex">
-                            <input type="number" value="<?= isset($_POST['experienceYears']) ? intval($_POST['experienceYears']) : 0 ?>" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
+                            <input type="number" value="<?= isset($_GET['experienceYears']) ? intval($_GET['experienceYears']) : 0 ?>" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
                             <button class="btnSearch btn text-white mt-3 me-3 mb-3" name="searchFilters" type="submit">Search</button>
                         </div>
                     </form>
@@ -114,15 +114,15 @@ require '../controller/controller_filtresCandidats.php';
 
             </div>
 
-            <form action="" method="POST">
+            <form action="" method="GET">
                 <div class="d-flex justify-content-center m-2">
-                <input type="search" placeholder="ville, mots-clés" id="inputSearch" name="inputSearch" class="inputSearch" value="<?= isset($_POST['inputSearch']) ? $_POST['inputSearch'] : '' ?>">
+                <input type="search" placeholder="ville, mots-clés" id="inputSearch" name="inputSearch" class="inputSearch" value="<?= isset($_GET['inputSearch']) ? $_GET['inputSearch'] : '' ?>">
                 </div>
                 <p class="border-bottom mb-4 ms-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 
                 <?php foreach ($domainArray as $domain) { ?>
                     <div class="form-check col-10 ms-3">
-                        <input class="form-check-input" type="checkbox" name="domaineName[]" value="<?= $domain["name"] ?>" id="<?= $domain["id"] ?>" <?= isset($_POST['domaineName']) && in_array($domain["name"], $_POST['domaineName'])  ? 'checked' : '' ?>>
+                        <input class="form-check-input" type="checkbox" name="domaineName[]" value="<?= $domain["name"] ?>" id="<?= $domain["id"] ?>" <?= isset($_GET['domaineName']) && in_array($domain["name"], $_GET['domaineName'])  ? 'checked' : '' ?>>
                         <label class="form-check-label text-white" for="<?= $domain["id"] ?>">
 
                             <?= $domain["name"] ?>
@@ -138,7 +138,7 @@ require '../controller/controller_filtresCandidats.php';
 
                 <?php foreach ($contractArray as $contract) { ?>
                     <div class="form-check col-10 ms-3">
-                        <input class="form-check-input" type="checkbox" name="contractName[]" value="<?= $contract["name"] ?>" id="<?= $contract["name"] ?>" <?=  isset($_POST['contractName']) && in_array($contract["name"], $_POST['contractName'])  ? 'checked' : '' ?>>
+                        <input class="form-check-input" type="checkbox" name="contractName[]" value="<?= $contract["name"] ?>" id="<?= $contract["name"] ?>" <?=  isset($_GET['contractName']) && in_array($contract["name"], $_GET['contractName'])  ? 'checked' : '' ?>>
                         <label class="form-check-label text-white" for="<?= $contract["name"] ?>">
 
                             <?= $contract["name"] ?>
@@ -149,7 +149,7 @@ require '../controller/controller_filtresCandidats.php';
                 <p class="border-bottom m-4 p-3 col-10 text-white"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
                 <?php foreach ($profilsArray as $competences) { ?>
                     <div class="form-check col-10 ms-3">
-                        <input class="form-check-input" type="checkbox" name="profilName[]" value="<?= $competences["name"] ?>" id="<?= $competences["name"] ?>" <?=  isset($_POST['profilName']) && in_array($competences["name"], $_POST['profilName'])  ? 'checked' : '' ?>>
+                        <input class="form-check-input" type="checkbox" name="profilName[]" value="<?= $competences["name"] ?>" id="<?= $competences["name"] ?>" <?=  isset($_GET['profilName']) && in_array($competences["name"], $_GET['profilName'])  ? 'checked' : '' ?>>
                         <label class="form-check-label text-white" for="<?= $competences["name"] ?>">
 
                             <?= $competences["name"] ?> : <?= $competences["talents"] ?>
@@ -161,7 +161,7 @@ require '../controller/controller_filtresCandidats.php';
                 <p class="border-bottom m-4 p-3 col-10 text-white"><b>EXPERIENCE</b></p>
                 <label for="experienceYear" class="ms-3 text-white">Nombre minimum d'années d'expériences:</label>
                 <div class="d-flex">
-                    <input type="number" value="<?= isset($_POST['experienceYears']) ? intval($_POST['experienceYears']) : 0 ?>" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
+                    <input type="number" value="<?= isset($_GET['experienceYears']) ? intval($_GET['experienceYears']) : 0 ?>" name="experienceYears" class="ms-3 me-2 mt-3 inputSearch form-control pe-3 text-center" min="0" max="50">
 
                 </div>
                 <div class="d-flex justify-content-center">

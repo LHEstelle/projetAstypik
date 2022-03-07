@@ -38,10 +38,10 @@ include 'filtresCandidat.php';
 
     <?php include 'menuRecruteurs.php' ?>
 
-    <h1 class="text-center mt-4"><b><?= isset($_POST['inputSearch']) ? htmlspecialchars(trim(strip_tags($_POST['inputSearch']))) : '' ?></b></h1>
-    <p class="text-center text-secondary"><?= isset($_POST['domaineName']) ? implode(',',$_POST['domaineName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_POST['contractName']) ? implode(',',$_POST['contractName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_POST['profilName']) ? implode(',',$_POST['profilName']) : '' ?> </p>
+    <h1 class="text-center mt-4"><b><?= isset($_GET['inputSearch']) ? htmlspecialchars(trim(strip_tags($_GET['inputSearch']))) : '' ?></b></h1>
+    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',',$_GET['domaineName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_GET['contractName']) ? implode(',',$_GET['contractName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_GET['profilName']) ? implode(',',$_GET['profilName']) : '' ?> </p>
     <p class="text-center text-secondary"> <?= $exp ?? '' ?> an(s) exp.</p>
     <div class="d-flex justify-content-center">
         <a href="superCactusR.php">

@@ -217,72 +217,72 @@ class Candidat extends DataBase
         $resultQuery->execute();
         return $resultQuery->fetch();
     }
-    public function getAllCandidatesContractSearch(string $contractName): array
-    {
-        $base = $this->connectDb();
-        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName', domaine.id AS 'domaineID', domaine.name AS 'domaineName', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
-    FROM `candidat`
-   INNER JOIN `profils` ON id_profils = profils.id
-   INNER JOIN  `contract` ON id_contract = contract.id
-   INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    WHERE contract.name = :contractName
-    ORDER BY candidat.id  DESC";
-        $resultQuery = $base->prepare($sql);
-        $resultQuery->execute(array(
-            'contractName' => $contractName,
-        ));
-        return $resultQuery->fetchAll();
-    }
-    public function getAllCandidatesDomaineSearch(string $domaineName): array
-    {
-        $base = $this->connectDb();
-        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
-    FROM `candidat`
-   INNER JOIN `profils` ON id_profils = profils.id
-   INNER JOIN  `contract` ON id_contract = contract.id
-   INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    WHERE domaine.name = :domaineName
-    ORDER BY candidat.id  DESC";
-        $resultQuery = $base->prepare($sql);
-        $resultQuery->execute(array(
-            'domaineName' => $domaineName,
-        ));
-        return $resultQuery->fetchAll();
-    }
-    public function getAllCandidatesProfilSearch(string $profilName): array
-    {
-        $base = $this->connectDb();
-        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
-    FROM `candidat`
-   INNER JOIN `profils` ON id_profils = profils.id
-   INNER JOIN  `contract` ON id_contract = contract.id
-   INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    WHERE profils.name = :profilName
-    ORDER BY candidat.id  DESC";
-        $resultQuery = $base->prepare($sql);
-        $resultQuery->execute(array(
+//     public function getAllCandidatesContractSearch(string $contractName): array
+//     {
+//         $base = $this->connectDb();
+//         $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName', domaine.id AS 'domaineID', domaine.name AS 'domaineName', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+//     FROM `candidat`
+//    INNER JOIN `profils` ON id_profils = profils.id
+//    INNER JOIN  `contract` ON id_contract = contract.id
+//    INNER JOIN  `domaine` ON id_domaine = domaine.id 
+//     WHERE contract.name = :contractName
+//     ORDER BY candidat.id  DESC";
+//         $resultQuery = $base->prepare($sql);
+//         $resultQuery->execute(array(
+//             'contractName' => $contractName,
+//         ));
+//         return $resultQuery->fetchAll();
+//     }
+//     public function getAllCandidatesDomaineSearch(string $domaineName): array
+//     {
+//         $base = $this->connectDb();
+//         $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+//     FROM `candidat`
+//    INNER JOIN `profils` ON id_profils = profils.id
+//    INNER JOIN  `contract` ON id_contract = contract.id
+//    INNER JOIN  `domaine` ON id_domaine = domaine.id 
+//     WHERE domaine.name = :domaineName
+//     ORDER BY candidat.id  DESC";
+//         $resultQuery = $base->prepare($sql);
+//         $resultQuery->execute(array(
+//             'domaineName' => $domaineName,
+//         ));
+//         return $resultQuery->fetchAll();
+//     }
+//     public function getAllCandidatesProfilSearch(string $profilName): array
+//     {
+//         $base = $this->connectDb();
+//         $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+//     FROM `candidat`
+//    INNER JOIN `profils` ON id_profils = profils.id
+//    INNER JOIN  `contract` ON id_contract = contract.id
+//    INNER JOIN  `domaine` ON id_domaine = domaine.id 
+//     WHERE profils.name = :profilName
+//     ORDER BY candidat.id  DESC";
+//         $resultQuery = $base->prepare($sql);
+//         $resultQuery->execute(array(
 
-            'profilName' => $profilName,
-        ));
-        return $resultQuery->fetchAll();
-    }
-    public function getAllCandidatesExperienceYearsSearch(string $experience): array
-    {
-        $base = $this->connectDb();
-        $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
-    FROM `candidat`
-   INNER JOIN `profils` ON id_profils = profils.id
-   INNER JOIN  `contract` ON id_contract = contract.id
-   INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    WHERE candidat.experienceYears >= :experience
-    ORDER BY candidat.id  DESC";
-        $resultQuery = $base->prepare($sql);
-        $resultQuery->execute(array(
+//             'profilName' => $profilName,
+//         ));
+//         return $resultQuery->fetchAll();
+//     }
+//     public function getAllCandidatesExperienceYearsSearch(string $experience): array
+//     {
+//         $base = $this->connectDb();
+//         $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', contract.name AS 'contractName[]', domaine.id AS 'domaineID', domaine.name AS 'domaineName[]', profils.name AS 'profilColor', profils.talents AS 'profilTalents', profils.id AS 'profilID'
+//     FROM `candidat`
+//    INNER JOIN `profils` ON id_profils = profils.id
+//    INNER JOIN  `contract` ON id_contract = contract.id
+//    INNER JOIN  `domaine` ON id_domaine = domaine.id 
+//     WHERE candidat.experienceYears >= :experience
+//     ORDER BY candidat.id  DESC";
+//         $resultQuery = $base->prepare($sql);
+//         $resultQuery->execute(array(
 
-            'experience' => $experience,
-        ));
-        return $resultQuery->fetchAll();
-    }
+//             'experience' => $experience,
+//         ));
+//         return $resultQuery->fetchAll();
+//     }
     public function getAllCandidatesFilters(string $contract, string $domaine, string $profil, int $exp, string $terme): array
     {
         $base = $this->connectDb();

@@ -154,4 +154,25 @@ public function getAlloffersFilters(string $contract, string $domaine, string $p
     $resultQuery->execute();
    return $resultQuery->fetchAll();
 }
+public function getAlloffersFiltersFromOneRecrutor(string $mail, string $contract, string $domaine, string $profil, int $exp, string $terme): array
+{
+    $base = $this->connectDb();
+    $sql = "SELECT offre.id AS 'idAnnonce', job, experienceYear,  date_format(startDate, '%d/%m/%Y') AS 'startDate', date_format(publicationDate, '%d/%m/%Y') AS 'publicationDate', id_recruteur, id_domaine, id_contract, offre.description AS 'offerDescription', contract.id AS 'contractID', contract.name AS 'contractName', recruteur.id AS 'recruteurID', recruteur.name AS 'recruteurName', siretNumber, phone, mail, city, postalCode, adress, password, pseudo, profilPicture, contract.name AS 'contractName', domaine.name AS 'domaine.name', profils.id AS 'idProfil', profils.name AS 'profilColor'
+    FROM `offre`
+   INNER JOIN `recruteur` ON id_recruteur = recruteur.id
+   INNER JOIN  `contract` ON id_contract = contract.id
+   INNER JOIN  `domaine` ON id_domaine = domaine.id 
+   INNER JOIN  `profils` ON id_profils = profils.id 
+    WHERE recruteur.mail=".$mail." AND (recruteur.city LIKE " . $terme . " OR offre.description LIKE " . $terme . " OR offre.job LIKE " . $terme . " OR recruteur.name LIKE " . $terme . " OR recruteur.pseudo LIKE " . $terme . " OR profils.name LIKE " . $terme . " OR profils.talents LIKE " . $terme . " OR domaine.name LIKE " . $terme . " OR contract.name LIKE " . $terme . ") AND contract.name IN (".$contract.") AND domaine.name IN (".$domaine.") AND profils.name IN (".$profil.") AND offre.experienceYear >= ".$exp."
+    ORDER BY offre.id  DESC";
+    $resultQuery = $base->prepare($sql);
+    $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+    $resultQuery->bindValue(':contract', $contract, PDO::PARAM_STR);
+    $resultQuery->bindValue(':domaine', $domaine, PDO::PARAM_STR);
+    $resultQuery->bindValue(':profil', $profil, PDO::PARAM_STR);
+    $resultQuery->bindValue(':exp', $exp, PDO::PARAM_INT);
+    $resultQuery->bindValue(':terme', $terme, PDO::PARAM_STR);
+    $resultQuery->execute();
+   return $resultQuery->fetchAll();
+}
 }

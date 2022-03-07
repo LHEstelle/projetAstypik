@@ -43,7 +43,7 @@ require_once '../controller/controller_annonceRecruteurZoom.php';
                             <h1 class="text-center mt-4 ms-2"><?= $annonceInfoArray['job']   ?></h1>
                         </div>
                         <p class="text-center ms-2"><?= $annonceInfoArray['recruteurName']   ?></p>
-                        <p class="text-center ms-2"><?= $annonceInfoArray['contractName']   ?></p>
+                        <p class="text-center ms-2"><?= $annonceInfoArray['domaine.name']   ?> - <?= $annonceInfoArray['contractName']   ?> - <?= isset($annonceInfoArray['experienceYear']) ? $annonceInfoArray['experienceYear'] : '0'  ?> ans d'exp.minimum</p>
                         <p class="text-center ms-2"> offre à pourvoir à partir du : <?= $annonceInfoArray['startDate'] ?></p>
                         <i class="far fa-heart d-flex text-white justify-content-end fs-3 mb-5 me-5" onclick="setLike()" id="heartIconEmpty"></i>    
                     </div>

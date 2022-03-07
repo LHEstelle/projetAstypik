@@ -72,7 +72,7 @@ require_once '../controller/controller_profilRecruteur.php';
     <div class="ms-3">
         <form enctype="multipart/form-data" method="POST" action="">
             <div class="d-flex justify-content-center mt-4">
-                <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "" ?>" alt="enterpriseImg" class="imageProfil3 p-0">
+                <img src="../assets/img/<?= $entrepriseInfoArray['profilPicture'] ?? "../assets/img/avatar.jpg" ?>" alt="enterpriseImg" class="imageProfil3 p-0">
             </div>
 
             <div class="d-flex justify-content-center text-center">

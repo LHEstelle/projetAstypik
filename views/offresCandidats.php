@@ -38,8 +38,11 @@ include 'filtresCandidat.php';
 </head>
 <div class="col-lg-9">
     <?php include 'menuCandidats.php'; ?>
-    <h1 class="text-center mt-4"><b>Chargé de communication</b></h1>
-    <p class="text-center text-secondary">CDI - 2 ans d'expérience</p>
+    <h1 class="text-center mt-4"><b><?= isset($_GET['inputSearch']) ? htmlspecialchars(trim(strip_tags($_GET['inputSearch']))) : '' ?></b></h1>
+    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',',$_GET['domaineName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_GET['contractName']) ? implode(',',$_GET['contractName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_GET['profilName']) ? implode(',',$_GET['profilName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= $exp ?? '' ?> an(s) exp.</p>
     <div class="d-flex justify-content-center">
         <a href="superCactus.php">
             <p class="text-center superCactus m-2">SuperCactus</p>
