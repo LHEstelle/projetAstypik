@@ -38,8 +38,11 @@ include 'filtresCandidat.php';
 
     <?php include 'menuRecruteurs.php' ?>
 
-    <h1 class="text-center mt-4"><b>Chargé de communication</b></h1>
-    <p class="text-center text-secondary"><?= $filtersArray['domaine'] ?? '' ?><?= $filtersArray['contract'] ?? '' ?><?= $filtersArray['profil'] ?? '' ?><?= $filtersArray['experience'] ?? '' ?></p>
+    <h1 class="text-center mt-4"><b><?= isset($_POST['inputSearch']) ? htmlspecialchars(trim(strip_tags($_POST['inputSearch']))) : '' ?></b></h1>
+    <p class="text-center text-secondary"><?= isset($_POST['domaineName']) ? implode(',',$_POST['domaineName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_POST['contractName']) ? implode(',',$_POST['contractName']) : '' ?> </p>
+    <p class="text-center text-secondary">  <?= isset($_POST['profilName']) ? implode(',',$_POST['profilName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= $exp ?? '' ?> an(s) exp.</p>
     <div class="d-flex justify-content-center">
         <a href="superCactusR.php">
             <p class="text-center superCactus m-2">SuperCactus</p>

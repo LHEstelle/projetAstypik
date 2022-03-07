@@ -13,7 +13,7 @@ var_dump($_POST);
 if (isset($_POST["searchFilters"])) {
     if (isset($_POST['contractName'])) {
         $contract = '"'. implode('","', $_POST['contractName']) .'"';
-        var_dump($contract);
+        echo $contract;
     } else {
         $contract = '"CDI","CDD","contrat d'."'".'apprentissage","contrat de professionalisation","stage","indépendant"';
         var_dump($contract);
@@ -36,24 +36,21 @@ if (isset($_POST["searchFilters"])) {
     if (isset($_POST['experienceYears'])) {
 
         $exp =  intval($_POST['experienceYears']);
+  
         var_dump($exp);
         
     } else {
         $exp = '';
             var_dump($exp);
+    }if (isset($_POST['inputSearch'])) {
+
+        $terme = '"%'. htmlspecialchars(trim(strip_tags($_POST['inputSearch']))) . '%"';
+        var_dump($terme);
     }
     var_dump($profil);
     $candidates = new Candidat;
-    $allCandidatesArray = $candidates->getAllCandidatesFilters($contract, $domaine, $profil, $exp);
-    var_dump($allCandidatesArray);
-    var_dump($profil);
-    echo "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, date_format(birthDate, '%d/%m/%Y') AS 'birthDate', phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', domaine.id AS 'domaineID',  profils.id AS 'profilid', contract.name AS 'contractName', domaine.name AS'domaineName', profils.name AS 'profilColor'
-    FROM candidat
-    INNER JOIN `profils` ON id_profils = profils.id
-    INNER JOIN  `contract` ON id_contract = contract.id
-    INNER JOIN  `domaine` ON id_domaine = domaine.id 
-    WHERE contract.name IN (".$contract.") AND domaine.name IN (".$domaine.") AND profils.name IN (".$profil.") AND candidat.experienceYears >= ".$exp."
-    ORDER BY candidat.id  DESC";
+    $allCandidatesArray = $candidates->getAllCandidatesFilters($contract, $domaine, $profil, $exp, $terme);
+    var_dump($contract, $domaine, $profil, $exp, $terme);
 } else {
     $candidates = new Candidat;
     $allCandidatesArray = $candidates->getAllCandidates();

@@ -92,7 +92,7 @@ if (!empty($_POST['submitButton'])) {
 }
 
 if (isset($_POST["deleteButton"])) {
-    $id = intval($_POST["id"]);
+    $id = intval($_SESSION["id"]);
     $entreprise = new Entreprise();
     $entrepriseDeleteArray = $entreprise->deleteEnterprise($id);
     session_unset();

@@ -50,7 +50,7 @@ require '../controller/controller_filtresCandidats.php';
                 <div class="div">
                     <form action="" method="POST">
                     <div class="d-flex justify-content-center m-2">
-                <input type="search" name="inputSearch" class="inputSearch">
+                <input type="search" placeholder="ville, mots-clés" name="inputSearch" class="inputSearch" value="<?= isset($_POST['inputSearch']) ? $_POST['inputSearch'] : '' ?>">
                 </div>
                         <p class="border-bottom m-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 
@@ -116,7 +116,7 @@ require '../controller/controller_filtresCandidats.php';
 
             <form action="" method="POST">
                 <div class="d-flex justify-content-center m-2">
-                <input type="search" name="inputSearch" class="inputSearch">
+                <input type="search" placeholder="ville, mots-clés" id="inputSearch" name="inputSearch" class="inputSearch" value="<?= isset($_POST['inputSearch']) ? $_POST['inputSearch'] : '' ?>">
                 </div>
                 <p class="border-bottom mb-4 ms-4 p-3 col-10 text-white"><b>TYPE DE POSTE</b></p>
 

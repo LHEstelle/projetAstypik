@@ -283,7 +283,7 @@ class Candidat extends DataBase
         ));
         return $resultQuery->fetchAll();
     }
-    public function getAllCandidatesFilters(string $contract, string $domaine, string $profil, int $exp): array
+    public function getAllCandidatesFilters(string $contract, string $domaine, string $profil, int $exp, string $terme): array
     {
         $base = $this->connectDb();
         $sql = "SELECT candidat.id AS 'idCandidat', lastName, firstName, candidat.description AS 'candidateDescription', pseudo, birthDate, phone, mail, city, postalCode, adress, profilPicture, experienceYears, cvPicture, contract.id AS 'contractID', domaine.id AS 'domaineID',  profils.id AS 'profilid', contract.name AS 'contractName', domaine.name AS'domaineName', profils.name AS 'profilColor'
@@ -291,14 +291,24 @@ class Candidat extends DataBase
         INNER JOIN `profils` ON id_profils = profils.id
         INNER JOIN  `contract` ON id_contract = contract.id
         INNER JOIN  `domaine` ON id_domaine = domaine.id 
-        WHERE contract.name IN (".$contract.") AND domaine.name IN (".$domaine.") AND profils.name IN (".$profil.") AND candidat.experienceYears >= ".$exp."
+        WHERE (candidat.city LIKE " . $terme . " OR candidat.description LIKE " . $terme . " OR candidat.lastname LIKE " . $terme . " OR candidat.firstname LIKE " . $terme . " OR candidat.pseudo LIKE " . $terme . " OR profils.name LIKE " . $terme . " OR profils.talents LIKE " . $terme . " OR domaine.name LIKE " . $terme . " OR contract.name LIKE " . $terme . ") AND contract.name IN (".$contract.") AND domaine.name IN (".$domaine.") AND profils.name IN (".$profil.") AND candidat.experienceYears >= ".$exp."
         ORDER BY candidat.id  DESC";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':contract', $contract, PDO::PARAM_STR);
         $resultQuery->bindValue(':domaine', $domaine, PDO::PARAM_STR);
         $resultQuery->bindValue(':profil', $profil, PDO::PARAM_STR);
         $resultQuery->bindValue(':exp', $exp, PDO::PARAM_INT);
+        $resultQuery->bindValue(':terme', $terme, PDO::PARAM_STR);
         $resultQuery->execute();
        return $resultQuery->fetchAll();
+    }
+    public function addLikeRecrutor(int $idCandidate, int $idRecrutor): void
+    {
+        $db = $this->connectDb();
+        $sql = "INSERT INTO `likerecrutor` (`id`, `id_recruteur`) VALUES (:idCandidate, :idRecrutor)";
+        $query = $db->prepare($sql);
+        $query->bindValue(':idCandidate', $idCandidate, PDO::PARAM_INT);
+        $query->bindValue(':idRecrutor', $idRecrutor, PDO::PARAM_INT);
+        $query->execute();
     }
 }

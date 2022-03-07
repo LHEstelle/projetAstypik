@@ -117,11 +117,15 @@ class Entreprise extends DataBase
 
 
         $base = $this->connectDb();
-        $sql = "DELETE FROM recruteur
-        WHERE id=:id;";
+        $sql = "SET FOREIGN_KEY_CHECKS=0;
+        DELETE  likerecrutor, likecandidates, offre, recruteur FROM likerecrutor
+       INNER JOIN recruteur ON likerecrutor.id_recruteur = recruteur.id
+        INNER JOIN offre ON offre.id_recruteur = recruteur.id
+        INNER JOIN likecandidates ON likecandidates.id = offre.id
+        WHERE recruteur.id=:id;
+        SET FOREIGN_KEY_CHECKS=1;";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
         $resultQuery->execute();
     }
-
 }
