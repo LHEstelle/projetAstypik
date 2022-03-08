@@ -42,7 +42,7 @@ include 'filtresCandidat.php';
             <?php foreach ($annoncesArray as $annonces) { ?>
                 <form action="" method="POST">
                     <div class="row mt-5 m-2 pb-5 border-bottom text-center d-flex justify-content-center">
-
+                   
                         <?php if (isset($annonces['profilColor']) && $annonces['profilColor'] == 'superCactus') {  ?>
                             <div class="jobColorRed ms-2">
                             </div>
@@ -59,12 +59,12 @@ include 'filtresCandidat.php';
                             </div>
                         <?php  } ?>
 
-
+                     
                         <div class="jobName col-lg-4 col-12 ms-3 me-3">
-
+                        <a href="annonceRecruteurZoom.php?id=<?= $annonces['idAnnonce'] ?>">
                             <h1 class="fs-3"><b><?= $annonces['job'] ?></b></h1>
                             <p class="text-secondary"><?= $annonces['contractName'] ?> - <?= $annonces['experienceYear'] ?> ans d'expérience</p>
-
+                            </a>
                         </div>
                         <!-- <p class="mt-3 col"><?= $event['likes'] ?> candidats ont liké votre annonce</p> -->
                         <div class="col-lg-3 col-12">
@@ -102,6 +102,7 @@ include 'filtresCandidat.php';
                 </div>
 
         </div>
+                        
     </div>
 
 

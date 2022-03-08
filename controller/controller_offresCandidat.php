@@ -47,7 +47,7 @@ if (isset($_GET["searchFilters"])) {
         $terme = '"%'. htmlspecialchars(trim(strip_tags($_GET['inputSearch']))) . '%"';
   
     }
-    var_dump($profil);
+  
     $offers = new Annonce;
     $allOfferssArray = $offers->getAlloffersFilters($contract, $domaine, $profil, $exp, $terme);
 
@@ -56,7 +56,18 @@ if (isset($_GET["searchFilters"])) {
     $allOfferssArray = $offers -> getAllOffers();
 }
 
-
+if (isset($_POST['idOfferLike'])) {
+    $idOffer = $_POST['idOfferLike'];
+    $idCandidate = $_SESSION['id'];
+    $likeObj = new Likes;
+    $addLikes = $likeObj->addLikeCandidate($idOffer, $idCandidate);
+}
+if (isset($_POST['idOfferDislike'])) {
+    $idOffer = $_POST['idOfferDislike'];
+    $idCandidate = $_SESSION['id'];
+    $likeObj = new Likes;
+    $deleteLikes = $likeObj->deleteLikeCandidate($idOffer, $idCandidate);
+} 
 
 
 if(empty($_SESSION)){

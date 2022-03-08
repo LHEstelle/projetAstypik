@@ -3,6 +3,7 @@
 require_once '../config.php';
 require_once '../models/database.php';
 require_once '../models/annonces.php';
+require_once '../models/likes.php';
 
 session_start();
 
@@ -12,7 +13,20 @@ if (isset($_GET["id"])) {
     $annonceInfoArray= $annonce-> getOneAnnonceDetails($id);
 
 }
-
+$likesObj = new Likes();
+$likesCandidateArray = $likesObj->getAllLikesFromOneCandidate($_SESSION['id']);
+if (isset($_POST['idOfferLike'])) {
+    $idOffer = $_POST['idOfferLike'];
+    $idCandidate = $_SESSION['id'];
+    $likeObj = new Likes;
+    $addLikes = $likeObj->addLikeCandidate($idOffer, $idCandidate);
+}
+if (isset($_POST['idOfferDislike'])) {
+    $idOffer = $_POST['idOfferDislike'];
+    $idCandidate = $_SESSION['id'];
+    $likeObj = new Likes;
+    $deleteLikes = $likeObj->deleteLikeCandidate($idOffer, $idCandidate);
+} 
 if(empty($_SESSION)){
     header('Location: pageErreur.php');
 }

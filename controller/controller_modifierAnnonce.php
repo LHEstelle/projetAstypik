@@ -61,14 +61,19 @@ if (isset($_GET["id"])) {
         if (isset($_POST["startDate"])) {
             if (empty($_POST["startDate"])) {
                 $arrayErrors["startDate"] = "Veuillez saisir une date de début";
+            } else {
+                $startDate = $_POST['startDate'];
+                $aujourdhui = date("Y-m-d");
+                if ($startDate < $aujourdhui) {
+                    $arrayErrors["startDate"] = "La date de début ne doit pas être antérieure ou égale à aujourd'hui";
+                }
             }
-        } else {
-            $arrayErrors["startDate"] = "Veuillez saisir une date de début";
         }
         if (isset($_POST["id_profils"])) {
             if (empty($_POST["id_profils"])) {
                 $arrayErrors["id_profils"] = "Veuillez saisir des compétences préférentielles";
-            }}
+            }
+        }
 
         if (isset($_POST["description"])) {
             if (empty($_POST["description"])) {
@@ -93,19 +98,18 @@ if (isset($_GET["id"])) {
             $annonce = new Annonce();
             $annonceArray = $annonce->modifyAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idAnnonce, $idProfils);
             $modifyAnnonceOk = true;
-            $annonceObj = new Annonce();
-            $annonceInfo = $annonceObj->getOneAnnonce($idAnnonce);
+            header('Location: annoncesRecruteur.php');
         }
     }
 }
-if(isset($_POST['idDeletePatient'])){
+if (isset($_POST['idDeletePatient'])) {
     var_dump($_POST);
     $id = htmlspecialchars(trim($_POST["idDeletePatient"]));
     $annonceObj = new Annonce;
-    $annonceDelete = $annonceObj -> deleteAnnonce($id);
+    $annonceDelete = $annonceObj->deleteAnnonce($id);
     header('location: annoncesRecruteur.php');
 }
 
-if(empty($_SESSION)){
+if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }

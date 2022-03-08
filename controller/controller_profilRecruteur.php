@@ -10,11 +10,6 @@ $regexPhone = "/^0[1-98][0-9]{8}$/";
 // Tableau vide qui va nous permettre de stocker les erreurs 
 $arrayErrors = [];
 
-
-
-var_dump($_COOKIE);
-var_dump($_SESSION);
-
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
 
@@ -50,10 +45,9 @@ if (isset($_POST["modifyButton"])) {
     } else if (!preg_match($regexPostalCode, $_POST["phone"])) {
         $arrayErrors["phone"] = "Format invalide";
     }
-    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) >25) {
+    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) > 35) {
         $arrayErrors["pseudo"] = "35 caractères maximum";
-    
-    } var_dump($arrayErrors);
+    }
     if (count($arrayErrors) == 0) {
         $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
         $city = htmlspecialchars(strtoupper(trim($_POST["city"])));
@@ -61,14 +55,12 @@ if (isset($_POST["modifyButton"])) {
         $adress = htmlspecialchars(trim($_POST["adress"]));
         $mail = htmlspecialchars(trim($_SESSION["mail"]));
         $phone = htmlspecialchars(trim($_POST["phone"]));
-      
+
         $id = $_SESSION['id'];
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone, $id);
         $modifyRecruteurOk = true;
         header('location: profilRecruteur.php');
-    
-        var_dump(strlen($_POST['pseudo']));
     }
 }
 if (!empty($_POST['submitButton'])) {
@@ -101,16 +93,15 @@ if (isset($_POST["deleteButton"])) {
     exit();
 }
 if (isset($_POST['deconnectButton'])) {
-   
-session_unset();
-session_destroy();
-setcookie(session_name(), '', time(), '/projet/');
-header('location:../index.php');
+
+    session_unset();
+    session_destroy();
+    setcookie(session_name(), '', time(), '/projet/');
+    header('location:../index.php');
     header('Location: ../views/index.php');
     exit();
- 
 }
 
-if(empty($_SESSION)){
+if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }

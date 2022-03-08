@@ -27,6 +27,9 @@ include 'filtresCandidat.php';
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
@@ -39,10 +42,10 @@ include 'filtresCandidat.php';
     <?php include 'menuRecruteurs.php' ?>
 
     <h1 class="text-center mt-4"><b><?= isset($_GET['inputSearch']) ? htmlspecialchars(trim(strip_tags($_GET['inputSearch']))) : '' ?></b></h1>
-    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',',$_GET['domaineName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_GET['contractName']) ? implode(',',$_GET['contractName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_GET['profilName']) ? implode(',',$_GET['profilName']) : '' ?> </p>
-    <p class="text-center text-secondary"> <?= $exp ?? '' ?> an(s) exp.</p>
+    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',', $_GET['domaineName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= isset($_GET['contractName']) ? implode(',', $_GET['contractName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= isset($_GET['profilName']) ? implode(',', $_GET['profilName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= $exp ?? '0' ?> an(s) exp.</p>
     <div class="d-flex justify-content-center">
         <a href="superCactusR.php">
             <p class="text-center superCactus m-2">SuperCactus</p>
@@ -108,21 +111,41 @@ include 'filtresCandidat.php';
                                         <div class="row d-flex align-text-bottom">
 
 
-                                            <i class="fa <?= in_array($event['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
-
+                                            <i id="<?= $event['idCandidat'] ?>" class="fa <?= in_array($event['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
+ 
                                         </div>
                                     </div>
+
                                 <?php } ?>
                                 <script>
                                     const test = document.querySelectorAll('.test');
                                     test.forEach(element => {
                                         element.addEventListener('click', function() {
                                             if (this.classList.contains('fa-heart-o')) {
-                                                this.classList.remove('fa-heart-o')
-                                                this.classList.add('fa-heart')
+                                                this.classList.remove('fa-heart-o');
+                                                this.classList.add('fa-heart');
+                                                let idCandidatLike = this.id
+                                                $.ajax({
+                                                    url: 'viewRH.php',
+                                                    type: 'post',
+                                                    data: {
+                                                        idCandidatLike: idCandidatLike,
+                                                    },
+                                                 
+                                                });
                                             } else {
                                                 this.classList.remove('fa-heart')
                                                 this.classList.add('fa-heart-o')
+                                                let idCandidatDislike = this.id
+                                                console.log(idCandidatDislike)
+                                                $.ajax({
+                                                    url: 'viewRH.php',
+                                                    type: 'post',
+                                                    data: {
+                                                        idCandidatDislike: idCandidatDislike,
+                                                    },
+                                                 
+                                                });
                                             }
                                         })
 

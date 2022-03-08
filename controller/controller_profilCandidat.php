@@ -14,7 +14,7 @@ $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];
 
 session_start();
-var_dump($_POST);
+
 
 $candidatInfo = new Candidat;
 $candidatInfoArray = $candidatInfo->getOneCandidate($_SESSION['mail']);
@@ -114,6 +114,9 @@ if (isset($_POST['modifyButton'])) {
             $arrayErrors["id_domaine"] = "Veuillez saisir le type de domaine recherché";
         }
     }
+    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) >35) {
+        $arrayErrors["pseudo"] = "35 caractères maximum";
+    } 
 
     if (count($arrayErrors) == 0) {
 
@@ -133,8 +136,6 @@ if (isset($_POST['modifyButton'])) {
         $idCandidat = $_SESSION['id'];
         $candidatObj = new Candidat();
         $modifyCandidat = $candidatObj->modifyCandidate($lastName,  $firstName,  $description,  $pseudo,  $birthDate,  $phone,  $city,  $postalCode,  $adress,  $experienceYears, $id_contract, $id_domaine, $idCandidat);
-var_dump($modifyCandidat);
-var_dump($_SESSION);
         $modifyCandidatOk = true;
 
     }

@@ -302,13 +302,4 @@ class Candidat extends DataBase
         $resultQuery->execute();
        return $resultQuery->fetchAll();
     }
-    public function addLikeRecrutor(int $idCandidate, int $idRecrutor): void
-    {
-        $db = $this->connectDb();
-        $sql = "INSERT INTO `likerecrutor` (`id`, `id_recruteur`) VALUES (:idCandidate, :idRecrutor)";
-        $query = $db->prepare($sql);
-        $query->bindValue(':idCandidate', $idCandidate, PDO::PARAM_INT);
-        $query->bindValue(':idRecrutor', $idRecrutor, PDO::PARAM_INT);
-        $query->execute();
-    }
 }

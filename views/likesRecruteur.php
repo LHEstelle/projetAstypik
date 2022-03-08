@@ -46,8 +46,10 @@ include 'filtresCandidat.php';
 
                     <div class="jobName col-lg-4 col-12 ms-3 me-3">
                         <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
-                            <h1 class="fs-3"><b> <?= $event['candidatePseudo'] ?> - <?= $event['firstName'] ?> <?= $event['lastName'] ?></b></h1>
-                            <p class="text-secondary"><?= $event['profilName'] ?> <?= $event['candidateCity'] ?></p>
+                            <h1 class="fs-3"><b><?= $event['firstName'] ?> <?= $event['lastName'] ?> </b></h1>
+                            <p class="text-secondary fw-lighter"> <?= $event['candidateCity'] ?> </p>
+                            <p class=""><?= $event['profilName'] ?></p>
+
                         </a>
                     </div>
 

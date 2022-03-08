@@ -2,7 +2,6 @@
 <html lang="fr">
     <?php
 require_once '../controller/controller_modifierAnnonce.php';
-
 ?>
 
 
@@ -13,6 +12,7 @@ require_once '../controller/controller_modifierAnnonce.php';
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- cdn -->
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
     <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -133,9 +133,11 @@ require_once '../controller/controller_modifierAnnonce.php';
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 <button type="submit" name="deleteButton" value="<?= $annonceInfo['idAnnonce'] ?>" class="btn btn-danger">Supprimer</button>
             </div>
-        
+
                     </form>
-        </div>
+        </div> 
+
+
 <?php  } ?>
         <<?php include 'footer.php' ?>
 

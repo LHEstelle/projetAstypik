@@ -10,26 +10,26 @@ require_once '../controller/controller_profilRecruteur.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    a[href="profilRecruteur.php"]
-    {
-        border-bottom: #E28850 6px solid;
-        text-decoration: none;
-        width: 14rem;
-    }
-    @media screen and (max-width: 1000px) {
-        a[href="profilRecruteur.php"]
-    {
-        border-bottom: #E28850 6px solid;
-        text-decoration: none;
-        width: 7rem;  
-    }
-    }
+        a[href="profilRecruteur.php"] {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 14rem;
+        }
+
+        @media screen and (max-width: 1000px) {
+            a[href="profilRecruteur.php"] {
+                border-bottom: #E28850 6px solid;
+                text-decoration: none;
+                width: 7rem;
+            }
+        }
     </style>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
@@ -59,7 +59,7 @@ require_once '../controller/controller_profilRecruteur.php';
     </div>
 
     <div class="pb-3">
-    <?php include 'menuRecruteurs.php' ?>
+        <?php include 'menuRecruteurs.php' ?>
     </div>
     </div>
 
@@ -143,10 +143,8 @@ require_once '../controller/controller_profilRecruteur.php';
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
-
 
 
     <?php include 'footer.php' ?>

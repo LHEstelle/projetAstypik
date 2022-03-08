@@ -54,10 +54,18 @@ if (isset($_GET["searchFilters"])) {
     $allCandidatesArray = $candidates->getAllCandidates();
 }
 
-//  else {
-//     $candidates = new Candidat;
-//     $allCandidatesArray = $candidates->getAllCandidates();
-// }
+if (isset($_POST['idCandidatLike'])) {
+    $idCandidate = $_POST['idCandidatLike'];
+    $idRecrutor = $_SESSION['id'];
+    $likeObj = new Likes;
+    $addLikes = $likeObj->addLikeRecrutor($idCandidate, $idRecrutor);
+}
+if (isset($_POST['idCandidatDislike'])) {
+    $idCandidate = $_POST['idCandidatDislike'];
+    $idRecrutor = $_SESSION['id'];
+    $likeObj = new Likes;
+    $deleteLikes = $likeObj->deleteLikeRecrutor($idCandidate, $idRecrutor);
+} 
 
 $likesObj = new Likes();
 $likesRecrutorArray = $likesObj->getAllLikesFromOneRecrutor($_SESSION['id']);
@@ -65,4 +73,4 @@ $likesRecrutorArray = $likesObj->getAllLikesFromOneRecrutor($_SESSION['id']);
 if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }
-var_dump($_SESSION);
+
