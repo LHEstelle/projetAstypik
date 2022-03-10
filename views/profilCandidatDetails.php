@@ -43,163 +43,175 @@ require_once '../controller/controller_profilCandidatDetails.php';
                 </button>
             </div>
         </a>
-
-        <div class="pb-3">
-            <?php include 'menuRecruteurs.php' ?>
-        </div>
+        <?php
+        if (isset($_SESSION['siretNumber'])) { ?>
+            <div class="pb-3">
+                <?php include 'menuRecruteurs.php' ?>
+            </div>
+        <?php } else { ?>
+            <div class="pb-3">
+                <?php include 'menuCandidats.php' ?>
+            </div>
+        <?php } ?>
     </div>
 
 
-        <div class="ms-3">
-            <div class="container text-center">
-                <div class="mb-5">
+    <div class="ms-3">
+        <div class="container text-center">
+            <div class="mb-5">
 
-                    <?php if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'superCactus') {  ?>
-                        <div class="cardInfosRed myShadow">
-                            <div class="cardDetailRed m-3 p-1 m-3 p-1">
+                <?php if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'superCactus') {  ?>
+                    <div class="cardInfosRed myShadow">
+                        <div class="cardDetailRed m-3 p-1 m-3 p-1">
 
-                            <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'peterPaon') {  ?>
-                                <div class="cardInfosYellow myShadow">
-                                    <div class="cardDetailYellow m-3 p-1">
+                        <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'peterPaon') {  ?>
+                            <div class="cardInfosYellow myShadow">
+                                <div class="cardDetailYellow m-3 p-1">
 
-                                    <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'ironSpoke') {  ?>
-                                        <div class="cardInfosBlue myShadow">
-                                            <div class="cardDetailBlue m-3 p-1">
+                                <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'ironSpoke') {  ?>
+                                    <div class="cardInfosBlue myShadow">
+                                        <div class="cardDetailBlue m-3 p-1">
 
-                                            <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'spiderLutin') {  ?>
-                                                <div class="cardInfosGreen myShadow">
-                                                    <div class="cardDetailGreen m-3 p-1">
+                                        <?php  } else if (isset($candidatInfoArray['profilColor']) && $candidatInfoArray['profilColor'] == 'spiderLutin') {  ?>
+                                            <div class="cardInfosGreen myShadow">
+                                                <div class="cardDetailGreen m-3 p-1">
 
-                                                    <?php  } ?>
+                                                <?php  } ?>
 
 
-                                            
-                                                    <div class="d-flex justify-content-center mt-4">
 
-                                                        <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
+                                                <div class="d-flex justify-content-center mt-4">
+
+                                                    <img src="../assets/img/<?= $candidatInfoArray['profilPicture'] ?? "" ?>" alt="candidateImg" class="imageProfil3 p-0">
+                                                </div>
+
+
+
+
+                                                <h2 class="m-3 text-white"> <?= $candidatInfoArray['lastName'] ?> <?= $candidatInfoArray['firstName'] ?></h2>
+
+                                                <p class="m-3 text-white"><?= $candidatInfoArray['pseudo'] ?></p>
+                                                <p class="m-3 text-white"><?= $candidatInfoArray['birthDate'] ?></p>
+                                                <div class="d-flex justify-content-end m-4">
+                                                    <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
+                                                </div>
+                                                </div>
+
+                                                <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
+                                                    <div class="mt-3"><?= $candidatInfoArray['profilName'] ?> <p><?= $candidatInfoArray['profilTalents'] ?></p>
                                                     </div>
 
+                                                </div>
 
+                                                <?php if (isset($_POST['conversationButton'])) {  ?>
 
-
-                                                    <h2 class="m-3 text-white"> <?= $candidatInfoArray['lastName'] ?> <?= $candidatInfoArray['firstName'] ?></h2>
-
-                                                    <p class="m-3 text-white"><?= $candidatInfoArray['pseudo'] ?></p>
-                                                    <p class="m-3 text-white"><?= $candidatInfoArray['birthDate'] ?></p>
-                                                    <div class="d-flex justify-content-end m-4">
-                                                        <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
-                                                        <div class="mt-3"><?= $candidatInfoArray['profilName'] ?> <p><?= $candidatInfoArray['profilTalents'] ?></p>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <?php if (isset($_POST['conversationButton'])) {  ?>
-
-                                                        <div class="d-flex justify-content-center mt-3">
-                                                            <div class="coordonnees">
-                                                                <h4 class="text-center mt-3">COORDONNEES</h4>
-                                                                <div class="m-5 text-center">
-                                                                    <p class=""><?= $candidatInfoArray['adress']   ?> <?= $candidatInfoArray['postalCode']   ?> <?= $candidatInfoArray['city']   ?></p>
-                                                                </div>
-                                                                <div class="m-5 text-center">
-                                                                    <p class=""><?= $candidatInfoArray['mail']   ?></p>
-                                                                </div>
-                                                                <div class="m-5 text-center">
-                                                                    <p class=""><?= $candidatInfoArray['phone']   ?></p>
-                                                                </div>
+                                                    <div class="d-flex justify-content-center mt-3">
+                                                        <div class="coordonnees">
+                                                            <h4 class="text-center mt-3">COORDONNEES</h4>
+                                                            <div class="m-5 text-center">
+                                                                <p class=""><?= $candidatInfoArray['adress']   ?> <?= $candidatInfoArray['postalCode']   ?> <?= $candidatInfoArray['city']   ?></p>
+                                                            </div>
+                                                            <div class="m-5 text-center">
+                                                                <p class=""><?= $candidatInfoArray['mail']   ?></p>
+                                                            </div>
+                                                            <div class="m-5 text-center">
+                                                                <p class=""><?= $candidatInfoArray['phone']   ?></p>
                                                             </div>
                                                         </div>
+                                                    </div>
 
 
-                                                    <?php } ?>
+                                                <?php } ?>
 
-                                                    <h4 class="mt-4">SOUHAITS ET EXPERIENCES</h4>
-                                                    <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
+                                                <h4 class="mt-4">SOUHAITS ET EXPERIENCES</h4>
+                                                <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
 
 
-                                                    <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
-                                                    <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
-                                                        <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> an(s) d'expérience</p>
-                                                    <?php } ?>
+                                                <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
+                                                <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
+                                                    <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> an(s) d'expérience</p>
+                                                <?php } ?>
 
-                                                    <!-- Button trigger modal -->
+                                                <!-- Button trigger modal -->
+
+                                                <?php if (strpos($candidatInfoArray['cvPicture'], '.pdf') !== false) { ?>
+
+                                                    <embed src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" width=800 height=500 type='application/pdf' />
+
+                                                <?php } else { ?>
                                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
                                                     </button>
+                                                <?php  } ?>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
 
-                                                                </div>
-                                                                <div class="modal-body">
-
-                                                                    <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg">
-                                                                </div>
+                                                                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg">
                                                             </div>
                                                         </div>
+                                                    </div>
 
 
+                                                </div>
+                                                <div class="bgWhite">
+                                                    <div class="mt-5">
+                                                        <h4>SA DESCRIPTION</h4>
                                                     </div>
-                                                    <div class="bgWhite">
-                                                        <div class="mt-5">
-                                                            <h4>SA DESCRIPTION</h4>
-                                                        </div>
-                                                        <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
-                                                    </div>
+                                                    <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                    <script>
-                                        const test = document.querySelectorAll('.test');
-                                        test.forEach(element => {
-                                            element.addEventListener('click', function() {
-                                                if (this.classList.contains('fa-heart-o')) {
-                                                    this.classList.remove('fa-heart-o');
-                                                    this.classList.add('fa-heart');
-                                                    let idCandidatLike = this.id
-                                                    $.ajax({
-                                                        url: 'viewRH.php',
-                                                        type: 'post',
-                                                        data: {
-                                                            idCandidatLike: idCandidatLike,
-                                                        },
+                            </div>
+                            <script>
+                                const test = document.querySelectorAll('.test');
+                                test.forEach(element => {
+                                    element.addEventListener('click', function() {
+                                        if (this.classList.contains('fa-heart-o')) {
+                                            this.classList.remove('fa-heart-o');
+                                            this.classList.add('fa-heart');
+                                            let idCandidatLike = this.id
+                                            $.ajax({
+                                                url: 'viewRH.php',
+                                                type: 'post',
+                                                data: {
+                                                    idCandidatLike: idCandidatLike,
+                                                },
 
-                                                    });
-                                                } else {
-                                                    this.classList.remove('fa-heart')
-                                                    this.classList.add('fa-heart-o')
-                                                    let idCandidatDislike = this.id
-                                                    console.log(idCandidatDislike)
-                                                    $.ajax({
-                                                        url: 'viewRH.php',
-                                                        type: 'post',
-                                                        data: {
-                                                            idCandidatDislike: idCandidatDislike,
-                                                        },
+                                            });
+                                        } else {
+                                            this.classList.remove('fa-heart')
+                                            this.classList.add('fa-heart-o')
+                                            let idCandidatDislike = this.id
+                                            console.log(idCandidatDislike)
+                                            $.ajax({
+                                                url: 'viewRH.php',
+                                                type: 'post',
+                                                data: {
+                                                    idCandidatDislike: idCandidatDislike,
+                                                },
 
-                                                    });
-                                                }
-                                            })
+                                            });
+                                        }
+                                    })
 
-                                        });
-                                    </script>
+                                });
+                            </script>
 
-                                    <?php include 'footer.php' ?>
-                             
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+                            <?php include 'footer.php' ?>
 
-                                <script src="../assets/js/script.js ">
-                                </script>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+                            <script src="../assets/js/script.js ">
+                            </script>
 </body>
 
 

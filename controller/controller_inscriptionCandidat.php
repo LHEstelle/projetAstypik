@@ -44,6 +44,8 @@ if (!empty($_POST)) {
             $age = $diff->format('%y');
             if($age<'16'){
                 $arrayErrors["birthdate"] = "Vous devez avoir 16ans minimum pour vous inscrire";
+            }else if($age > '100'){
+                $arrayErrors["birthdate"] = "Vous ne pouvez pas avoir plus de 100 ans";
             }
         }
     }
@@ -104,6 +106,7 @@ if (!empty($_POST)) {
 
             $lastName = htmlspecialchars(strtoupper(trim($_POST['lastname'])));
             $firstName = htmlspecialchars(ucwords(trim($_POST['firstname'])));
+            $description = 'en attente de description...';
             $birthDate = htmlspecialchars(trim($_POST['birthdate']));
             $phone = htmlspecialchars(trim($_POST['phone']));
             $mail = htmlspecialchars(trim($_POST['mail']));
@@ -114,10 +117,11 @@ if (!empty($_POST)) {
             $id_profils = htmlspecialchars(trim($_POST['id_profils']));
             $id_contract = htmlspecialchars(trim($_POST['id_contract']));
             $id_domaine = htmlspecialchars(trim($_POST['id_domaine']));
+            $experienceYears = 0;
             $cvPicture = htmlspecialchars(trim($_POST['cvPicture']));
             $profilPicture = htmlspecialchars(trim($_POST['profilPicture']));
             $candidatObj = new Candidat();
-            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine, $cvPicture, $profilPicture);
+            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $description, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine, $experienceYears, $cvPicture, $profilPicture);
             $addCandidatOk = true;
             session_start();
             $sessionObj = new Candidat;

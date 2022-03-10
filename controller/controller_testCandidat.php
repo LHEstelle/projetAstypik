@@ -4,9 +4,13 @@ require_once '../models/database.php';
 require_once '../models/candidat.php';
 
 session_start();
+if (empty($_SESSION) ) {
+    header('Location: pageErreur.php');
+}else if(isset($_SESSION['key'])){
+    header('Location: pageErreurTest.php');
+}
 
 
-var_dump($_SESSION);
 if (isset($_POST['testProfilButton'])) {
     if (!isset($_POST['emission'])) {
         $arrayErrors["emission"] = "Veuillez saisir une réponse";
@@ -49,9 +53,9 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     $max = 0;
     $maxKey = '';
     foreach ($counts as $key => $value) {
-     
-        $_SESSION[$key] = $key;
-    
+
+
+
         if ($value == $max) {
             $drawAnswer[] = $maxKey;
             $drawAnswer[] = $key;
@@ -71,9 +75,13 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     }
 
     $drawAnswerProfile = array_unique($drawAnswer);
-    if(!empty($drawAnswerProfile)){
-        header("Location: autreQuestion.php");   
+    if (!empty($drawAnswerProfile)) {
+
+        $_SESSION['key'] = $drawAnswerProfile;
+
+        header("Location: autreQuestion.php");
     }
+
     if (empty($drawAnswerProfile)) {
 
         foreach ($counts as $key => $value) {
@@ -96,13 +104,9 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
                 $_SESSION = $sessionObj->getOneCandidate($_SESSION['mail']);
                 $candidateProfil = new Candidat;
                 $modifyCandidateProfil = $candidateProfil->modifyProfil($id_profils, $_SESSION['mail']);
-                $modifyCandidatOk = true;
+
                 header("Location: test" . $key . ".php");
             }
         }
     }
-}
-
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
 }

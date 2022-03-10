@@ -6,10 +6,10 @@ require_once '../models/annonces.php';
 require_once '../models/entreprise.php';
 
 session_start();
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
 $arrayErrors = [];
-
-
-
 
 $modifyAnnonceOk = false;
 
@@ -110,6 +110,4 @@ if (isset($_POST['idDeletePatient'])) {
     header('location: annoncesRecruteur.php');
 }
 
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
-}
+

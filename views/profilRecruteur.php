@@ -47,15 +47,17 @@ require_once '../controller/controller_profilRecruteur.php';
 
 <body class="">
     <div class="row">
-        <a href="index.php" class="navbar">
+        <div class="navbar">
             <img src="../assets/img/Astypik.png" alt="logo" class="logoFilters mt-3 ms-4">
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn text-white col-10 m-3" name="deconnectButton">
-                    se déconnecter
-                </button>
+                <form action="" method="POST">
+                    <button type="submit" class="btn text-white col-10 m-3" name="deconnectButton">
+                        se déconnecter
+                    </button>
+                </form>
 
             </div>
-        </a>
+        </div>
     </div>
 
     <div class="pb-3">
@@ -95,12 +97,12 @@ require_once '../controller/controller_profilRecruteur.php';
 
 
             <h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
-            <p class="mt-3"><b>PSEUDO OU SLOGAN...</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
+            <p class="mt-3"><b>PSEUDO OU SLOGAN...(facultatif)</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             <div class="d-flex">
                 <input value="<?= $entrepriseInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             </div>
-            <p class="mt-3"><b>MES COORDONNEES</b></p>
+            <p class="mt-3"><b>MES COORDONNEES *</b></p>
             <div class="d-flex m-2">
 
                 <input value="<?= $entrepriseInfoArray['adress'] ?>" name="adress" class="form-control inputSearch me-2 ms-3" type="text"><span class="text-danger"><?= $arrayErrors['adress'] ?? "" ?></span>

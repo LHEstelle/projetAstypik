@@ -1,8 +1,5 @@
 <?php require_once '../controller/controller_autreQuestion.php';
-// if (empty($arrayAnswer)) {
-//     header('Location: test' . $key . '.html');
-// }
-var_dump($_SESSION);
+
 
 
 ?>
@@ -61,27 +58,27 @@ var_dump($_SESSION);
 
           
                 <div class="form-check d-flex ms-3">
-                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere" value="IronSpoke" <?= (in_array('IronSpoke', $_SESSION)) ? '' : 'style="visibility:hidden"' ?>>
+                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere" value="IronSpoke" <?= (in_array('IronSpoke', $_SESSION['key'])) ? '' : 'style="visibility:hidden"' ?>>
                     <label class="form-check-label" for="caractere">
-                    <?= (in_array('IronSpoke', $_SESSION)) ? 'Rigoureux, précis' : '' ?>   
+                    <?= (in_array('IronSpoke', $_SESSION['key'])) ? 'Rigoureux, précis' : '' ?>   
                     </label>
                 </div>
                 <div class="form-check d-flex ms-3">
-                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere1" value="peterPaon" <?= (in_array('peterPaon', $_SESSION)) ? '' : 'style="visibility:hidden"' ?>>
+                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere1" value="peterPaon" <?= (in_array('peterPaon', $_SESSION['key'])) ? '' : 'style="visibility:hidden"' ?>>
                     <label class="form-check-label" for="caractere1">
-                    <?= (in_array('peterPaon', $_SESSION)) ? 'Enthousiaste, plein d’humour' : '' ?>  
+                    <?= (in_array('peterPaon', $_SESSION['key'])) ? 'Enthousiaste, plein d’humour' : '' ?>  
                     </label>
                 </div>
                 <div class="form-check d-flex ms-3">
-                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere2" value="Cactus" <?= (in_array('Cactus', $_SESSION)) ? '' : 'style="visibility:hidden"' ?>>
+                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere2" value="Cactus" <?= (in_array('Cactus', $_SESSION['key'])) ? '' : 'style="visibility:hidden"' ?>>
                     <label class="form-check-label" for="caractere2">
-                    <?= (in_array('Cactus', $_SESSION)) ? 'Rapide, décidant facilement' : '' ?> 
+                    <?= (in_array('Cactus', $_SESSION['key'])) ? 'Rapide, décidant facilement' : '' ?> 
                     </label>
                 </div>
                 <div class="form-check d-flex ms-3">
-                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere3" value="SpiderLutin" <?= (in_array('SpiderLutin', $_SESSION)) ? '' : 'style="visibility:hidden"' ?>>
+                    <input class="form-check-input me-3" type="radio" name="caractere" id="caractere3" value="SpiderLutin" <?= (in_array('SpiderLutin', $_SESSION['key'])) ? '' : 'style="visibility:hidden"' ?>>
                     <label class="form-check-label" for="caractere3">
-                    <?= (in_array('SpiderLutin', $_SESSION)) ? 'Compréhensif, attentif aux autres' : '' ?> </label>
+                    <?= (in_array('SpiderLutin', $_SESSION['key'])) ? 'Compréhensif, attentif aux autres' : '' ?> </label>
                 </div>
             </div>
     

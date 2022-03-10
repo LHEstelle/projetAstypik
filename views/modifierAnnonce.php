@@ -43,12 +43,12 @@ require_once '../controller/controller_modifierAnnonce.php';
         <div class="ms-3">
         <form method="POST" action="">
         <div class="ms-3">
-            <p class="mt-3"><b>NOM ENTREPRISE</b></p>
+            <p class="mt-3"><b>NOM ENTREPRISE *</b></p>
             <select name="id_recruteur" id="idRecruteur" class="inputSearch ms-3">
                         <option selected value="<?= $entrepriseInfoArray["id"] ?>"><?= $entrepriseInfoArray['name'] ?></option>
                 </select>
  
-            <p class="mt-3"><b>NOM DU POSTE</b></p>
+            <p class="mt-3"><b>NOM DU POSTE *</b></p>
             <span class="text-danger">
                         <?= $arrayErrors["job"] ?? "" ?>
                     </span>
@@ -58,39 +58,39 @@ require_once '../controller/controller_modifierAnnonce.php';
 
             </div>
             <div class="mt-3">
-                <p class=""><b>DOMAINE</b></p>
+                <p class=""><b>DOMAINE *</b></p>
                 <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
                 <select name="id_domaine" id="domaine" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez un domaine</option>
+                    <option value="">Choisissez un domaine</option>
                     <?php foreach ($domainArray as $domain) { ?>
-                        <option value="<?= $domain["id"] ?>"  <?= $domain["id"] == $annonceInfo["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
+                        <option value="<?= $domain["id"] ?>"  <?= (isset($_POST["id_domaine"]) && $domain["id"] == $_POST["id_domaine"]) || $domain["id"] == $annonceInfo["id_domaine"]  ? 'selected' : '' ?>><?= $domain["name"] ?></option>
 
 
                     <?php } ?>
                 </select>
-                <p class="mt-3"><b>DATE DE DEBUT DU POSTE</b></p>
+                <p class="mt-3"><b>DATE DE DEBUT DU POSTE *</b></p>
                 <span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span>
                 <div class="d-flex">
                     <input value="<?= isset($_POST['startDate']) ? htmlspecialchars($_POST["startDate"]) : $annonceInfo['startDate'] ?>" name="startDate" class="form-control inputSearch me-2 ms-3" type="date">
 
                 </div>
-                <p class="mt-3"><b>TYPE DE CONTRAT</b></p>
+                <p class="mt-3"><b>TYPE DE CONTRAT *</b></p>
                 <span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span>
                 <select name="id_contract" id="contract" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez un contrat</option>
+                    <option value="">Choisissez un contrat</option>
                     <?php foreach ($contractArray as $contract) { ?>
-                        <option value="<?= $contract["id"] ?>" <?= $contract["id"] == $annonceInfo["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
+                        <option value="<?= $contract["id"] ?>" <?= (isset($_POST["id_contract"]) && $contract["id"] == $_POST["id_contract"]) || $contract["id"] == $annonceInfo["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
 
 
                     <?php } ?>
                 </select>
 
-                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE</b></p>
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE *</b></p>
                 <span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span>
                 <select name="id_profils" id="profils" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez des compétences</option>
+                    <option value="">Choisissez des compétences</option>
                     <?php foreach ($profilsArray as $competences) { ?>
-                        <option value="<?= $competences["id"] ?>" <?= $competences["id"] == $annonceInfo["id_profils"] ? 'selected' : '' ?> ><?= $competences["name"] ?> : <?=$competences["talents"] ?></option>
+                        <option value="<?= $competences["id"] ?>" <?= (isset($_POST["id_profils"]) && $competences["id"] == $_POST["id_profils"]) || $competences["id"] == $annonceInfo["id_profils"] ? 'selected' : '' ?> ><?= $competences["name"] ?> : <?=$competences["talents"] ?></option>
 
 
                     <?php } ?>
@@ -105,7 +105,7 @@ require_once '../controller/controller_modifierAnnonce.php';
                 </div>
                 <input type="hidden" name="idAnnonce" value="<?= $annonceInfo['idAnnonce'] ?>">
 
-                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE</b></p>
+                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE *</b></p>
                 <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
                 <textarea class="col-12" id="description" name="description" ><?= isset($_POST['description']) ? ($_POST["description"]) : $annonceInfo['description']?></textarea>
                 <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d')?>">

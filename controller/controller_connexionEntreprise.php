@@ -8,7 +8,7 @@ $arrayOk = [];
 $entreprise = new Entreprise;
 
 session_start();
-var_dump($_POST);
+
 if (!empty($_POST)) {
     if (empty($_POST['mail']) || empty($_POST['password'])) {
         $arrayError['error'] = "veuillez saisir votre mail et/ou mot de passe";

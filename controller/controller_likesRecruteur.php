@@ -5,6 +5,10 @@ require_once '../models/dataBase.php';
 require_once '../models/likes.php';
 
 session_start();
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
+
 if (isset($_GET["searchFilters"])) {
     if (isset($_GET['contractName'])) {
         $contract = '"' . implode('","', $_GET['contractName']) . '"';
@@ -48,6 +52,3 @@ if (isset($_GET["searchFilters"])) {
 
 
 
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
-}

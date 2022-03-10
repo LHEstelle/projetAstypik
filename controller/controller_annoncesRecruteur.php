@@ -6,6 +6,10 @@ require_once '../models/database.php';
 require_once '../models/annonces.php';
 
 session_start();
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
+
 if (isset($_GET["searchFilters"])) {
     if (isset($_GET['contractName'])) {
         $contract = '"' . implode('","', $_GET['contractName']) . '"';
@@ -40,7 +44,4 @@ if (isset($_GET["searchFilters"])) {
     $id = $_SESSION['id'];
     $annoncesObj = new Annonce;
     $annoncesArray = $annoncesObj->getAllAnnoncesofOneRecrutor($id);
-}
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
 }

@@ -76,11 +76,11 @@ require_once '../controller/controller_annonceRecruteurZoom.php';
                     </div>
                 </div>
             <?php } ?>
-
-            <div class="m-5 text-center">
+            <div class="d-flex justify-content-center mt-3">
+            <div class="jobDescription text-center">
                 <p class=""><?= $annonceInfoArray['offerDescription']   ?></p>
             </div>
-
+            </div>
             <div class="m-5 text-center fw-lighter">
                 <p class=""> publiée le <?= $annonceInfoArray['publicationDate']   ?></p>
             </div>

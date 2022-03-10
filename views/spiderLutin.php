@@ -1,6 +1,7 @@
 <?php
 
 include 'filtresCandidat.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -78,6 +79,6 @@ include 'filtresCandidat.php';
 
     </div>
     <?php include 'footer.php' ?>
-        </body>
+    </body>
 
 </html>

@@ -7,17 +7,25 @@ require_once '../models/candidat.php';
 
 $regexNom = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}$/";
 $regexMail = "/^([a-z.-]+)@([a-z]+).([a-z]){2,4}$/";
-// $regexDate = "/^[0-9\-]+$/";
+
 $regexPhone = "/^0[1-98][0-9]{8}$/";
 $regexCity = "/^[^0-9]$/";
 $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];
 
 session_start();
-
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
 
 $candidatInfo = new Candidat;
 $candidatInfoArray = $candidatInfo->getOneCandidate($_SESSION['mail']);
+$dateNaissance = $candidatInfoArray['birthDate'];
+$aujourdhui = date("Y-m-d");
+$diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
+$age = $diff->format('%y');
+
+
 
 $contractObj = new Candidat;
 $contractArray = $contractObj->getAllContract();
@@ -30,6 +38,7 @@ $candidatObj = new Candidat;
 $candidatProfilArray = $candidatObj->getCandidateProfil($_SESSION['mail']);
 
 $modifyCandidatOk = false;
+
 
 if (isset($_POST['modifyButton'])) {
 
@@ -99,11 +108,6 @@ if (isset($_POST['modifyButton'])) {
         }
     }
 
-    if (isset($_POST["description"])) {
-        if (empty($_POST["description"])) {
-            $arrayErrors["description"] = "Veuillez saisir une description , vos motivations...";
-        }
-    }
     if (isset($_POST["id_contract"])) {
         if (empty($_POST["id_contract"])) {
             $arrayErrors["id_contract"] = "Veuillez saisir le type de contrat recherché";
@@ -114,9 +118,9 @@ if (isset($_POST['modifyButton'])) {
             $arrayErrors["id_domaine"] = "Veuillez saisir le type de domaine recherché";
         }
     }
-    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) >35) {
+    if (isset($_POST["pseudo"]) && strlen($_POST['pseudo']) > 35) {
         $arrayErrors["pseudo"] = "35 caractères maximum";
-    } 
+    }
 
     if (count($arrayErrors) == 0) {
 
@@ -136,20 +140,24 @@ if (isset($_POST['modifyButton'])) {
         $idCandidat = $_SESSION['id'];
         $candidatObj = new Candidat();
         $modifyCandidat = $candidatObj->modifyCandidate($lastName,  $firstName,  $description,  $pseudo,  $birthDate,  $phone,  $city,  $postalCode,  $adress,  $experienceYears, $id_contract, $id_domaine, $idCandidat);
-        $modifyCandidatOk = true;
 
+        echo '<script type="text/javascript">'
+            . 'alert("Votre profil a bien été modifié");'
+            . '</script>';
     }
 }
 
 if (!empty($_POST['submitButtonProfilPicture'])) {
-    var_dump($_FILES);
-    if (mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/png') {
+    if ($_FILES['fileToUpload']['type'] == '') {
+        $arrayErrors["mime"] = "Veuillez télécharger une photo";
+    } else if (mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/png') {
         $arrayErrors["mime"] = "Votre téléchargement n'est pas une image";
     } else if ($_FILES['fileToUpload']['size'] > 1000000) {
         $arrayErrors["size"] = "Désolé, votre fichier ne doit pas dépasser 1MO.Votre fichier n'a pas été téléchargé";
     } else if ($_FILES['fileToUpload']['type'] != 'image/png' &&  $_FILES['fileToUpload']['type'] != 'image/jpg' && $_FILES['fileToUpload']['type'] != 'image/jpeg') {
         $arrayErrors["extension"] = "L'extension n'est pas une image";
-    } else if ($_FILES['fileToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['fileToUpload']['tmp_name']) == 'image/png') && ($_FILES['fileToUpload']['type'] == 'image/png' ||  $_FILES['fileToUpload']['type'] == 'image/jpg' || $_FILES['fileToUpload']['type'] == 'image/jpeg')) {
+    } else {
+
         $uploaddir = 'C:\wamp\www\projet\PROJETRECRUTEMENT\assets\img/';
         $_FILES['fileToUpload']['name'] = uniqid() . basename($_FILES['fileToUpload']['name']);
         $uploadfile = $uploaddir . $_FILES['fileToUpload']['name'];
@@ -163,19 +171,24 @@ if (!empty($_POST['submitButtonProfilPicture'])) {
 }
 
 if (!empty($_POST['submitButtonCvPicture'])) {
-    var_dump($_FILES);
-    if (mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png') {
-        $arrayErrors["mime"] = "Mauvais format";
-    } else if ($_FILES['cvToUpload']['size'] > 1000000) {
-        $arrayErrors["size"] = "Désolé, votre fichier ne doit pas dépasser 1MO.Votre fichier n'a pas été téléchargé";
-    } else if ($_FILES['cvToUpload']['type'] != 'image/png' &&  $_FILES['cvToUpload']['type'] != 'image/jpg' && $_FILES['cvToUpload']['type'] != 'image/jpeg') {
-        $arrayErrors["extension"] = "Mauvais format";
-    } else if ($_FILES['cvToUpload']['size'] <= 1000000 && (mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpeg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/jpg' || mime_content_type($_FILES['cvToUpload']['tmp_name']) == 'image/png') && ($_FILES['cvToUpload']['type'] == 'image/png' ||  $_FILES['cvToUpload']['type'] == 'image/jpg' || $_FILES['cvToUpload']['type'] == 'image/jpeg')) {
+
+    if ($_FILES['cvToUpload']['type'] == '') {
+        $arrayErrors["mimeCV"] = "Veuillez télécharger un CV";
+    } else if (mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'image/png' && mime_content_type($_FILES['cvToUpload']['tmp_name']) != 'application/pdf') {
+        $arrayErrors["mimeCV"] = "Mauvais format";
+    } else if ($_FILES['cvToUpload']['size'] > 20000000) {
+        $arrayErrors["sizeCV"] = "Désolé, votre fichier ne doit pas dépasser 1MO.Votre fichier n'a pas été téléchargé";
+    } else if ($_FILES['cvToUpload']['type'] != 'image/png' &&  $_FILES['cvToUpload']['type'] != 'image/jpg' && $_FILES['cvToUpload']['type'] != 'image/jpeg' && $_FILES['cvToUpload']['type'] != 'application/pdf') {
+        $arrayErrors["extensionCV"] = "Mauvais format";
+    } else {
+
         $uploaddir = 'C:\wamp\www\projet\PROJETRECRUTEMENT\assets\img/';
         $_FILES['cvToUpload']['name'] = uniqid() . basename($_FILES['cvToUpload']['name']);
+
         $uploadfile = $uploaddir . $_FILES['cvToUpload']['name'];
         move_uploaded_file($_FILES['cvToUpload']['tmp_name'], $uploadfile);
         $mail = htmlspecialchars(trim($_SESSION["mail"]));
+
         $cvPicture = htmlspecialchars(trim($_FILES['cvToUpload']["name"]));
         $candidat = new Candidat();
         $candidatModifyArray = $candidat->modifyCvPicture($mail, $cvPicture);
@@ -197,8 +210,4 @@ if (isset($_POST['deconnectButton'])) {
     session_unset();
     session_destroy();
     header('Location: ../views/index.php');
-}
-
-if(empty($_SESSION)){
-    header('Location: pageErreur.php');
 }

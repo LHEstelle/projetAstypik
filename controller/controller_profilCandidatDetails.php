@@ -7,12 +7,15 @@ require_once '../models/likes.php';
 
 
 session_start();
-
+if(empty($_SESSION)){
+    header('Location: pageErreur.php');
+}
 if (isset($_GET["id"])) {
     $id = htmlspecialchars(trim($_GET["id"]));
     $candidate = new Candidat;
     $candidatInfoArray= $candidate-> getOneCandidateDetails($id);
 }
+
 if (isset($_POST['idCandidatLike'])) {
     $idCandidate = $_POST['idCandidatLike'];
     $idRecrutor = $_SESSION['id'];
@@ -28,6 +31,3 @@ if (isset($_POST['idCandidatDislike'])) {
 
 $likesObj = new Likes();
 $likesRecrutorArray = $likesObj->getAllLikesFromOneRecrutor($_SESSION['id']);
-if(empty($_SESSION)){
-    header('Location: pageErreur.php');
-}

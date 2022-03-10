@@ -41,12 +41,12 @@ echo strftime('%d/%m/%Y');
 
     <form method="POST" action="">
         <div class="ms-3">
-            <p class="mt-3"><b>NOM ENTREPRISE</b></p>
+            <p class="mt-3"><b>NOM ENTREPRISE *</b></p>
             <select name="id_recruteur" id="idRecruteur" class="inputSearch ms-3">
                 <option selected value="<?= $entrepriseInfoArray["id"] ?>"><?= $entrepriseInfoArray['name'] ?></option>
             </select>
 
-            <p class="mt-3"><b>NOM DU POSTE</b> <span class="text-danger">
+            <p class="mt-3"><b>NOM DU POSTE *</b> <span class="text-danger">
                     <?= $arrayErrors["job"] ?? "" ?>
                 </span></p>
 
@@ -56,40 +56,40 @@ echo strftime('%d/%m/%Y');
 
             </div>
             <div class="mt-3">
-                <p class=""><b>DOMAINE </b><span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span></p>
+                <p class=""><b>DOMAINE *</b><span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span></p>
 
                 <select name="id_domaine" id="domaine" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez un domaine</option>
+                    <option value="">Choisissez un domaine</option>
                     <?php foreach ($domainArray as $domain) { ?>
-                        <option value="<?= $domain["id"] ?>"><?= $domain["name"] ?></option>
+                        <option value="<?= $domain["id"] ?>" <?= isset($_POST["id_domaine"]) && $domain["id"] == $_POST["id_domaine"] ? 'selected' : '' ?>><?= $domain["name"] ?></option>
 
 
                     <?php } ?>
                 </select>
 
-                <p class="mt-3"><b>DATE DE DEBUT DU POSTE </b><span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span></p>
+                <p class="mt-3"><b>DATE DE DEBUT DU POSTE *</b><span class="text-danger"><?= $arrayErrors['startDate'] ?? '' ?></span></p>
 
                 <div class="d-flex">
                     <input value="<?= isset($_POST['startDate']) ? htmlspecialchars($_POST["startDate"]) : '' ?>" name="startDate" class="form-control inputSearch me-2 ms-3" type="date">
 
                 </div>
-                <p class="mt-3"><b>TYPE DE CONTRAT </b><span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span></p>
+                <p class="mt-3"><b>TYPE DE CONTRAT *</b><span class="text-danger"><?= $arrayErrors['id_contract'] ?? '' ?></span></p>
 
                 <select name="id_contract" id="contract" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez un contrat</option>
+                    <option value="">Choisissez un contrat</option>
                     <?php foreach ($contractArray as $contract) { ?>
-                        <option value="<?= $contract["id"] ?>"><?= $contract["name"] ?></option>
+                        <option value="<?= $contract["id"] ?>" <?= isset($_POST["id_contract"]) && $contract["id"] == $_POST["id_contract"] ? 'selected' : '' ?>><?= $contract["name"] ?></option>
 
 
                     <?php } ?>
                 </select>
       
-                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE </b><span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span></p>
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE *</b><span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span></p>
 
                 <select name="id_profils" id="profils" class="inputSearch ms-3">
-                    <option disabled selected value="">Choisissez des compétences</option>
+                    <option value="">Choisissez des compétences</option>
                     <?php foreach ($profilsArray as $competences) { ?>
-                        <option value="<?= $competences["id"] ?>"><?= $competences["name"] ?> : <?= $competences["talents"] ?></option>
+                        <option value="<?= $competences["id"] ?>" <?= isset($_POST["id_profils"]) && $competences["id"] == $_POST["id_profils"] ? 'selected' : '' ?>><?= $competences["name"] ?> : <?= $competences["talents"] ?></option>
 
 
                     <?php } ?>
@@ -103,7 +103,7 @@ echo strftime('%d/%m/%Y');
                 </div>
 
 
-                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE </b><span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span></p>
+                <p class="mt-3"><b>DESCRIPTION DE L'OFFRE *</b><span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span></p>
                 <textarea class="col-12" id="description" name="description"><?= isset($_POST['description']) ? $_POST["description"] : '' ?></textarea>
                 <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d') ?>">
                 <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="createAnnonce">

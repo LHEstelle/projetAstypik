@@ -410,8 +410,12 @@ Menu de navigation */
     
     .coordonnees {
         background-color: rgba(217, 227, 235, 0.61);
-        width: 90rem;
+        width: 70rem;
         border-radius: 2rem;
+    }
+    
+    .jobDescription {
+        width: 70rem;
     }
     /* Page vue Candidat de son profil */
     

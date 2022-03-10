@@ -8,7 +8,7 @@ $arrayOk = [];
 $candidat = new Candidat;
 
 session_start();
-var_dump($_POST);
+
 if (!empty($_POST)) {
     if (empty($_POST['mail']) || empty($_POST['password'])) {
         $arrayError['error'] = "veuillez saisir votre mail et/ou mot de passe";
@@ -21,6 +21,8 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
         $arrayOk['connexion'] = "Connexion réussie !";
         $sessionObj = new Candidat;
         $_SESSION = $sessionObj->getOneCandidate($_POST['mail']);
+        $_SESSION['anotherQuestionKey']= true ;
+        $_SESSION['key']= true ;
         header("Location: profilCandidat.php");
     } else {
         $arrayError['false'] = "Mauvais mot de passe et/ou mail";

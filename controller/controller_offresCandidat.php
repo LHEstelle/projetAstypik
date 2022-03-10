@@ -5,7 +5,9 @@ require_once '../models/annonces.php';
 require_once '../models/likes.php';
 
 session_start();
-
+if(empty($_SESSION)){
+    header('Location: pageErreur.php');
+}
 
 $likesObj = new Likes();
 $likesCandidateArray = $likesObj->getAllLikesFromOneCandidate($_SESSION['id']);
@@ -70,6 +72,3 @@ if (isset($_POST['idOfferDislike'])) {
 } 
 
 
-if(empty($_SESSION)){
-    header('Location: pageErreur.php');
-}

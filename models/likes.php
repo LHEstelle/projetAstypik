@@ -84,7 +84,8 @@ class Likes extends DataBase
         INNER JOIN candidat ON candidat.id = likecandidates.id_candidat
         INNER JOIN offre ON likecandidates.id = offre.id
         INNER JOIN recruteur ON offre.id_recruteur = recruteur.id
-        WHERE recruteur.mail=:mail";
+        WHERE recruteur.mail=:mail
+        GROUP BY candidat.mail";
 
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);

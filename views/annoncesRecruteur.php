@@ -37,7 +37,20 @@ include 'filtresCandidat.php';
         <div class="col-lg-9">
         <?php include 'menuRecruteurs.php' ?>
 
-
+        <div class="d-flex justify-content-center mt-5">
+        <a href="superCactusR.php">
+            <p class="text-center superCactus m-2">SuperCactus</p>
+        </a>
+        <a href="peterPaonR.php">
+            <p class="text-center peterPaon m-2">PeterPaon</p>
+        </a>
+        <a href="spiderLutinR.php">
+            <p class="text-center spiderLutin m-2">SpiderLutin</p>
+        </a>
+        <a href="ironSpokeR.php">
+            <p class="text-center ironSpoke m-2">IronSpoke</p>
+        </a>
+    </div>
 
             <?php foreach ($annoncesArray as $annonces) { ?>
                 <form action="" method="POST">

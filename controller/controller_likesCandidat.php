@@ -5,6 +5,25 @@ require_once '../models/dataBase.php';
 require_once '../models/likes.php';
 
 session_start();
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
+
+
+// if (isset($_GET['match'])) {
+//     if (isset($_COOKIE['checkMatch'])) {
+//         $diff = $_GET['match'] - $_COOKIE['checkMatch'];
+//         if ($diff > 0) {
+//             $show = true;
+//         } else {
+//             $show = true;
+//         }
+//     } else {
+//         setcookie('checkMatch', $_GET['match'], time()+86499, '/');
+//         $show = true;
+//     }
+// }
+
 
 
 if (isset($_GET["searchFilters"])) {
@@ -44,11 +63,4 @@ if (isset($_GET["searchFilters"])) {
 
     $RecrutorLikesObj = new Likes();
     $allRecrutor = $RecrutorLikesObj->getLikesOfAllRecrutorForOneCandidate($_SESSION['mail']);
-}
-
-
-
-
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
 }

@@ -6,6 +6,9 @@ require_once '../models/annonces.php';
 require_once '../models/entreprise.php';
 
 session_start();
+if (empty($_SESSION)) {
+    header('Location: pageErreur.php');
+}
 $arrayErrors = [];
 
 $addAnnonceOk = false;
@@ -51,22 +54,19 @@ if (isset($_POST["createAnnonce"])) {
     if (isset($_POST["startDate"])) {
         if (empty($_POST["startDate"])) {
             $arrayErrors["startDate"] = "Veuillez saisir une date de début";
-        }
-        else {
+        } else {
             $startDate = $_POST['startDate'];
             $aujourdhui = date("Y-m-d");
             if ($startDate < $aujourdhui) {
                 $arrayErrors["startDate"] = "La date de début ne doit pas être antérieure ou égale à aujourd'hui";
             }
-    }
-
-    if (isset($_POST["description"])) {
-        if (empty($_POST["description"])) {
-            $arrayErrors["description"] = "Veuillez saisir une description de l'offre";
         }
-    }
-     
-        
+
+        if (isset($_POST["description"])) {
+            if (empty($_POST["description"])) {
+                $arrayErrors["description"] = "Veuillez saisir une description de l'offre";
+            }
+        }
     }
 
     var_dump(count($arrayErrors));
@@ -84,9 +84,6 @@ if (isset($_POST["createAnnonce"])) {
         $annonce = new Annonce();
         $annonceArray = $annonce->createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils);
         $addAnnonceOk = true;
-        // header('Location: annoncesRecruteur.php');
+        header('Location: annoncesRecruteur.php');
     }
-}
-if (empty($_SESSION)) {
-    header('Location: pageErreur.php');
 }

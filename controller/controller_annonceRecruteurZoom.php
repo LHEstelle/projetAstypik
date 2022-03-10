@@ -6,7 +6,9 @@ require_once '../models/annonces.php';
 require_once '../models/likes.php';
 
 session_start();
-
+if(empty($_SESSION)){
+    header('Location: pageErreur.php');
+}
 if (isset($_GET["id"])) {
     $id = htmlspecialchars(trim($_GET["id"]));
     $annonce = new Annonce;
@@ -27,6 +29,3 @@ if (isset($_POST['idOfferDislike'])) {
     $likeObj = new Likes;
     $deleteLikes = $likeObj->deleteLikeCandidate($idOffer, $idCandidate);
 } 
-if(empty($_SESSION)){
-    header('Location: pageErreur.php');
-}

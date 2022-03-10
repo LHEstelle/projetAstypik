@@ -1,5 +1,8 @@
-<?php require_once '../controller/controller_testCandidat.php';
-
+<?php 
+require_once '../controller/controller_testCandidat.php';
+if (empty($_SESSION) || !isset($_SESSION)) {
+    header('Location: pageErreur.php');
+}
 ?>
 
 <!DOCTYPE html>
