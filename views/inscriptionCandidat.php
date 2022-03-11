@@ -54,7 +54,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["lastname"] ?? "" ?>
                         </span>
-                        <input value="<?= isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "" ?>" type="text" class="form-control" name="lastname" id="lastname" placeholder="DOE">
+                        <input value="<?= isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "" ?>" type="text" class="form-control" name="lastname" id="lastname" placeholder="ex: DOE">
                     </div>
 
                     <div class="mb-3">
@@ -62,7 +62,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["firstname"] ?? "" ?>
                         </span>
-                        <input value="<?= isset($_POST["firstname"]) ? htmlspecialchars($_POST["firstname"]) : "" ?>" type="text" class="form-control" name="firstname" id="firstname" placeholder="John">
+                        <input value="<?= isset($_POST["firstname"]) ? htmlspecialchars($_POST["firstname"]) : "" ?>" type="text" class="form-control" name="firstname" id="firstname" placeholder="ex: John">
                     </div>
 
                     <div class="mb-3">
@@ -78,7 +78,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["phone"] ?? "" ?>
                         </span>
-                        <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "" ?>" type="text" class="form-control" name="phone" id="phone" placeholder="065672....">
+                        <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "" ?>" type="text" class="form-control" name="phone" id="phone" placeholder="ex: 065672....">
                     </div>
 
                     <div class="mb-3">
@@ -86,7 +86,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["mail"] ?? "" ?>
                         </span>
-                        <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : "" ?>" type="mail" class="form-control" name="mail" id="mail" placeholder="JohnDOE@gmail.com">
+                        <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : "" ?>" type="mail" class="form-control" name="mail" id="mail" placeholder="ex: JohnDOE@gmail.com">
                     </div>
 
                     <div class="mb-3">
@@ -94,7 +94,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["city"] ?? "" ?>
                         </span>
-                        <input class="form-control" value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : "" ?>" type="text" name="city" id="city" placeholder="Le Havre">
+                        <input class="form-control" value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : "" ?>" type="text" name="city" id="city" placeholder="ex: Le Havre">
                     </div>
 
                     <div class="mb-3">
@@ -102,7 +102,7 @@ require '../controller/controller_inscriptionCandidat.php';
                         <span class="text-danger">
                             <?= $arrayErrors["postalCode"] ?? "" ?>
                         </span>
-                        <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="76600">
+                        <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars($_POST["postalCode"]) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="ex: 76600">
                     </div>
 
                     <div class="mb-3">

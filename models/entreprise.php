@@ -34,11 +34,12 @@ class Entreprise extends DataBase
         
     }
 
-    public function addEntreprise(string $name, string $siretNumber, string $phone, string $mail, string $city, int $postalCode, string $adress, string $password): void
+    public function addEntreprise(string $profilPicture, string $name, string $siretNumber, string $phone, string $mail, string $city, int $postalCode, string $adress, string $password): void
     {
         $db = $this->connectDb();
-        $sql = "INSERT INTO `recruteur` (`name`, `siretNumber`, `phone`, `mail`, `city`, `postalCode`,`adress`, `password`) VALUES (:name, :siretNumber, :phone, :mail, :city, :postalCode, :adress, :password)";
+        $sql = "INSERT INTO `recruteur` (`profilPicture`,`name`, `siretNumber`, `phone`, `mail`, `city`, `postalCode`,`adress`, `password`) VALUES (:profilPicture, :name, :siretNumber, :phone, :mail, :city, :postalCode, :adress, :password)";
         $query = $db->prepare($sql);
+        $query->bindValue(':profilPicture', $profilPicture, PDO::PARAM_STR);
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':siretNumber', $siretNumber, PDO::PARAM_STR);
         $query->bindValue(':phone', $phone, PDO::PARAM_STR);

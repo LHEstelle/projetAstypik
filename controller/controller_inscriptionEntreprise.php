@@ -85,6 +85,7 @@ if (!empty($_POST)) {
 
     if (count($arrayErrors) == 0) {
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
+        $profilPicture = htmlspecialchars(trim($_POST['profilPicture']));
         $name = htmlspecialchars(strtoupper(trim($_POST['name'])));
         $siretNumber = htmlspecialchars(trim($_POST['siretNumber']));
         $phone = htmlspecialchars(trim($_POST['phone']));
@@ -94,8 +95,8 @@ if (!empty($_POST)) {
         $adress = htmlspecialchars(trim($_POST['adress']));
         $password = htmlspecialchars(trim($_POST['password']));
         $entreprise = new Entreprise();
-        $entreprise->addEntreprise($name, $siretNumber, $phone, $mail,  $city,  $postalCode,  $adress, $password);
+        $entreprise->addEntreprise($profilPicture, $name, $siretNumber, $phone, $mail,  $city,  $postalCode,  $adress, $password);
 
-        $addEntrepriseOk = true;
+        header('Location: connexionRecruteur.php');
     }
 }

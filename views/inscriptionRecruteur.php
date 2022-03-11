@@ -43,12 +43,6 @@ require '../controller/controller_inscriptionEntreprise.php';
             </div>
 
         </nav>
-        <?php if (!empty($_POST) && empty($arrayErrors)){ ?>
-    <p class="text-center">Inscription ok , veuillez vous connectez</p>
-    <div class="d-flex justify-content-center">
-    <a class="btn connexion text-center" href="connexionRecruteur.php">Connexion</a>
-    </div>
-    <?php } else {?>
 
         <h1 class="text-center"> Inscription entreprise </h1>
 
@@ -60,7 +54,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["name"] ?? "" ?>
                     </span>
-                    <input value="<?= isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "" ?>" type="text" class="form-control" name="name" id="name" placeholder="Astypik Recrutement 76">
+                    <input value="<?= isset($_POST["name"]) ? htmlspecialchars($_POST["name"]) : "" ?>" type="text" class="form-control" name="name" id="name" placeholder="ex: Astypik Recrutement 76">
                 </div>
 
                 <div class="mb-3">
@@ -68,7 +62,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["siretNumber"] ?? "" ?>
                     </span>
-                    <input value="<?= isset($_POST["siretNumber"]) ? htmlspecialchars($_POST["siretNumber"]) : "" ?>" type="text" class="form-control" name="siretNumber" id="siretNumber" placeholder="0987..........">
+                    <input value="<?= isset($_POST["siretNumber"]) ? htmlspecialchars($_POST["siretNumber"]) : "" ?>" type="text" class="form-control" name="siretNumber" id="siretNumber" placeholder="ex: 0987..........">
                 </div>
 
                 <div class="mb-3">
@@ -76,7 +70,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["phone"] ?? "" ?>
                     </span>
-                    <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "" ?>" type="text" class="form-control" name="phone" id="phone" placeholder="065672....">
+                    <input value="<?= isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "" ?>" type="text" class="form-control" name="phone" id="phone" placeholder="ex: 065672....">
                 </div>
 
                 <div class="mb-3">
@@ -84,7 +78,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["mail"] ?? "" ?>
                     </span>
-                    <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : "" ?>" type="mail" class="form-control" name="mail" id="mail" placeholder="JohnDOE@gmail.com">
+                    <input value="<?= isset($_POST["mail"]) ? htmlspecialchars($_POST["mail"]) : "" ?>" type="mail" class="form-control" name="mail" id="mail" placeholder="ex: JohnDOE@gmail.com">
                 </div>
 
                 <div class="mb-3">
@@ -92,7 +86,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["city"] ?? "" ?>
                     </span>
-                    <input class="form-control" value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : "" ?>" type="text" name="city" id="city" placeholder="Le Havre">
+                    <input class="form-control" value="<?= isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : "" ?>" type="text" name="city" id="city" placeholder="ex: Le Havre">
                 </div>
 
                 <div class="mb-3">
@@ -100,7 +94,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["postalCode"] ?? "" ?>
                     </span>
-                    <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars(intval($_POST["postalCode"])) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="76600">
+                    <input class="form-control" value="<?= isset($_POST["postalCode"]) ? htmlspecialchars(intval($_POST["postalCode"])) : "" ?>" type="text" name="postalCode" id="postalCode" placeholder="ex: 76600">
                 </div> 
 
                 <div class="mb-3">
@@ -108,7 +102,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <span class="text-danger">
                         <?= $arrayErrors["adress"] ?? "" ?>
                     </span>
-                    <input class="form-control" value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : "" ?>" type="text" name="adress" id="adress" placeholder="23 rue des platanes">
+                    <input class="form-control" value="<?= isset($_POST["adress"]) ? htmlspecialchars($_POST["adress"]) : "" ?>" type="text" name="adress" id="adress" placeholder="ex: 23 rue des platanes">
                 </div>
 
          
@@ -137,13 +131,13 @@ require '../controller/controller_inscriptionEntreprise.php';
                 <a class="lienConnexion" href="connexionRecruteur.php">
                     <p>Déjà inscrit? Veuillez vous connecter</p>
                 </a>
-                
+                <input type="hidden" name="profilPicture" value="avatar.jpg">
                 <button type="submit" class="btn btnEnregist mb-5" name="createButton"><b>Envoyer</b></button>
 
             </form>
 
         </div>
-        <?php } ?>
+     
         <?php include 'footer.php' ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         </script>
