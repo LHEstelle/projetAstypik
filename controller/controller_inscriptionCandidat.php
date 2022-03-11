@@ -14,7 +14,6 @@ $regexCity = "/^[^0-9]$/";
 $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];
 
-$addCandidatOk = false;
 
 if (!empty($_POST)) {
 

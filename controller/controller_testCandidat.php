@@ -10,12 +10,10 @@ if (empty($_SESSION) ) {
     header('Location: pageErreurTest.php');
 }
 
-
 if (isset($_POST['testProfilButton'])) {
     if (!isset($_POST['emission'])) {
         $arrayErrors["emission"] = "Veuillez saisir une réponse";
     }
-
     if (!isset($_POST['voiture'])) {
         $arrayErrors["voiture"] = "Veuillez saisir une réponse";
     }
@@ -53,7 +51,6 @@ if (isset($_POST['testProfilButton']) && empty($arrayErrors)) {
     $max = 0;
     $maxKey = '';
     foreach ($counts as $key => $value) {
-
 
 
         if ($value == $max) {

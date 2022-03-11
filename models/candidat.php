@@ -3,18 +3,6 @@
 
 class Candidat extends DataBase
 {
-    /**
-     * fonction permettant d'ajouter un patient
-     * 
-     * @param string $lastname: nom du patient
-     * @param string $firstname: prénom du patient
-     * @param string $birthdate: date de naissance du patient Ex: 1992-12-31
-     * @param string $phone : N° de telephone du patient
-     * @param string $mail: Adresse Mail du patient
-     * 
-     * @return void
-     */
-
     public function checkFreeMail(string $mail): bool
     {
         $db = $this->connectDb();

@@ -41,7 +41,7 @@ $modifyCandidatOk = false;
 
 
 if (isset($_POST['modifyButton'])) {
-
+    //on verifie si le candidat a appuyé sur le bouton modifier et on vérifie que les champs sont bien remplis et au bon format
     if (isset($_POST["lastName"])) {
         if (empty($_POST["lastName"])) {
             $arrayErrors["lastName"] = "Veuillez saisir votre nom";
@@ -198,7 +198,7 @@ if (!empty($_POST['submitButtonCvPicture'])) {
 
 
 if (isset($_POST["deleteButton"])) {
-    $mail = htmlspecialchars(trim($_POST["mail"]));
+    $mail = htmlspecialchars(trim($_SESSION["mail"]));
     $candidat = new Candidat();
     $candidatDeleteArray = $candidat->deleteCandidat($mail);
     session_unset();
@@ -206,6 +206,7 @@ if (isset($_POST["deleteButton"])) {
     header('Location: ../views/index.php');
     exit();
 }
+
 if (isset($_POST['deconnectButton'])) {
     session_unset();
     session_destroy();

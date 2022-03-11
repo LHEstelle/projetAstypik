@@ -32,6 +32,15 @@ require_once '../controller/controller_profilCandidatDetails.php';
         });
     </script>
 </head>
+<?php
+if (date_create($candidatInfoArray['birthDate']) == TRUE || date_create($event['birthDate']) != FALSE) {
+    $dateNaissance = $candidatInfoArray['birthDate'];
+    $aujourdhui = date("Y-m-d");
+    $diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
+    $age = $diff->format('%y');
+}
+
+?>
 
 <body class="">
     <div class="row">
@@ -91,10 +100,12 @@ require_once '../controller/controller_profilCandidatDetails.php';
                                                 <h2 class="m-3 text-white"> <?= $candidatInfoArray['lastName'] ?> <?= $candidatInfoArray['firstName'] ?></h2>
 
                                                 <p class="m-3 text-white"><?= $candidatInfoArray['pseudo'] ?></p>
-                                                <p class="m-3 text-white"><?= $candidatInfoArray['birthDate'] ?></p>
-                                                <div class="d-flex justify-content-end m-4">
-                                                    <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
-                                                </div>
+                                                <p class="m-3 text-white"><?= $age ?> ans</p>
+                                                <?php if (!isset($_SESSION['birthDate'])) { ?>
+                                                    <div class="d-flex justify-content-end m-4">
+                                                        <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
+                                                    </div>
+                                                <?php } ?>
                                                 </div>
 
                                                 <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
@@ -136,7 +147,7 @@ require_once '../controller/controller_profilCandidatDetails.php';
 
                                                 <?php if (strpos($candidatInfoArray['cvPicture'], '.pdf') !== false) { ?>
 
-                                                    <embed src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" width=800 height=500 type='application/pdf' />
+                                                    <a href="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" class="text-primary">Voir le cv</a>
 
                                                 <?php } else { ?>
                                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -153,7 +164,7 @@ require_once '../controller/controller_profilCandidatDetails.php';
                                                             </div>
                                                             <div class="modal-body">
 
-                                                                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg">
+                                                                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPictureZoom">
                                                             </div>
                                                         </div>
                                                     </div>
