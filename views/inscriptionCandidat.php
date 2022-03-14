@@ -10,6 +10,7 @@ require '../controller/controller_inscriptionCandidat.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <title>Document</title>
 </head>
 
@@ -133,11 +134,13 @@ require '../controller/controller_inscriptionCandidat.php';
                     <input type="hidden" name="id_domaine" value="1">
                     <input type="hidden" name="cvPicture" value="cv.jpg">
                     <input type="hidden" name="profilPicture" value="avatar.jpg">
-
+                    <div class="g-recaptcha" data-sitekey="6LcVRNweAAAAAA3CTVNlNMw75z95ZTFKY0_kiv_v"></div>
+                            <span class="fw-bold text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
                     <?php include 'footer.php' ?>
                     <a class="lienConnexion" href="connexionCandidat.php">
                         <p>Déjà inscrit? Veuillez vous connecter</p>
                     </a>
+
                     <button type="submit" class="btn btnEnregist mb-5" name="createButton"><b>Envoyer</b></button>
             </form>
             </div>

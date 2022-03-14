@@ -209,7 +209,7 @@ require_once '../controller/controller_profilCandidat.php';
                                                 <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
                                             </div>
 
-                                            <p class=""><b>DOMAINE *</b></p>
+                                            <p class=""><b>DOMAINE RECHERCHE *</b></p>
                                             <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
                                             <select name="id_domaine" id="domaine" class="inputSearch ms-3">
                                                 <option value="">Choisissez un domaine</option>
@@ -286,7 +286,7 @@ require_once '../controller/controller_profilCandidat.php';
                                             </script>
                                             <p class="mt-3"><b>DESCRIPTION PERSONNELLE, MOTIVATIONS... *</b></p>
                                             <span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span>
-                                            <textarea class="col-12" name="description" id="description"><?= isset($_POST["description"]) ? htmlspecialchars($_POST["description"]) : $candidatInfoArray['description'] ?></textarea>
+                                            <textarea class="col-12 textArea" name="description" id="description"><?= isset($_POST["description"]) ? htmlspecialchars($_POST["description"]) : $candidatInfoArray['description'] ?></textarea>
 
 
                                             <button type="submit" name="modifyButton" class="btn btnMofidy text-white col-10 m-3">

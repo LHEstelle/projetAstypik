@@ -82,6 +82,17 @@ if (!empty($_POST)) {
             $arrayErrors["passwordOk"] = "Les mots de passe ne sont pas identiques";
         }
     }
+    $secretKey = "6LcVRNweAAAAAOVoCQpKFs4egqwLHj3dexyTOVH_";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    
+    $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha ?? "");
+    $response = file_get_contents($url);
+    $responseKeys = json_decode($response, true);
+   
+    if ($responseKeys["success"]) {
+    } elseif (isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
+        $arrayErrors['captcha'] = "Veuillez prouver que vous n'êtes pas un robot";
+    }
 
     if (count($arrayErrors) == 0) {
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule

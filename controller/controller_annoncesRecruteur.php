@@ -6,7 +6,7 @@ require_once '../models/database.php';
 require_once '../models/annonces.php';
 
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) || empty($_SESSION['siretNumber'])) {
     header('Location: pageErreur.php');
 }
 

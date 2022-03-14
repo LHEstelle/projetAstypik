@@ -14,7 +14,7 @@ $regexPostalCode = "/\d{5}$/";
 $arrayErrors = [];
 
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) || isset($_SESSION['siretNumber'])) {
     header('Location: pageErreur.php');
 }
 
@@ -198,9 +198,9 @@ if (!empty($_POST['submitButtonCvPicture'])) {
 
 
 if (isset($_POST["deleteButton"])) {
-    $mail = htmlspecialchars(trim($_SESSION["mail"]));
+    $id = intval($_SESSION["id"]);
     $candidat = new Candidat();
-    $candidatDeleteArray = $candidat->deleteCandidat($mail);
+    $candidatDeleteArray = $candidat->deleteCandidat($id);
     session_unset();
     session_destroy();
     header('Location: ../views/index.php');

@@ -4,7 +4,7 @@ require_once '../models/dataBase.php';
 require_once '../models/entreprise.php';
 
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) || empty($_SESSION['siretNumber'])) {
     header('Location: pageErreur.php');
 }
 

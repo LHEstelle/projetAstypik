@@ -4,7 +4,7 @@ require_once '../models/database.php';
 require_once '../models/candidat.php';
 
 session_start();
-
+var_dump($_SESSION);
 if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }else if(isset($_SESSION['anotherQuestionKey'])){
@@ -45,7 +45,7 @@ if (isset($_POST['autreQuestionButton']) && empty($arrayErrors)) {
             }
             $sessionObj = new Candidat;
             $_SESSION = $sessionObj->getOneCandidate($_SESSION['mail']);
-            $_SESSION['anotherQuestionKey']= $key ;
+            
             $candidateProfil = new Candidat;
             $modifyCandidateProfil = $candidateProfil->modifyProfil($id_profils, $_SESSION['mail']);
    

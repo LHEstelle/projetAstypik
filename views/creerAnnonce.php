@@ -104,7 +104,7 @@ echo strftime('%d/%m/%Y');
 
 
                 <p class="mt-3"><b>DESCRIPTION DE L'OFFRE *</b><span class="text-danger"><?= $arrayErrors['description'] ?? '' ?></span></p>
-                <textarea class="col-12" id="description" name="description"><?= isset($_POST['description']) ? $_POST["description"] : '' ?></textarea>
+                <textarea class="col-12 textArea" id="description" name="description"><?= isset($_POST['description']) ? $_POST["description"] : '' ?></textarea>
                 <input class="form-control inputSearch me-2 ms-3" type="hidden" name="publicationDate" value="<?= strftime('%Y-%m-%d') ?>">
                 <button type="submit" class="mb-5 btn btn-secondary btnAddAnnonce" name="createAnnonce">
                     Ajouter une annonce

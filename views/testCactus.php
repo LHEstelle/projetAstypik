@@ -3,7 +3,7 @@ session_start();
 if (empty($_SESSION) || !isset($_SESSION)) {
     header('Location: pageErreur.php');
 }
-session_unset();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

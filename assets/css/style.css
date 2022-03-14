@@ -442,6 +442,10 @@ Menu de navigation */
         border-radius: 40px;
         box-shadow: 10px 8px 12px #404040;
     }
+    
+    .textArea {
+        height: 30rem;
+    }
     /* Page vue Candidat des annonces */
     
     .jobDescriptionTruncate {

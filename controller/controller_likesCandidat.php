@@ -5,7 +5,8 @@ require_once '../models/dataBase.php';
 require_once '../models/likes.php';
 
 session_start();
-if (empty($_SESSION)) {
+
+if (empty($_SESSION) || isset($_SESSION['siretNumber'])) {
     header('Location: pageErreur.php');
 }
 

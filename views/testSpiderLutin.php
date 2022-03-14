@@ -3,7 +3,7 @@ session_start();
 if (empty($_SESSION) || !isset($_SESSION)) {
     header('Location: pageErreur.php');
 }
-session_unset();
+
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ session_unset();
                 <p class="m-2 mb-3">Le spider-Lutin est orienté vers un travail constant et prévisible, il rend les pratiques et les procédures stables. Il fonctionne mieux dans un groupe où, grâce à des actions quotidiennes, il renforce sa stabilité et ses liens relationnels.
                     Il est très utile à ses collègues, il est fidèle à son groupe cible, qui peut aussi être la marque ou l'entreprise, il est résistant et fait preuve de beaucoup de patience. Il est amical et cordial avec tout le monde, il sait écouter
                     attentivement les gens. Le spider-Lutin est souvent dans des postes en lien avec les ressources humaines, et aussi tout ce qui est conseil, coaching et accompagnement de la personne que ce soit à son compte en tant que thérapeute ou
-                    bien au sein d’une hôpital.
+                    bien au sein d’un hôpital.
                 </p>
                 <h2 class="text-center mt-3 profilGreen">Vos talents naturels</h2>
 

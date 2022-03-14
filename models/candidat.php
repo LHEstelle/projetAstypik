@@ -169,15 +169,15 @@ class Candidat extends DataBase
         $resultQuery->bindValue(':idCandidat', $idCandidat, PDO::PARAM_INT);
         $resultQuery->execute();
     }
-    public function deleteCandidat($mail): void
+    public function deleteCandidat($id): void
     {
 
 
         $base = $this->connectDb();
-        $sql = "DELETE FROM candidat
-        WHERE mail=:mail;";
+        $sql = " DELETE FROM candidat
+		WHERE candidat.id=:id;";
         $resultQuery = $base->prepare($sql);
-        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
         $resultQuery->execute();
     }
     public function getAllCandidates(): array

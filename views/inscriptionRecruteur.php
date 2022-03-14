@@ -11,6 +11,7 @@ require '../controller/controller_inscriptionEntreprise.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&language=fr&key=AIzaSyDecTo4CO49wUS9-_FtES7kcZmnb6H_Reg"></script>
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <title>Document</title>
 </head>
 
@@ -124,10 +125,9 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
 
-                <div class="row bg-dark text-light justify-content-between fixed-bottom">
-                    <a class="col text-start text-light text-decoration-none" href="#">Mentions légales</a>
-                    <div class="col text-end">Site by Estelle</div>
-                </div>
+       
+                <div class="g-recaptcha" data-sitekey="6LcVRNweAAAAAA3CTVNlNMw75z95ZTFKY0_kiv_v"></div>
+                            <span class="fw-bold text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
                 <a class="lienConnexion" href="connexionRecruteur.php">
                     <p>Déjà inscrit? Veuillez vous connecter</p>
                 </a>
