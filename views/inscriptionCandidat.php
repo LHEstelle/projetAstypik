@@ -134,8 +134,13 @@ require '../controller/controller_inscriptionCandidat.php';
                     <input type="hidden" name="id_domaine" value="1">
                     <input type="hidden" name="cvPicture" value="cv.jpg">
                     <input type="hidden" name="profilPicture" value="avatar.jpg">
+                    <input class="form-check-input me-3" type="checkbox" name="cgu">
+                        <label class="form-check-label">
+                            J'accepte les conditions générales d'utilisation
+                        </label>    
+                        <span class="text-danger"><?= $arrayErrors['cgu'] ?? '' ?></span>   
                     <div class="g-recaptcha" data-sitekey="6LcVRNweAAAAAA3CTVNlNMw75z95ZTFKY0_kiv_v"></div>
-                            <span class="fw-bold text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
+                            <span class="text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
                     <?php include 'footer.php' ?>
                     <a class="lienConnexion" href="connexionCandidat.php">
                         <p>Déjà inscrit? Veuillez vous connecter</p>

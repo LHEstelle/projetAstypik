@@ -119,6 +119,9 @@ if (!empty($_POST)) {
         } elseif (isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
             $arrayErrors['captcha'] = "Veuillez prouver que vous n'êtes pas un robot";
         }
+        if(empty($_POST['cgu'])){
+            $arrayErrors['cgu'] = "Veuillez accepter les CGU";
+        }
 
      
 

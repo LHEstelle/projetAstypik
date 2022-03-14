@@ -34,7 +34,7 @@
         <p class="text-center"> vigueur au 04/03/2022</p>
         <p>
             Les présentes conditions générales d'utilisation (dites « CGU ») ont pour objet l'encadrement juridique
-            des modalités de mise à disposition du site et des services par _______________ et de définir les
+            des modalités de mise à disposition du site et des services par Astypik et de définir les
             conditions d’accès et d’utilisation des services par « l'Utilisateur ».
             Les présentes CGU sont accessibles sur le site à la rubrique «CGU».
             Toute inscription ou utilisation du site implique l'acceptation sans aucune réserve ni restriction des
@@ -53,7 +53,7 @@
             Numéro de téléphone est 0667495721
             Adresse e-mail estlpatry766@gmail.com.
             L'hébergeur du site astypik.fr est la société ovh, dont le siège social est situé au SAS, avec le numéro
-            de téléphone : _______________.
+            de téléphone : 0687875432.
         </p>
         <h2>ARTICLE 2 : Accès au site</h2>
         <p>

@@ -94,6 +94,10 @@ if (!empty($_POST)) {
         $arrayErrors['captcha'] = "Veuillez prouver que vous n'êtes pas un robot";
     }
 
+    if(empty($_POST['cgu'])){
+        $arrayErrors['cgu'] = "Veuillez accepter les CGU";
+    }
+
     if (count($arrayErrors) == 0) {
         // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
         $profilPicture = htmlspecialchars(trim($_POST['profilPicture']));

@@ -124,10 +124,14 @@ require '../controller/controller_inscriptionEntreprise.php';
                     <input class="form-control" value="<?= isset($_POST["passwordOk"]) ? htmlspecialchars($_POST["passwordOk"]) : "" ?>" type="password" name="passwordOk" id="passwordOk">
                 </div>
 
-
+                <input class="form-check-input me-3" type="checkbox" name="cgu">
+                        <label class="form-check-label">
+                            J'accepte les conditions générales d'utilisation
+                        </label>    
+                        <span class="text-danger"><?= $arrayErrors['cgu'] ?? '' ?></span>  
        
                 <div class="g-recaptcha" data-sitekey="6LcVRNweAAAAAA3CTVNlNMw75z95ZTFKY0_kiv_v"></div>
-                            <span class="fw-bold text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
+                            <span class="text-danger"><?= $arrayErrors['captcha'] ?? '' ?></span>
                 <a class="lienConnexion" href="connexionRecruteur.php">
                     <p>Déjà inscrit? Veuillez vous connecter</p>
                 </a>
