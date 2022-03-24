@@ -1,11 +1,22 @@
 <?php
 
-
+/**
+ * créer une annonce (recruteurs)
+ * @param string job (titre de l'annonce)
+ * @param string experienceYear (années d'expérience exigées)
+ * @param string publicationDate (date de publication de l'annonce)
+ * @param string description (description de l'annonce)
+ * @param string jostartDate (date de début du job)
+ * @param int (idRecruteur)
+ * @param int (idDomaine)
+ * @param int (idContract)
+ * @param int (idProfils)
+ */
 
 class Annonce extends DataBase
 {
 
-    public function createAnnonce($job, $experienceYear, $publicationDate, $description, $startDate, $idRecruteur, $idDomaine, $idContract, $idProfils): void
+    public function createAnnonce(string $job, int $experienceYear, string $publicationDate, string $description, string $startDate, int $idRecruteur, int $idDomaine, int $idContract, int $idProfils): void
     {
 
 
@@ -58,7 +69,7 @@ class Annonce extends DataBase
        INNER JOIN  `contract` ON id_contract = contract.id
        INNER JOIN  `profils` ON id_profils = profils.id
        WHERE recruteur.id=:id
-       GROUP BY offre.id";
+       ORDER BY offre.id DESC";
         $resultQuery = $base->prepare($sql);
         $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
         $resultQuery->execute();

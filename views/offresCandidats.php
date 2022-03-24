@@ -10,21 +10,19 @@ include 'filtresCandidat.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    a[href="offresCandidats.php"]
-    {
-        border-bottom: #E28850 6px solid;
-        text-decoration: none;
-        width: 14rem;
-    }
-    @media screen and (max-width: 1000px) {
-        a[href="offresCandidats.php"]
-    {
-        border-bottom: #E28850 6px solid;
-        text-decoration: none;
-        width: 7rem;  
-    }
-    }
-    
+        a[href="offresCandidats.php"] {
+            border-bottom: #E28850 6px solid;
+            text-decoration: none;
+            width: 14rem;
+        }
+
+        @media screen and (max-width: 1000px) {
+            a[href="offresCandidats.php"] {
+                border-bottom: #E28850 6px solid;
+                text-decoration: none;
+                width: 7rem;
+            }
+        }
     </style>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -41,9 +39,9 @@ include 'filtresCandidat.php';
 <div class="col-lg-9">
     <?php include 'menuCandidats.php'; ?>
     <h1 class="text-center mt-4"><b><?= isset($_GET['inputSearch']) ? htmlspecialchars(trim(strip_tags($_GET['inputSearch']))) : '' ?></b></h1>
-    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',',$_GET['domaineName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_GET['contractName']) ? implode(',',$_GET['contractName']) : '' ?> </p>
-    <p class="text-center text-secondary">  <?= isset($_GET['profilName']) ? implode(',',$_GET['profilName']) : '' ?> </p>
+    <p class="text-center text-secondary"><?= isset($_GET['domaineName']) ? implode(',', $_GET['domaineName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= isset($_GET['contractName']) ? implode(',', $_GET['contractName']) : '' ?> </p>
+    <p class="text-center text-secondary"> <?= isset($_GET['profilName']) ? implode(',', $_GET['profilName']) : '' ?> </p>
     <p class="text-center text-secondary"> <?= $exp ?? '0' ?> an(s) exp.</p>
     <div class="d-flex justify-content-center">
         <a href="superCactus.php">
@@ -60,22 +58,23 @@ include 'filtresCandidat.php';
         </a>
     </div>
 
+    <p class="m-4 text-center"> La couleur des offres d'emplois correspond au type de profil recherché préférentiellement pour ce poste <br> ( superCactus, perterPaon, spiderLutin ou ironSpoke ). <br> Bonne nouvelle! Vous pouvez postuler à toutes les offres même si celle-ci ne correspond pas à votre profil! 🥳<br> Cependant , une offre correspondant à votre profil sera potentiellement plus adaptée à vos talents! 😉 </p>
 
     <div class="myCards d-flex justify-content-start m-3 mt-5 ms-3">
         <?php foreach ($allOfferssArray as $event) {  ?>
 
             <?php if (isset($event['profilColor']) && $event['profilColor'] == 'superCactus') {  ?>
                 <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>">
-                    <div class="cardRed m-4 p-1">
+                    <div class="cardRed m-4 p-0">
                     <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'peterPaon') {  ?>
                         <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>">
-                            <div class="cardCandidate m-4 p-1">
+                            <div class="cardCandidate m-4 p-0">
                             <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'ironSpoke') {  ?>
                                 <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>">
-                                    <div class="cardBlue m-4 p-1">
+                                    <div class="cardBlue m-4 p-0">
                                     <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'spiderLutin') {  ?>
                                         <a href="annonceRecruteurZoom.php?id=<?= $event['idAnnonce'] ?>">
-                                            <div class="cardGreen m-4 p-1">
+                                            <div class="cardGreen m-4 p-0">
                                             <?php  } ?>
 
                                             <div class="d-flex justify-content-evenly m-2">
@@ -93,11 +92,16 @@ include 'filtresCandidat.php';
                                             </div>
 
                                         </a>
-                                        <div class="d-flex justify-content-evenly">
-                                            <div class="publicationDate fw-light">
-                                                <p>date de publication : <?= $event['publicationDate'] ?></p>
+                                        <div class="d-flex justify-content-evenly row">
+                                            <div class="publicationDate fw-light pt-2 col-8">
+                                                <p>publiée le : <?= $event['publicationDate'] ?></p>
                                             </div>
-                                            <i id="<?= $event['idAnnonce'] ?>" class="fa <?= in_array($event['idAnnonce'], $likesCandidateArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-0"></i>
+                                            <div class="col lineHeight">
+                                                <i id="<?= $event['idAnnonce'] ?>" class="fa <?= in_array($event['idAnnonce'], $likesCandidateArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white fs-3 ms-1 test p-0 heart"></i>
+                                                <div class="p-0 d-table-cell align-top text-white">
+                                                    <span class="like"> LIKE </span>
+                                                </div>
+                                            </div>
 
                                         </div>
 
@@ -114,14 +118,14 @@ include 'filtresCandidat.php';
                                                 this.classList.remove('fa-heart-o');
                                                 this.classList.add('fa-heart');
                                                 let idOfferLike = this.id
-                                       
+
                                                 $.ajax({
                                                     url: 'offresCandidats.php',
                                                     type: 'post',
                                                     data: {
                                                         idOfferLike: idOfferLike,
                                                     },
-                                                 
+
                                                 });
                                             } else {
                                                 this.classList.remove('fa-heart')
@@ -138,8 +142,6 @@ include 'filtresCandidat.php';
                                         })
 
                                     });
-
-                             
                                 </script>
                             </div>
                     </div>

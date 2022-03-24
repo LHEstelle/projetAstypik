@@ -77,18 +77,18 @@ include 'filtresCandidat.php';
 
             <?php if (isset($event['profilColor']) && $event['profilColor'] == 'superCactus') {  ?>
                 <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
-                    <div class="cardRed m-4 p-1">
+                    <div class="cardRed m-4 p-0">
                     <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'peterPaon') {  ?>
                         <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
-                            <div class="cardCandidate m-4 p-1">
+                            <div class="cardCandidate m-4 p-0">
 
                             <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'ironSpoke') {  ?>
                                 <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
-                                    <div class="cardBlue m-4 p-1">
+                                    <div class="cardBlue m-4 p-0">
 
                                     <?php  } else if (isset($event['profilColor']) && $event['profilColor'] == 'spiderLutin') {  ?>
                                         <a href="profilCandidatDetails.php?id=<?= $event['idCandidat'] ?>">
-                                            <div class="cardGreen m-4 p-1">
+                                            <div class="cardGreen m-4 p-0">
                                             <?php  } ?>
 
                                             <input type="hidden" name="profilColor" value="<?= $event['profilColor']  ?>">
@@ -108,11 +108,15 @@ include 'filtresCandidat.php';
                                                 </div>
                                             </div>
                                         </a>
+
                                         <div class="row d-flex align-text-bottom">
-
-
-                                            <i id="<?= $event['idCandidat'] ?>" class="fa <?= in_array($event['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
- 
+                                            <div class="col-9"></div>
+                                            <div class="lineHeight col">
+                                                <i id="<?= $event['idCandidat'] ?>" class="fa <?= in_array($event['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> heart text-white text-end fs-3 test p-1 pe-4"></i>
+                                                <div class="p-0 d-table-cell align-top text-white">
+                                                    <span class="like"> LIKE </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -131,7 +135,7 @@ include 'filtresCandidat.php';
                                                     data: {
                                                         idCandidatLike: idCandidatLike,
                                                     },
-                                                 
+
                                                 });
                                             } else {
                                                 this.classList.remove('fa-heart')
@@ -144,7 +148,7 @@ include 'filtresCandidat.php';
                                                     data: {
                                                         idCandidatDislike: idCandidatDislike,
                                                     },
-                                                 
+
                                                 });
                                             }
                                         })

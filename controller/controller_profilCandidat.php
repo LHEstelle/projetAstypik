@@ -16,28 +16,9 @@ $arrayErrors = [];
 session_start();
 if (empty($_SESSION) || isset($_SESSION['siretNumber'])) {
     header('Location: pageErreur.php');
+    exit();
 }
 
-$candidatInfo = new Candidat;
-$candidatInfoArray = $candidatInfo->getOneCandidate($_SESSION['mail']);
-$dateNaissance = $candidatInfoArray['birthDate'];
-$aujourdhui = date("Y-m-d");
-$diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
-$age = $diff->format('%y');
-
-
-
-$contractObj = new Candidat;
-$contractArray = $contractObj->getAllContract();
-
-$domainObj = new Candidat;
-$domainArray = $domainObj->getAllDomaines();
-
-
-$candidatObj = new Candidat;
-$candidatProfilArray = $candidatObj->getCandidateProfil($_SESSION['mail']);
-
-$modifyCandidatOk = false;
 
 
 if (isset($_POST['modifyButton'])) {
@@ -147,6 +128,10 @@ if (isset($_POST['modifyButton'])) {
     }
 }
 
+
+
+
+
 if (!empty($_POST['submitButtonProfilPicture'])) {
     if ($_FILES['fileToUpload']['type'] == '') {
         $arrayErrors["mime"] = "Veuillez télécharger une photo";
@@ -166,7 +151,7 @@ if (!empty($_POST['submitButtonProfilPicture'])) {
         $profilPicture = htmlspecialchars(trim($_FILES['fileToUpload']["name"]));
         $candidatObj = new Candidat();
         $candidatModifyArray = $candidatObj->modifyprofilPicture($mail, $profilPicture);
-        header('Location: profilCandidat.php');
+      
     }
 }
 
@@ -192,10 +177,24 @@ if (!empty($_POST['submitButtonCvPicture'])) {
         $cvPicture = htmlspecialchars(trim($_FILES['cvToUpload']["name"]));
         $candidat = new Candidat();
         $candidatModifyArray = $candidat->modifyCvPicture($mail, $cvPicture);
-        header('Location: profilCandidat.php');
+
     }
 }
 
+$contractObj = new Candidat;
+$contractArray = $contractObj->getAllContract();
+
+$domainObj = new Candidat;
+$domainArray = $domainObj->getAllDomaines();
+
+$candidatInfo = new Candidat;
+$candidatInfoArray = $candidatInfo->getOneCandidate($_SESSION['mail']);
+$dateNaissance = $candidatInfoArray['birthDate'];
+$aujourdhui = date("Y-m-d");
+$diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
+$age = $diff->format('%y');
+$candidatObj = new Candidat;
+$candidatProfilArray = $candidatObj->getCandidateProfil($_SESSION['mail']);
 
 if (isset($_POST["deleteButton"])) {
     $id = intval($_SESSION["id"]);

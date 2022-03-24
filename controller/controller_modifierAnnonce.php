@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
 
     $profilsObj = new Annonce;
     $profilsArray = $profilsObj->getAllProfils();
-    var_dump($_GET);
+
 
     if (isset($_POST["modifyAnnonce"])) {
 

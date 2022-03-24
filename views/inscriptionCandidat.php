@@ -17,8 +17,8 @@ require '../controller/controller_inscriptionCandidat.php';
 <body>
 
 
-    <body class="">
-        <nav class="navbar navbar-expand-lg navbar-dark text-white sticky-top row">
+
+        <nav class="navbar  navbar-expand-lg navbar-dark text-white sticky-top row">
             <div class="container">
                 <div class="containerImage">
 
@@ -30,7 +30,7 @@ require '../controller/controller_inscriptionCandidat.php';
 
 
 
-                <div class="list row col-lg-4 col" id="navbarSupportedContent">
+                <div class="list row col-lg-4" id="navbarSupportedContent">
 
                     <li class="connexion d-flex justify-content-center ms-3 mb-5 mt-5 col-lg-8 col-5">
                         <a class="nav-link text-dark text-center" href="connexionEntrepriseOuCandidat.php"><b>Connexion</b></a>
@@ -49,9 +49,9 @@ require '../controller/controller_inscriptionCandidat.php';
 
 
             <form action="" method="POST">
-                <div class="container">
+                <div class="container inscription">
                     <div class="mb-3">
-                        <label for="lastname" class="form-label">Nom</label>
+                        <label for="lastname" class="form-label">Nom *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["lastname"] ?? "" ?>
                         </span>
@@ -59,7 +59,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="firstname" class="form-label">Prénom</label>
+                        <label for="firstname" class="form-label">Prénom *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["firstname"] ?? "" ?>
                         </span>
@@ -67,7 +67,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="birthdate" class="form-label">Date de naissance</label>
+                        <label for="birthdate" class="form-label">Date de naissance *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["birthdate"] ?? "" ?>
                         </span>
@@ -75,7 +75,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Numéro de téléphone</label>
+                        <label for="phone" class="form-label">Numéro de téléphone *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["phone"] ?? "" ?>
                         </span>
@@ -83,7 +83,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="mail" class="form-label">Mail</label>
+                        <label for="mail" class="form-label">Mail *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["mail"] ?? "" ?>
                         </span>
@@ -91,7 +91,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="adress" class="form-label">Ville</label>
+                        <label for="adress" class="form-label">Ville *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["city"] ?? "" ?>
                         </span>
@@ -99,7 +99,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="postalCode" class="form-label">Code postal</label>
+                        <label for="postalCode" class="form-label">Code postal *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["postalCode"] ?? "" ?>
                         </span>
@@ -107,7 +107,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="adress" class="form-label">Adresse</label>
+                        <label for="adress" class="form-label">Adresse *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["adress"] ?? "" ?>
                         </span>
@@ -115,7 +115,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="password" class="form-label">Mot de passe</label>
+                        <label for="password" class="form-label">Mot de passe *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["password"] ?? "" ?>
                         </span>
@@ -123,7 +123,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="passwordOk" class="form-label">Confirmer votre mot de passe</label>
+                        <label for="passwordOk" class="form-label">Confirmer votre mot de passe *</label>
                         <span class="text-danger">
                             <?= $arrayErrors["passwordOk"] ?? "" ?>
                         </span>
@@ -136,7 +136,7 @@ require '../controller/controller_inscriptionCandidat.php';
                     <input type="hidden" name="profilPicture" value="avatar.jpg">
                     <input class="form-check-input me-3" type="checkbox" name="cgu">
                         <label class="form-check-label">
-                            J'accepte les conditions générales d'utilisation
+                            J'accepte les conditions générales d'utilisation *
                         </label>    
                         <span class="text-danger"><?= $arrayErrors['cgu'] ?? '' ?></span>   
                     <div class="g-recaptcha" data-sitekey="6LcVRNweAAAAAA3CTVNlNMw75z95ZTFKY0_kiv_v"></div>

@@ -24,11 +24,13 @@
         </div>
 
     </nav>
+
     <?php if (isset($_SESSION['siretNumber'])) {
         include 'menuRecruteurs.php';
     }else if (isset($_SESSION['birthDate'])){
         include 'menuCandidats.php';
     } ?>
+
     <div class="container">
         <h1 class="text-center">Conditions générales d'utilisation</h1>
         <p class="text-center"> vigueur au 04/03/2022</p>

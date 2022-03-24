@@ -127,31 +127,12 @@ if (!empty($_POST)) {
 
 
         if (count($arrayErrors) == 0) {
-            // strtoupper = en majuscule / ucwords = 1ere lettre en majuscule
 
-            $lastName = htmlspecialchars(strtoupper(trim($_POST['lastname'])));
-            $firstName = htmlspecialchars(ucwords(trim($_POST['firstname'])));
-            $description = 'en attente de description...';
-            $birthDate = htmlspecialchars(trim($_POST['birthdate']));
-            $phone = htmlspecialchars(trim($_POST['phone']));
-            $mail = htmlspecialchars(trim($_POST['mail']));
-            $city = htmlspecialchars(trim($_POST['city']));
-            $postalCode = htmlspecialchars(trim($_POST['postalCode']));
-            $adress = htmlspecialchars(trim($_POST['adress']));
-            $password = htmlspecialchars(trim($_POST['password']));
-            $id_profils = htmlspecialchars(trim($_POST['id_profils']));
-            $id_contract = htmlspecialchars(trim($_POST['id_contract']));
-            $id_domaine = htmlspecialchars(trim($_POST['id_domaine']));
-            $experienceYears = 0;
-            $cvPicture = htmlspecialchars(trim($_POST['cvPicture']));
-            $profilPicture = htmlspecialchars(trim($_POST['profilPicture']));
             $candidatObj = new Candidat();
-            $addCandidat = $candidatObj->addCandidat($lastName, $firstName, $description, $birthDate, $phone, $mail, $city, $postalCode, $adress, $password, $id_profils, $id_contract, $id_domaine, $experienceYears, $cvPicture, $profilPicture);
-            $addCandidatOk = true;
+            $addCandidat = $candidatObj->addCandidat($_POST);
             session_start();
             $sessionObj = new Candidat;
             $_SESSION = $sessionObj->getOneCandidate($_POST['mail']);
-          
 
             header('location: testCandidat.php');
         }

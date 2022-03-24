@@ -49,9 +49,9 @@ require '../controller/controller_inscriptionEntreprise.php';
 
 
         <form action="" method="POST">
-            <div class="container">
+            <div class="container inscription">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nom de l'entreprise</label>
+                    <label for="name" class="form-label">Nom de l'entreprise *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["name"] ?? "" ?>
                     </span>
@@ -59,7 +59,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="siretNumber" class="form-label">Numéro de SIRET</label>
+                    <label for="siretNumber" class="form-label">Numéro de SIRET *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["siretNumber"] ?? "" ?>
                     </span>
@@ -67,7 +67,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Numéro de téléphone</label>
+                    <label for="phone" class="form-label">Numéro de téléphone *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["phone"] ?? "" ?>
                     </span>
@@ -75,7 +75,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="mail" class="form-label">Mail</label>
+                    <label for="mail" class="form-label">Mail *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["mail"] ?? "" ?>
                     </span>
@@ -83,7 +83,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="adress" class="form-label">Ville</label>
+                    <label for="adress" class="form-label">Ville *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["city"] ?? "" ?>
                     </span>
@@ -91,7 +91,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="postalCode" class="form-label">Code postal</label>
+                    <label for="postalCode" class="form-label">Code postal *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["postalCode"] ?? "" ?>
                     </span>
@@ -99,7 +99,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div> 
 
                 <div class="mb-3">
-                    <label for="adress" class="form-label">Adresse</label>
+                    <label for="adress" class="form-label">Adresse *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["adress"] ?? "" ?>
                     </span>
@@ -109,7 +109,7 @@ require '../controller/controller_inscriptionEntreprise.php';
          
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
+                    <label for="password" class="form-label">Mot de passe *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["password"] ?? "" ?>
                     </span>
@@ -117,7 +117,7 @@ require '../controller/controller_inscriptionEntreprise.php';
                 </div>
 
                 <div class="mb-3">
-                    <label for="passwordOk" class="form-label">Confirmer votre mot de passe</label>
+                    <label for="passwordOk" class="form-label">Confirmer votre mot de passe *</label>
                     <span class="text-danger">
                         <?= $arrayErrors["passwordOk"] ?? "" ?>
                     </span>
@@ -126,7 +126,7 @@ require '../controller/controller_inscriptionEntreprise.php';
 
                 <input class="form-check-input me-3" type="checkbox" name="cgu">
                         <label class="form-check-label">
-                            J'accepte les conditions générales d'utilisation
+                            J'accepte les conditions générales d'utilisation *
                         </label>    
                         <span class="text-danger"><?= $arrayErrors['cgu'] ?? '' ?></span>  
        

@@ -101,128 +101,137 @@ if (date_create($candidatInfoArray['birthDate']) == TRUE || date_create($event['
 
                                                 <p class="m-3 text-white"><?= $candidatInfoArray['pseudo'] ?></p>
                                                 <p class="m-3 text-white"><?= $age ?> ans</p>
+
+
                                                 <?php if (!isset($_SESSION['birthDate'])) { ?>
                                                     <div class="d-flex justify-content-end m-4">
-                                                        <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> text-white text-end fs-3 test p-1 pe-4"></i>
-                                                    </div>
-                                                <?php } ?>
-                                                </div>
-
-                                                <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
-                                                    <div class="mt-3"><?= $candidatInfoArray['profilName'] ?> <p><?= $candidatInfoArray['profilTalents'] ?></p>
-                                                    </div>
-
-                                                </div>
-
-                                                <?php if (isset($_POST['conversationButton'])) {  ?>
-
-                                                    <div class="d-flex justify-content-center mt-3">
-                                                        <div class="coordonnees">
-                                                            <h4 class="text-center mt-3">COORDONNEES</h4>
-                                                            <div class="m-5 text-center">
-                                                                <p class=""><?= $candidatInfoArray['adress']   ?> <?= $candidatInfoArray['postalCode']   ?> <?= $candidatInfoArray['city']   ?></p>
-                                                            </div>
-                                                            <div class="m-5 text-center">
-                                                                <p class=""><?= $candidatInfoArray['mail']   ?></p>
-                                                            </div>
-                                                            <div class="m-5 text-center">
-                                                                <p class=""><?= $candidatInfoArray['phone']   ?></p>
+                                                        <div class="col-11"></div>
+                                                        <div class="lineHeight col">
+                                                            <i id="<?= $candidatInfoArray['idCandidat'] ?>" class="fa <?= in_array($candidatInfoArray['idCandidat'], $likesRecrutorArray) ? 'fa-heart' : 'fa-heart-o' ?> heart text-white text-end fs-3 test p-1 pe-4"></i>
+                                                            <div class="p-0 d-table-cell align-top text-white">
+                                                                <span class="like ms-4"> LIKE </span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                               
+                                            <?php } ?>
+                                            </div>
 
+                                            <div class="text-center d-flex justify-content-center me-5"><img src="../assets/img/<?= $candidatInfoArray['img'] ?? "" ?>" alt="profilImg" class="supercactusImg p-0">
+                                                <div class="mt-3"><?= $candidatInfoArray['profilName'] ?> <p><?= $candidatInfoArray['profilTalents'] ?></p>
+                                                </div>
 
-                                                <?php } ?>
+                                            </div>
 
-                                                <h4 class="mt-4">SOUHAITS ET EXPERIENCES</h4>
-                                                <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
+                                            <?php if (isset($_POST['conversationButton'])) {  ?>
 
-
-                                                <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
-                                                <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
-                                                    <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> an(s) d'expérience</p>
-                                                <?php } ?>
-
-                                                <!-- Button trigger modal -->
-
-                                                <?php if (strpos($candidatInfoArray['cvPicture'], '.pdf') !== false) { ?>
-
-                                                    <a href="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" class="text-primary">Voir le cv</a>
-
-                                                <?php } else { ?>
-                                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
-                                                    </button>
-                                                <?php  } ?>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPictureZoom">
-                                                            </div>
+                                                <div class="d-flex justify-content-center mt-3">
+                                                    <div class="coordonnees">
+                                                        <h4 class="text-center mt-3">COORDONNEES</h4>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['adress']   ?> <?= $candidatInfoArray['postalCode']   ?> <?= $candidatInfoArray['city']   ?></p>
+                                                        </div>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['mail']   ?></p>
+                                                        </div>
+                                                        <div class="m-5 text-center">
+                                                            <p class=""><?= $candidatInfoArray['phone']   ?></p>
                                                         </div>
                                                     </div>
-
-
                                                 </div>
-                                                <div class="bgWhite">
-                                                    <div class="mt-5">
-                                                        <h4>SA DESCRIPTION</h4>
+
+
+                                            <?php } ?>
+
+                                            <h4 class="mt-4">SOUHAITS ET EXPERIENCES</h4>
+                                            <p class="m-3"><?= $candidatInfoArray["domaineName"] ?></p>
+
+
+                                            <p class="m-3"><?= $candidatInfoArray["contractName"] ?></p>
+                                            <?php if (isset($candidatInfoArray['experienceYears'])) { ?>
+                                                <p class="m-3"> <?= $candidatInfoArray["experienceYears"]  ?> an(s) d'expérience</p>
+                                            <?php } ?>
+
+                                            <!-- Button trigger modal -->
+
+                                            <?php if (strpos($candidatInfoArray['cvPicture'], '.pdf') !== false) { ?>
+
+                                                <a href="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" target="_blank" class="text-primary">Voir le cv</a>
+
+                                            <?php } else { ?>
+                                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPicture p-0">
+                                                </button>
+                                            <?php  } ?>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <img src="../assets/img/<?= $candidatInfoArray['cvPicture'] ?>" alt="cvImg" class="cvPictureZoom">
+                                                        </div>
                                                     </div>
-                                                    <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
                                                 </div>
+
+
+                                            </div>
+                                            <div class="bgWhite">
+                                                <div class="mt-5">
+                                                    <h4>SA DESCRIPTION</h4>
+                                                </div>
+                                                <p class=""><?= $candidatInfoArray['candidateDescription'] ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                const test = document.querySelectorAll('.test');
-                                test.forEach(element => {
-                                    element.addEventListener('click', function() {
-                                        if (this.classList.contains('fa-heart-o')) {
-                                            this.classList.remove('fa-heart-o');
-                                            this.classList.add('fa-heart');
-                                            let idCandidatLike = this.id
-                                            $.ajax({
-                                                url: 'viewRH.php',
-                                                type: 'post',
-                                                data: {
-                                                    idCandidatLike: idCandidatLike,
-                                                },
+                        </div>
+                        <script>
+                            const test = document.querySelectorAll('.test');
+                            test.forEach(element => {
+                                element.addEventListener('click', function() {
+                                    if (this.classList.contains('fa-heart-o')) {
+                                        this.classList.remove('fa-heart-o');
+                                        this.classList.add('fa-heart');
+                                        let idCandidatLike = this.id
+                                        $.ajax({
+                                            url: 'viewRH.php',
+                                            type: 'post',
+                                            data: {
+                                                idCandidatLike: idCandidatLike,
+                                            },
 
-                                            });
-                                        } else {
-                                            this.classList.remove('fa-heart')
-                                            this.classList.add('fa-heart-o')
-                                            let idCandidatDislike = this.id
-                                            console.log(idCandidatDislike)
-                                            $.ajax({
-                                                url: 'viewRH.php',
-                                                type: 'post',
-                                                data: {
-                                                    idCandidatDislike: idCandidatDislike,
-                                                },
+                                        });
+                                    } else {
+                                        this.classList.remove('fa-heart')
+                                        this.classList.add('fa-heart-o')
+                                        let idCandidatDislike = this.id
+                                        console.log(idCandidatDislike)
+                                        $.ajax({
+                                            url: 'viewRH.php',
+                                            type: 'post',
+                                            data: {
+                                                idCandidatDislike: idCandidatDislike,
+                                            },
 
-                                            });
-                                        }
-                                    })
+                                        });
+                                    }
+                                })
 
-                                });
-                            </script>
+                            });
+                        </script>
 
-                            <?php include 'footer.php' ?>
+                        <?php include 'footer.php' ?>
 
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
 
-                            <script src="../assets/js/script.js ">
-                            </script>
+                        <script src="../assets/js/script.js ">
+                        </script>
 </body>
 
 

@@ -15,7 +15,7 @@ echo strftime('%d/%m/%Y');
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/dkcfca5o4hxmltg1wtj473qxutifqfmr848v06z4ya8ecdf1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
     <script>
@@ -84,7 +84,7 @@ echo strftime('%d/%m/%Y');
                     <?php } ?>
                 </select>
       
-                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES POUR LE POSTE *</b><span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span></p>
+                <p class="mt-3"><b>COMPETENCES PREFERENTIELLES (SOFTSKILLS) POUR LE POSTE *</b><span class="text-danger"><?= $arrayErrors['id_profils'] ?? '' ?></span></p>
 
                 <select name="id_profils" id="profils" class="inputSearch ms-3">
                     <option value="">Choisissez des compétences</option>

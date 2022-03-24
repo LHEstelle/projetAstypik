@@ -52,19 +52,7 @@ class Likes extends DataBase
         $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
         $resultQuery->execute();
     }
-    // public function getLikesOfAllRecrutor(): array
-    // { 
-    //     $base = $this->connectDb();
-    //     $sql = "SELECT likerecrutor.id AS 'idCandidateLiked', likerecrutor.id_recruteur AS 'recrutorLike', candidat.id AS 'idCandidat', recruteur.id AS 'idRecrutor', recruteur.name AS 'recrutorName'
-    //     FROM likerecrutor
-    //     LEFT JOIN recruteur ON recruteur.id = likerecrutor.id_recruteur
-    //     LEFT JOIN candidat ON likerecrutor.id = candidat.id";
 
-    //     $resultQuery = $base->query($sql);
-    //     $resultQuery->execute();
-    //     return $resultQuery->fetchAll();
-
-    // }
     public function getLikesOfAllRecrutorForOneCandidate($mail): array
     {
         $base = $this->connectDb();

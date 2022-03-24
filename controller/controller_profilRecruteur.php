@@ -14,8 +14,7 @@ $regexPhone = "/^0[1-98][0-9]{8}$/";
 // Tableau vide qui va nous permettre de stocker les erreurs 
 $arrayErrors = [];
 
-$entrepriseInfo = new Entreprise;
-$entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
+
 
 
 if (isset($_POST["modifyButton"])) {
@@ -64,12 +63,14 @@ if (isset($_POST["modifyButton"])) {
         $entreprise = new Entreprise();
         $entrepriseModifyArray = $entreprise->modifyInfosEnterprise($pseudo, $city, $postalCode, $adress, $mail, $phone, $id);
      
-        header('location: profilRecruteur.php');
+
         echo '<script type="text/javascript">'
         . 'alert("Votre profil a bien été modifié");'
         . '</script>';
     }
 }
+$entrepriseInfo = new Entreprise;
+$entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
 if (!empty($_POST['submitButton'])) {
     if (mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpeg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/jpg' && mime_content_type($_FILES['fileToUpload']['tmp_name']) != 'image/png') {
         $arrayErrors["mime"] = "Votre téléchargement n'est pas une image";

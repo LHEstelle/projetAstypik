@@ -12,7 +12,7 @@ if (empty($_SESSION) || empty($_SESSION['siretNumber'])) {
 $arrayErrors = [];
 
 $addAnnonceOk = false;
-var_dump($_POST);
+
 $entrepriseInfo = new Entreprise;
 $entrepriseInfoArray = $entrepriseInfo->getOneRecrutor($_SESSION['mail']);
 
@@ -35,19 +35,21 @@ if (isset($_POST["createAnnonce"])) {
         }
     }
 
-    if (!isset($_POST["id_domaine"])) {
-
-        $arrayErrors["id_domaine"] = "Veuillez saisir votre domaine";
+    if (isset($_POST["id_domaine"])) {
+        if (empty($_POST["id_domaine"])) {
+            $arrayErrors["id_domaine"] = "Veuillez saisir votre domaine";
+        }
     }
 
-    if (!isset($_POST["id_profils"])) {
-
-        $arrayErrors["id_profils"] = "Veuillez saisir des compétences préférentielles";
+    if (isset($_POST["id_profils"])) {
+        if (empty($_POST["id_profils"])) {
+            $arrayErrors["id_profils"] = "Veuillez saisir des compétences préférentielles";
+        }
     }
-
-    if (!isset($_POST["id_contract"])) {
-
-        $arrayErrors["id_contract"] = "Veuillez saisir un contrat";
+    if (isset($_POST["id_contract"])) {
+        if (empty($_POST["id_contract"])) {
+            $arrayErrors["id_contract"] = "Veuillez saisir le type de contrat recherché";
+        }
     }
 
 

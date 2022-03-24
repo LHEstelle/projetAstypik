@@ -4,7 +4,7 @@ require_once '../models/database.php';
 require_once '../models/candidat.php';
 
 session_start();
-var_dump($_SESSION);
+
 if (empty($_SESSION)) {
     header('Location: pageErreur.php');
 }else if(isset($_SESSION['anotherQuestionKey'])){

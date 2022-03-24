@@ -31,7 +31,7 @@ require_once '../controller/controller_profilCandidat.php';
     <!-- cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <script src="https://cdn.tiny.cloud/1/y17w4t3wskvqoh0zg5y2e8yuvmjwv27vcfp9grnzbg2081eg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/dkcfca5o4hxmltg1wtj473qxutifqfmr848v06z4ya8ecdf1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/105da6fa91.js" crossorigin="anonymous"></script>
     <title>Astypik recrutement</title>
     <script>
@@ -165,6 +165,7 @@ require_once '../controller/controller_profilCandidat.php';
                                             <a href="<?= $candidatProfilArray['name'] ?>.php">
                                                 <?= $candidatProfilArray['nameStruct'] ?></a>
                                             <h3 class="text-center"><?= $candidatProfilArray['talents'] ?></h3>
+                                            
                                             <p class="mt-3"><b>NOM</b></p>
                                             <span class="text-danger"><?= $arrayErrors['lastName'] ?? '' ?></span>
                                             <div class="d-flex">
@@ -209,7 +210,7 @@ require_once '../controller/controller_profilCandidat.php';
                                                 <span class="text-danger"><?= $arrayErrors['phone'] ?? '' ?></span>
                                             </div>
 
-                                            <p class=""><b>DOMAINE RECHERCHE *</b></p>
+                                            <p class=""><b> SECTEUR D'ACTIVITES RECHERCHE *</b></p>
                                             <span class="text-danger"><?= $arrayErrors['id_domaine'] ?? '' ?></span>
                                             <select name="id_domaine" id="domaine" class="inputSearch ms-3">
                                                 <option value="">Choisissez un domaine</option>

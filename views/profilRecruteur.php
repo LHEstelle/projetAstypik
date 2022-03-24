@@ -98,7 +98,7 @@ require_once '../controller/controller_profilRecruteur.php';
 
             <h2 class="text-center"><?= $entrepriseInfoArray['name'] ?></h2>
             <p class="mt-3"><b>PSEUDO OU SLOGAN...(facultatif)</b></p><span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
-            <div class="d-flex">
+            <div class="d-flex m-2">
                 <input value="<?= $entrepriseInfoArray['pseudo'] ?>" name="pseudo" class="form-control inputSearch me-2 ms-3" type="text">
                 <span class="text-danger"><?= $arrayErrors['pseudo'] ?? "" ?></span>
             </div>

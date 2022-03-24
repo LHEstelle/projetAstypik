@@ -94,6 +94,14 @@
         width: 20rem;
         height: auto;
     }
+    /* Page Inscription */
+    
+    .inscription {
+        width: 60rem;
+        background-color: rgba(85, 85, 85, 0.103);
+        border-radius: 2rem;
+        padding: 1rem;
+    }
     /* Page de connexion */
     
     .btnEnregist {
@@ -456,7 +464,8 @@ Menu de navigation */
         /* number of lines to show */
         line-height: 1.2;
         -webkit-box-orient: vertical;
-        height: 7.8em;
+        height: 7.65em;
+        max-width: 16em;
     }
     
     .jobNameTruncate {
@@ -531,7 +540,27 @@ Menu de navigation */
         width: 7rem;
     }
     
+    .heart:hover {
+        -ms-transform: scale(1.5);
+        /* IE 9 */
+        -webkit-transform: scale(1.5);
+        /* Safari 3-8 */
+        transform: scale(1.5);
+    }
+    
+    .lineHeight {
+        line-height: 1rem;
+    }
+    
+    .like {
+        margin-left: 0.3rem;
+    }
+    
     @media screen and (max-width: 1000px) {
+        .inscription {
+            max-width: 100%;
+            margin: 0rem;
+        }
         .filtersSmall {
             display: block;
         }
@@ -561,8 +590,14 @@ Menu de navigation */
             text-align: right;
             padding-left: 2rem;
         }
+        html,
+        body {
+            overflow-x: hidden! important;
+        }
         .logo {
             text-align: end;
+            max-width: 12rem;
+            height: auto;
         }
         .list {
             flex-wrap: nowrap;
