@@ -70,7 +70,6 @@ require_once '../controller/controller_profilRecruteur.php';
 
 
 
-
     <div class="ms-3">
         <form enctype="multipart/form-data" method="POST" action="">
             <div class="d-flex justify-content-center mt-4">

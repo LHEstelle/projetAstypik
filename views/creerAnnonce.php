@@ -4,7 +4,7 @@
 require_once '../controller/controller_creerAnnonce.php';
 setlocale(LC_TIME, 'fr_FR');
 date_default_timezone_set('Europe/Paris');
-echo strftime('%d/%m/%Y');
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -38,7 +38,7 @@ echo strftime('%d/%m/%Y');
 
         <?php include 'menuRecruteurs.php' ?>
     </div>
-
+    <h2 class="text-center mt-4">Créer une annonce</h2>
     <form method="POST" action="">
         <div class="ms-3">
             <p class="mt-3"><b>NOM ENTREPRISE *</b></p>
@@ -112,6 +112,7 @@ echo strftime('%d/%m/%Y');
 
             </div>
     </form>
+
     <?php include 'footer.php' ?>
 
 

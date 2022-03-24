@@ -71,7 +71,7 @@ if (isset($_POST["createAnnonce"])) {
         }
     }
 
-    var_dump(count($arrayErrors));
+
     if (count($arrayErrors) == 0) {
 
         $job = htmlspecialchars(trim($_POST['job']));

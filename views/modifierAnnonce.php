@@ -38,6 +38,7 @@ require_once '../controller/controller_modifierAnnonce.php';
 
         <?php include 'menuRecruteurs.php' ?>
     </div>
+    <h2 class="text-center mt-4">Modifier/supprimer une annonce</h2>
     <?php if (isset($annonceInfo)) { ?>
 
         <div class="ms-3">
